@@ -1,9 +1,10 @@
 package ui
 import scala.swing._
-import javax.swing._
 import java.awt.Image
 import scala.io.StdIn._
-
+import java.awt.MouseInfo;
+import java.awt
+import javax.swing.border._
 /**
  * The Main UI class used as the MainFrame
  */
@@ -21,11 +22,72 @@ object UI extends MainFrame {
   val frameBar = new FrameBar
 
   val top = new TopContainer
-  
+  var draggingLeft: Boolean = false
+  var draggingTop: Boolean = false
+  var draggingRight: Boolean = false
+  var draggingBottom: Boolean = false
+
+  var start: awt.Point = new awt.Point(0, 0)
+  var current: awt.Point = new awt.Point(0, 0)
+  val thickness = 5;
   val topScroll = new ScrollPane(top) {
     border = new javax.swing.border.EmptyBorder(0, 0, 0, 0)
     verticalScrollBar.unitIncrement = 10
     verticalScrollBar.blockIncrement = 30
+    listenTo(mouse.clicks, mouse.moves)
+    reactions += {
+      case e: event.MouseMoved => {
+  //      println("passe" + e.point)
+  //      println(e.point.x-thickness)
+        val bound: awt.Rectangle = UI.bounds
+        if (e.point.x <= thickness || e.point.x >= bound.width - thickness)
+          cursor = new awt.Cursor(awt.Cursor.W_RESIZE_CURSOR)
+        else if (e.point.y <= thickness || e.point.y >= bound.height - thickness)
+          cursor = new awt.Cursor(awt.Cursor.N_RESIZE_CURSOR)
+        else cursor = new awt.Cursor(awt.Cursor.DEFAULT_CURSOR)
+      }
+    
+      case e : event.MouseExited =>{
+        cursor = new awt.Cursor(awt.Cursor.DEFAULT_CURSOR)
+      }
+      case e: event.MousePressed => {
+        val bound: awt.Rectangle = UI.bounds
+        if (e.point.x <= thickness)
+          draggingLeft = true
+        if (e.point.x >= bound.width - thickness)
+          draggingRight = true
+        if (e.point.y <= thickness)
+          draggingTop = true
+        if (e.point.y >= bound.height - thickness)
+          draggingBottom = true
+        if (draggingLeft || draggingTop || draggingRight || draggingBottom)
+          start = MouseInfo.getPointerInfo().getLocation();
+      }
+      case e: event.MouseReleased => {
+        draggingLeft = false
+        draggingTop = false
+        draggingRight = false
+        draggingBottom = false
+      }
+      case e: event.MouseDragged => {
+        if (draggingLeft || draggingTop || draggingRight || draggingBottom) {
+          current = MouseInfo.getPointerInfo().getLocation();
+          val bound: awt.Rectangle = UI.bounds
+          if (draggingRight && bound.width - (start.x - current.x) > UI.minimumSize.width) {
+            UI.peer.setSize((bound.width - (start.x - current.x)), bound.height);
+          }else if (draggingLeft && bound.width + (start.x - current.x) > UI.minimumSize.width){
+            UI.peer.setSize(bound.width + (start.x - current.x), bound.height);
+            UI.peer.setLocation(current.x ,UI.peer.getLocationOnScreen.getY.toInt);
+          }else if (draggingBottom && bound.height - (start.y - current.y) > UI.minimumSize.height){
+            UI.peer.setSize(bound.width, bound.height - (start.y - current.y));
+          }else if (draggingTop && bound.height + (start.y - current.y) > UI.minimumSize.height){
+            UI.peer.setSize(bound.width, bound.height + (start.y - current.y));
+            UI.peer.setLocation(UI.peer.getLocationOnScreen.getX.toInt , current.y);
+          }
+          start = current
+        }
+      } 
+    }
   }
   val bottom = new BottomContainer(userSay)
   init()
