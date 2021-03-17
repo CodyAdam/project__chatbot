@@ -9,14 +9,6 @@ case class Place (
   phoneNumber : String
 )
 
-
-object DataBase {
-  val places = List(Place("dhawhudw", "342","dhawhudw", "342", "Rennes"),
-    Place("dhawhudw", "342","dhawhudw", "342", "Rennes"), 
-    Place("dhawhudw", "342","dhawhudw", "342", "Rennes")) 
-}
-
-
 object XMLImporter extends App{
 	val xml = XML.loadFile("doc/vAr.xml")
   
