@@ -7,6 +7,8 @@
 	<classpathentry kind="lib" path="lib/client.jar"/>
 	<classpathentry kind="lib" path="lib/scala-swing_2.12.0-M5-2.0.0-M2-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/scala-swing_2.12.0-M5-2.0.0-M2.jar"/>
+	<classpathentry kind="lib" path="lib/scala-xml_2.12-1.0.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/scala-xml_2.12-1.0.6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
