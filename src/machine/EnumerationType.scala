@@ -4,10 +4,10 @@ object EnumerationType extends Enumeration {
 
   type EnumerationType = Value
 
-  val first = Value("Politesse")
-  val second = Value("Recherche")
-  val third = Value("Nom de langue")
-  val fourth = Value("Expression de base")
-  val fifth = Value("Autre")
+  val politesse = Value("Politesse")
+  val recherche = Value("Recherche")
+  val langue = Value("Nom de langue")
+  val expression = Value("Expression de base")
+  val autre = Value("Autre")
 
 }

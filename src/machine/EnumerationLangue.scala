@@ -4,11 +4,11 @@ object EnumerationLangue extends Enumeration {
 
   type EnumerationLangue = Value
 
-  val first = Value("Français")
-  val second = Value("Anglais")
-  val third = Value("Espagnol")
-  val fourth = Value("Allemand")
-  val fifth = Value("Italien")
-  val sixth = Value("Autre")
+  val francais = Value("Français")
+  val anglais = Value("Anglais")
+  val espagnol = Value("Espagnol")
+  val allemand = Value("Allemand")
+  val italien = Value("Italien")
+  val autre = Value("Autre")
   
 }
