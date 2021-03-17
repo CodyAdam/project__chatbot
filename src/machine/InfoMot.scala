@@ -1,9 +1,6 @@
 package machine
 
-class InfoMot(s1: String, s2: String) {
-
-  val types = EnumerationType
-  val langues = EnumerationLangue
+class InfoMot(types:EnumerationType.Value, langues:EnumerationLangue.Value, alias:List[String]) {
 
   
   
