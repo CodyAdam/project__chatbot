@@ -34,3 +34,5 @@ restaurant                  -> linternaute
 crêperie                    -> linternaute
 creperie                    -> linternaute
 pizzeria                    -> linternaute
+ristorante                  -> linternaute
+restaurante                 -> linternaute
