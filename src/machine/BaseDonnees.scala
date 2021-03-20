@@ -25,17 +25,6 @@ object BaseDonnees {
    * @param la liste de Place qui va etre ajouté dans la base de donnees
    */
   def addPlaces(places: List[Place]): Unit = this.places ++= places;
-  
-  /**
-   * @param keywords les mots clef
-   * @return toutes les Place avec les mots clefs
-   */
-  def getFromKeys(keywords: List[String]): List[Place] = ???
 
-  /**
-   * @param mainKey le mot clef principal de alias
-   * @return toutles les Place avec tout les alias du mot clef principal
-   */
-  def get(mainKey: String): List[Place] = ???
-
+  def getAlias(): Map[List[String], List[String]] = alias;
 }
