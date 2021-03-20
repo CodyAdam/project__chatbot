@@ -13,10 +13,10 @@ case class Place(
 /**
  * Objet qui importe les donnees des organisation de la ville de Rennes dans notre Base de donnees
  */
-object XMLImporter extends App {
-  val xmlData = xml.XML.loadFile("doc/vAr.xml")
+object XMLImporter {
+  private val xmlData = xml.XML.loadFile("doc/vAr.xml")
 
-  var places: List[Place] = List()
+  private var places: List[Place] = List()
   (xmlData \\ "organization").map(
     orga => (orga \\ "address").map(address => {
       if ((address \ "city").text == "Rennes") {
@@ -32,7 +32,7 @@ object XMLImporter extends App {
       }
     }))
 
-  BaseDonnees.addPlaces(places);
+  def getPlacesFromXml(): List[Place] = places
 }
 
 
