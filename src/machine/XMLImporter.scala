@@ -14,25 +14,25 @@ case class Place(
  * Objet qui importe les donnees des organisation de la ville de Rennes dans notre Base de donnees
  */
 object XMLImporter {
-  private val xmlData = xml.XML.loadFile("doc/vAr.xml")
-
-  private var places: List[Place] = List()
-  (xmlData \\ "organization").map(
-    orga => (orga \\ "address").map(address => {
-      if ((address \ "city").text == "Rennes") {
-        val addressString: String = if (((address \ "street") \ "number").contains(xml.Text)) ((address \ "street") \ "number").text + ", " + ((address \ "street") \ "name").text else ((address \ "street") \ "name").text
-        places = places ++ List(Place(
-          (orga \ "name").text,
-          (orga \ "description").text,
-          (orga \ "web").text,
-          addressString,
-          (address \ "zipcode").text,
-          (address \ "city").text,
-          (address \ "phone").text))
-      }
-    }))
-
-  def getPlacesFromXml(): List[Place] = places
+  def getPlacesFromXml(): List[Place] = {
+    val xmlData = xml.XML.loadFile("doc/vAr.xml")
+    var places: List[Place] = List()
+    (xmlData \\ "organization").map(
+      orga => (orga \\ "address").map(address => {
+        if ((address \ "city").text == "Rennes") {
+          val addressString: String = if (((address \ "street") \ "number").contains(xml.Text)) ((address \ "street") \ "number").text + ", " + ((address \ "street") \ "name").text else ((address \ "street") \ "name").text
+          places = places ++ List(Place(
+            (orga \ "name").text,
+            (orga \ "description").text,
+            (orga \ "web").text,
+            addressString,
+            (address \ "zipcode").text,
+            (address \ "city").text,
+            (address \ "phone").text))
+        }
+      }))
+    return places
+  }
 }
 
 

@@ -2,34 +2,33 @@ package machine
 import scala.io.Source
 
 /**
- * Object qui permet de formateur et d'importer le fichier alias.txt dans la mémoire de la base de données 
+ * Object qui permet de formateur et d'importer le fichier alias.txt dans la mémoire de la base de données
  */
 object AliasImporter {
-  private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
+  def getAliasFromFile(): Map[List[String], List[String]] = {
+    var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
+    val dataRaw: List[String] = Source.fromFile("doc/alias.txt").getLines.toList;
+    //Remove comment lines and empty lines
+    var data: List[String] = dataRaw.filter((line: String) => { !line.contains("#") && line != "" })
 
-  private val dataRaw: List[String] = Source.fromFile("doc/alias.txt").getLines.toList;
-
-  //Remove comment lines and empty lines
-  private var data: List[String] = dataRaw.filter((line: String) => { !line.contains("#") && line != "" })
-
-  for (line <- data) {
-    val regexArrow = " *-> *".r
-    val splitedLine: List[String] = regexArrow.split(line).toList
-    val regexComma = ";".r
-
-    splitedLine.length match {
-      case 1 => alias += regexComma.split(splitedLine(0)).toList -> regexComma.split(splitedLine(0)).toList;
-      case 2 => alias += regexComma.split(splitedLine(0)).toList -> regexComma.split(splitedLine(1)).toList;
-      case _ => throw new Exception("Wrong formating for the line : \"" + line + "\"", None.orNull)
+    for (line <- data) {
+      val regexArrow = " *-> *".r
+      val splitedLine: List[String] = regexArrow.split(line).toList
+      val regexComma = ";".r
+      splitedLine.length match {
+        case 1 => alias += regexComma.split(splitedLine(0)).toList -> regexComma.split(splitedLine(0)).toList;
+        case 2 => alias += regexComma.split(splitedLine(0)).toList -> regexComma.split(splitedLine(1)).toList;
+        case _ => throw new Exception("Wrong formating for the line : \"" + line + "\"", None.orNull)
+      }
     }
+    return alias
   }
-
-  def getAliasFromFile(): Map[List[String], List[String]] = alias
 
   /**
    * @return the stringify of the alias map
+   * @note never used
    */
-  override def toString(): String = {
+  def aliasToString(alias: Map[List[String], List[String]]): String = {
     var output = "";
     for (key <- alias.keys) {
       for (s <- key)
