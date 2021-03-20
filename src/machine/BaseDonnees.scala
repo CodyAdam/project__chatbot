@@ -5,16 +5,13 @@ import scala.io.Source
 object BaseDonnees {
 
   private var places: List[Place] = List[Place]()
-
-  private val international = Source.fromFile("doc/international.txt").getLines.toList
-
   private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
+  private var languages: List[Language] = List[Language]()
 
   /**
-   * Initialise la base de donnes avec les alias et les lieux
+   * Initialise la base de donnes avec les alias,les lieux et les langues
    */
   def init(): Unit = {
-
     //Ajoute les places par défaut
     places = List(
       Place("Mairie de Rennes", "La mairie de Rennes, aussi nommée hôtel de ville de Rennes, désigne à la fois le bâtiment et l'administration et les élus municipaux qui l'occupe",
@@ -30,8 +27,36 @@ object BaseDonnees {
     alias = AliasImporter.getAliasFromFile()
   }
 
+  /**
+   * search in the places database wich keys correspond to the input keyword
+   * @param keyword the keyword
+   * @return list of all the places found
+   */
   def findByKeyword(keyword: String): List[Place] = {
-    return places
+    places.filter((place: Place) => {
+      place.name.toLowerCase().contains(keyword)
+    })
   }
+
+  /**
+   * search in the places database wich keys correspond to the input keywords
+   * @param keywords all the keywords
+   * @return list of all the places found
+   */
+  def findByKeywords(keywords: Set[String]): List[Place] = {
+    var result: List[Place] = List[Place]()
+    keywords.foreach((keyword: String) => {
+      result ++= findByKeyword(keyword)
+    })
+    return result
+  }
+  /**
+   * @return the current selected language
+   */
+  def getLanguages(): List[Language] = languages;
+
+  /**
+   * @return the aliases map
+   */
   def getAlias(): Map[List[String], List[String]] = alias;
 }
