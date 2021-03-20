@@ -8,7 +8,7 @@ import scala.io.Source
  */
 object LanguageImporter {
   
-  private val dataRaw: List[String] = Source.fromFile("doc/alias.txt").getLines.toList;
+  private val dataRaw: List[String] = Source.fromFile("doc/international.txt").getLines.toList;
   
   def getLanguagesFromFile() : List[Language] =  ??? //TODO 
 }
