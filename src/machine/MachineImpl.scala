@@ -9,7 +9,7 @@ object MachineImpl extends MachineDialogue {
   def ask(s: String): List[String] = {
     val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
     val seachKeywords : Set[String] = AnalyseSentence.findKeysFromWords(words);
-    return words ++ seachKeywords.toList;
+    return seachKeywords.toList;
   }
 
   // Pour la partie test par le client
