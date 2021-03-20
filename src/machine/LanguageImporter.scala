@@ -10,8 +10,8 @@ object LanguageImporter {
   
   private val dataRaw: List[String] = Source.fromFile("doc/alias.txt").getLines.toList;
   
-  //TODO 
   
-  def getLanguagesFromFile() : List[Language] =  ???
+  
+  def getLanguagesFromFile() : List[Language] =  ??? //TODO 
   
 }
