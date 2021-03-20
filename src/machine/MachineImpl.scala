@@ -1,9 +1,24 @@
 package machine
 
-object MachineImpl extends MachineDialogue{
-  def ask(s:String):List[String]= ???
-  
+object MachineImpl extends MachineDialogue {
+  /**
+   * envoi d'une requête à la machine et réccupération de sa réponse
+   *  @param s la requête
+   *  @result la liste de réponses
+   */
+  def ask(s: String): List[String] = {
+    val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
+    val seachKeywords : Set[String] = AnalyseSentence.findKeysFromWords(words);
+    return words ++ seachKeywords.toList;
+  }
+
   // Pour la partie test par le client
-  def reinit= ???
-  def test(l:List[String]):List[String]= ???
+  /** réinitialisation de l'avatar */
+  def reinit = ???
+  /**
+   * test de l'avatar
+   *  @param l une liste de requête
+   *  @return la liste des réponses produites par l'avatar
+   */
+  def test(l: List[String]): List[String] = ???
 }
