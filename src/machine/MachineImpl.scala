@@ -9,7 +9,9 @@ object MachineImpl extends MachineDialogue {
   def ask(s: String): List[String] = {
     val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
     val seachKeywords : Set[String] = AnalyseSentence.findKeysFromWords(words);
-    return seachKeywords.toList;
+    val placesFound : List[Place] = BaseDonnees.findByKeywords(seachKeywords);
+    val response : List[String] = MultiRequetes.formatResults(placesFound)
+    return response;
   }
 
   // Pour la partie test par le client
