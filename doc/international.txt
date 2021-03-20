@@ -1,24 +1,24 @@
-* Mots déclenchant le changement de langue:
-- les variantes du mot bonjour (politesse)
-- les différents mots de recherche (recherche)
-- les noms de la langue (langue)
+# * Mots déclenchant le changement de langue:
+# - les variantes du mot bonjour (politesse)
+# - les différents mots de recherche (recherche)
+# - les noms de la langue (langue)
 
 
-Politesse:
+Politesse
 Français: bonjour,salut,bonsoir
 Anglais: hi,hello,morning,evening,afternoon,hey
 Espagnol: hola,buenos,dias
 Allemand: hallo,guten,morgen,tag,abend
 Italien: buongiorno,ciao,salve,buon,pomeriggio,buonasera,incantato
 
-Recherche:
+Recherche
 Français: recherche,cherche,ou,est,donc,trouve,trouver
 Anglais: seek,seeking,search,searching,look,looking,where,find
 Espagnol: donde,esta,busco,buscando
 Allemand: wo,ist,suche,suchen
 Italien: dove,trova,cerco,cercando
 
-Nom de langue:
+Nom de langue
 Français: français
 Anglais: english
 Espagnol: español
@@ -26,10 +26,10 @@ Allemand: deutsch
 Italien: italiano
 
 
-Expressions de base:
---------------------
+# Expressions de base:
+# --------------------
 
-Français:
+Français
 oui
 non
 L'adresse de XXX est
@@ -40,7 +40,7 @@ J'ai XXX réponses possibles
 Quel est votre choix?
 restaurant, creperie, pizzeria
 
-Anglais:
+Anglais
 yes
 no
 The address of XXX is
@@ -52,7 +52,7 @@ What is your choice?
 restaurant, creperie, pizzeria
 
 
-Espagnol:
+Espagnol
 si
 no
 La dirección de XXX es
@@ -63,7 +63,7 @@ Tengo XXX opciones
 Cuál es su elección?
 restaurante, creperie, pizzeria
 
-Allemand:
+Allemand
 ja
 nein
 Die adresse von XXX ist
@@ -74,7 +74,7 @@ Ich habe XXX Antworten
 Was ist Ihre Wahl?
 restaurant, creperie, pizzeria
 
-Italien:
+Italien
 si
 no
 Indirizzo di XXX è
