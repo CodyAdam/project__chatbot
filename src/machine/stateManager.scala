@@ -6,14 +6,10 @@ case object IsChosing extends UserState // Can enter a number to chose between m
 case object Waiting extends UserState // Waiting for a answer
 case object Blocked extends UserState // Can not interract with the application UI
 
-sealed trait Language
-case object Francais extends Language
-case object Espagnol extends Language
-case object Allemand extends Language
-case object Italien extends Language
-case object Autre extends Language
+case class Language(langue: String, politesse: List[String], recherche: List[String], linternauteTrigger: List[String], expression: Expression)
+case class Expression(agree: String, disagree: String, address: String, dontUnderstand: String, askLanguage: String, whatQuery: String, chose: String)
 
 object stateManager {
-  var userState : UserState = IsAsking
-  var currentLanguage : Language = Francais
+  var userState: UserState = IsAsking
+  var currentLanguage: Language = BaseDonnees.getLanguages()(0)
 }
