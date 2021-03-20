@@ -1,10 +1,14 @@
 package machine
 
-class InfoMot(s1: String, s2: String) {
-
-  val types = EnumerationType
-  val langues = EnumerationLangue
+class InfoMot(val types:EnumerationType.Value, val langues:EnumerationLangue.Value) {
 
   
+  
+}
+
+object Test extends App {
+  
+  val test = new InfoMot(EnumerationType.politesse, EnumerationLangue.francais)
+  println(test)
   
 }

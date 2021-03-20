@@ -1,6 +1,10 @@
 package machine
 
+import scala.io.Source
+
+
 object BaseDonnees {
+  
   private var places: List[Place] = List(
     Place("Mairie de Rennes", "La mairie de Rennes, aussi nommée hôtel de ville de Rennes, désigne à la fois le bâtiment et l'administration et les élus municipaux qui l'occupe",
       "metropole.rennes.fr", "Place de la Mairie", "35031", "Rennes", "02 23 62 10 10"),
@@ -11,6 +15,8 @@ object BaseDonnees {
     Place("Gare SNCF", "La gare de Rennes est une gare ferroviaire française de la ligne de Paris-​Montparnasse à Brest, située au sud du centre-ville de Rennes",
       "gares-sncf.com/fr/gare/frrns/rennes", "19, Place de la Gare", "35005", "Rennes", "36 35"))
 
+  val international = Source.fromFile("doc/international.txt").getLines.toList
+  
   private val alias: Map[List[String], List[String]] = ???
 
   /**
@@ -29,4 +35,5 @@ object BaseDonnees {
    * @return toutles les Place avec tout les alias du mot clef principal
    */
   def get(mainKey: String): List[Place] = ???
+
 }
