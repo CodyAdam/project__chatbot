@@ -6,5 +6,6 @@ import ui.UI
 
 object Application extends SimpleSwingApplication {
 
+  machine.BaseDonnees.init()
   def top : MainFrame = UI 
 }
