@@ -41,7 +41,7 @@ object StateManager {
    */
   def getNextLanguage(): Language = {
     val currentIndex = DataBase.getLanguages().indexOf(currentLanguage);
-    DataBase.getLanguages()(currentIndex + 1 % DataBase.getLanguages().length);
+    DataBase.getLanguages()((currentIndex + 1) % DataBase.getLanguages().length);
   }
 
 }

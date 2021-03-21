@@ -79,7 +79,6 @@ object MachineImpl extends MachineDialogue {
       }
 
       case ChangingLanguage => {
-        ??? //TODO Changing language implem
         /*
          * il demande confirmation de la nouvelle langue à l'utilisateur. Si celui-ci confirme,
          * l'avatar lui demandera de poser sa requête dans cette nouvelle langue.
@@ -89,9 +88,14 @@ object MachineImpl extends MachineDialogue {
          * etc. Pendant la confirmation d'une langue, si l'utilisateur utilise un mot dans
          * une autre langue le changement de langue se poursuit pour cette autre langue.
          */
-
-        // if user say no cycle to next lang
-        // you can cycle language with : StateManager.changeLanguage()  and StateManager.getNextLanguage()
+        val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
+        if(AnalyseSentence.containsWithTypingError(words, StateManager.currentLanguage.expression.agree)){
+          StateManager.userState = IsAsking
+          List(StateManager.currentLanguage.expression.whatQuery)
+        } else {
+          StateManager.changeLanguage(StateManager.getNextLanguage());
+          List(StateManager.currentLanguage.expression.askLanguage)
+        }
       }
 
       case _ => List(StateManager.currentLanguage.expression.dontUnderstand)

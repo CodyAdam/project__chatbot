@@ -26,63 +26,62 @@ object LanguageImporter {
         "D'accord, quelle est votre demande?",
         "J'ai XXX réponses possibles",
         "Quel est votre choix?"))
-    val anglais = new Language( // TODO replace with correct language
+    val anglais = new Language(
       "Anglais",
       List("hi", "hello", "morning", "evening", "afternoon", "hey"),
-      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
+      List("seek", "seeking", "search", "searching", "look", "looking", "where", "find"),
       List("restaurant", "creperie", "pizzeria"),
       new Expression(
-        "oui",
-        "non",
-        "L'adresse de XXX est",
-        "Je ne comprends pas votre demande",
-        "Parlez-vous français?",
-        "D'accord, quelle est votre demande?",
-        "J'ai XXX réponses possibles",
-        "Quel est votre choix?"))
-    val espagnol = new Language( // TODO replace with correct language
-      "Français",
+        "yes",
+        "no",
+        "The address of XXX is",
+        "I do not understand",
+        "Do you speak english?",
+        "OK, what is your query?",
+        "I found XXX answers",
+        "What is your choice?"))
+    val espagnol = new Language(
+      "Espagnol",
+      List("hola", "buenos", "dias"),
+      List("donde", "esta", "busco", "buscando"),
+      List("restaurante", "creperie", "pizzeria"),
+      new Expression(
+        "si",
+        "no",
+        "La dirección de XXX es",
+        "No comprendo",
+        "Hablas español?",
+        "Está bien, cuál es tu petición?",
+        "Tengo XXX opciones",
+        "Cuál es su elección?"))
+    val allemand = new Language(
+      "Allemand",
+      List("hallo", "guten", "morgen", "tag", "abend"),
+      List("wo", "ist", "such", "suchen"),
+      List("restaurant", "creperie", "pizzeria"),
+      new Expression(
+        "ja",
+        "nein",
+        "Die adresse von XXX ist",
+        "Ich verstehe nicht",
+        "Sprechen Sie Deutsch?",
+        "Okay, was ist Ihr Wunsch?",
+        "Ich habe XXX Antworten",
+        "Was ist Ihre Wahl?"))
+    val italien = new Language(
+      "Italien",
       List("bonjour", "salut", "bonsoir"),
       List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
-      List("restaurant", "creperie", "pizzeria"),
+      List("ristorante", "creperie", "pizzeria"),
       new Expression(
-        "oui",
-        "non",
-        "L'adresse de XXX est",
-        "Je ne comprends pas votre demande",
-        "Parlez-vous français?",
-        "D'accord, quelle est votre demande?",
-        "J'ai XXX réponses possibles",
-        "Quel est votre choix?"))
-    val allemand = new Language( // TODO replace with correct language
-      "Français",
-      List("bonjour", "salut", "bonsoir"),
-      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
-      List("restaurant", "creperie", "pizzeria"),
-      new Expression(
-        "oui",
-        "non",
-        "L'adresse de XXX est",
-        "Je ne comprends pas votre demande",
-        "Parlez-vous français?",
-        "D'accord, quelle est votre demande?",
-        "J'ai XXX réponses possibles",
-        "Quel est votre choix?"))
-    val italien = new Language( // TODO replace with correct language
-      "Français",
-      List("bonjour", "salut", "bonsoir"),
-      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
-      List("restaurant", "creperie", "pizzeria"),
-      new Expression(
-        "oui",
-        "non",
-        "L'adresse de XXX est",
-        "Je ne comprends pas votre demande",
-        "Parlez-vous français?",
-        "D'accord, quelle est votre demande?",
-        "J'ai XXX réponses possibles",
-        "Quel est votre choix?"))
-    List(francais, anglais) //TODO replace with : List(francais, anglais, espagnol, allemand, italien) when all
-    //the areas will be filled with the corrects informations
+        "si",
+        "no",
+        "Indirizzo di XXX è",
+        "No capisco",
+        "Parli italiano?",
+        "Va bene, qual è la tua richiesta?",
+        "Ho XXX risposte",
+        "Qual è la vostra scelta?"))
+    List(francais, anglais, espagnol, allemand, italien)
   }
 }
