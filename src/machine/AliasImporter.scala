@@ -12,7 +12,7 @@ object AliasImporter {
     var data: List[String] = dataRaw.filter((line: String) => { !line.contains("#") && line != "" })
 
     for (line <- data) {
-      val regexArrow = " *-> *".r
+      val regexArrow = "( *-> *)|( *$)".r
       val splitedLine: List[String] = regexArrow.split(line).toList
       val regexComma = ";".r
       splitedLine.length match {
