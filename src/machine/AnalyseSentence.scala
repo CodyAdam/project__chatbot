@@ -1,5 +1,7 @@
 package machine
 import util.control.Breaks._
+import scala.collection.mutable
+import scala.collection.parallel.ParSeq
 
 object AnalyseSentence {
   /**
@@ -104,13 +106,40 @@ object AnalyseSentence {
    * @return is str1 and str2 almost the same with typing error
    */
   def isEqualsWithTypingError(str1: String, str2: String): Boolean = {
-    // TODO inplement typing errors
     /*
      * L’avatar tolère l’oubli d’accents, majuscules, ou de mots de liaison.
      * L’avatar accepteau plus une erreur de frappepar mot cle (une lettre soit manquante, soit erronee)
      */
-    return str1 == str2 //Temporaire
+    var s1 : String = str1.toLowerCase(); //TODO need to remove accents, waiting sbt project
+    var s2 : String = str2.toLowerCase();
+    return levenshtein(s1, s2) <=1;
   }
+  
+  /*
+   * @param s1 a string
+   * @param s2 a string
+   * @return the levenhstein distance between s1 & s2
+   */
+  // SOURCE ALGO : https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance
+  def levenshtein(s1: String, s2: String): Int = {
+  val memorizedCosts = mutable.Map[(Int, Int), Int]()
+
+    def lev: ((Int, Int)) => Int = {
+      case (k1, k2) =>
+        memorizedCosts.getOrElseUpdate((k1, k2), (k1, k2) match {
+          case (i, 0) => i
+          case (0, j) => j
+          case (i, j) =>
+            ParSeq(1 + lev((i - 1, j)),
+              1 + lev((i, j - 1)),
+              lev((i - 1, j - 1))
+                + (if (s1(i - 1) != s2(j - 1)) 1 else 0)).min
+        })
+    }
+
+    lev((s1.length, s2.length))
+  }
+  
 
   /**
    * split les mots d'une phrase en une liste de mots
