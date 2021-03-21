@@ -68,8 +68,8 @@ culture                     -> culture;musée;art;arts
 public
 service
 piscine
-ciné						-> cinéma;ciné
 cinéma                      -> cinéma;ciné
+ciné						-> cinéma;ciné
 funéraire					-> funérarium;funéraire
 funérarium                  -> funérarium;funéraire
 collectif
