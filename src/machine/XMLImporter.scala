@@ -20,7 +20,7 @@ object XMLImporter {
     (xmlData \\ "organization").map(
       orga => (orga \\ "address").map(address => {
         if ((address \ "city").text == "Rennes") {
-          val addressString: String = if (((address \ "street") \ "number").contains(xml.Text)) ((address \ "street") \ "number").text + ", " + ((address \ "street") \ "name").text else ((address \ "street") \ "name").text
+          val addressString: String = if (((address \ "street") \ "number").exists(p=> p.text != "")) ((address \ "street") \ "number").text + ", " + ((address \ "street") \ "name").text else ((address \ "street") \ "name").text
           places = places ++ List(Place(
             (orga \ "name").text,
             (orga \ "description").text,
