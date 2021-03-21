@@ -1,0 +1,5 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(update, Some(cd755d50-57e6-4a86-b258-22dbfd2dc6d6), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: update[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 1 s, completed 21 mars 2021 à 16:44:21[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
