@@ -2,6 +2,15 @@ package machine
 
 import scala.io.Source
 
+case class Place(
+  name:        String,
+  description: String,
+  website:     String,
+  address:     String,
+  zipcode:     String,
+  city:        String,
+  phoneNumber: String)
+
 object DataBase {
 
   private var places: List[Place] = List[Place]()
