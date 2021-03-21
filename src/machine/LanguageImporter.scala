@@ -14,7 +14,7 @@ object LanguageImporter {
   def getLanguages(): List[Language] = {
     val francais = new Language(
       "Français",
-      List("bonjour", "salut", "bonsoir"),
+      List("Bonjour", "Salut", "Bonsoir"),
       List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
       List("restaurant", "creperie", "pizzeria"),
       new Expression(
@@ -28,7 +28,7 @@ object LanguageImporter {
         "Quel est votre choix?"))
     val anglais = new Language(
       "Anglais",
-      List("hi", "hello", "morning", "evening", "afternoon", "hey"),
+      List("Hi", "Hello", "Morning", "Evening", "Afternoon", "Hey"),
       List("seek", "seeking", "search", "searching", "look", "looking", "where", "find"),
       List("restaurant", "creperie", "pizzeria"),
       new Expression(
@@ -42,7 +42,7 @@ object LanguageImporter {
         "What is your choice?"))
     val espagnol = new Language(
       "Espagnol",
-      List("hola", "buenos", "dias"),
+      List("Hola", "Buenos", "Dias"),
       List("donde", "esta", "busco", "buscando"),
       List("restaurante", "creperie", "pizzeria"),
       new Expression(
@@ -56,7 +56,7 @@ object LanguageImporter {
         "Cuál es su elección?"))
     val allemand = new Language(
       "Allemand",
-      List("hallo", "guten", "morgen", "tag", "abend"),
+      List("Hallo", "Guten", "Morgen", "Tag", "Abend"),
       List("wo", "ist", "such", "suchen"),
       List("restaurant", "creperie", "pizzeria"),
       new Expression(
@@ -70,8 +70,8 @@ object LanguageImporter {
         "Was ist Ihre Wahl?"))
     val italien = new Language(
       "Italien",
-      List("bonjour", "salut", "bonsoir"), //TODO à changer
-      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),//TODO à changer
+      List("Buongiorno","Ciao","Salve","Buon","Pomeriggio","Buonasera","Incantato"), //TODO à changer
+      List("dove","trova","cerco","cercando"),//TODO à changer
       List("ristorante", "creperie", "pizzeria"),
       new Expression(
         "si",
