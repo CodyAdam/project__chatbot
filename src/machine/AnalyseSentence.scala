@@ -114,7 +114,7 @@ object AnalyseSentence {
     return levenshtein(s1, s2) <= 1;
   }
 
-  /*
+  /**
    * @param s1 a string
    * @param s2 a string
    * @return the levenhstein distance between s1 & s2
@@ -135,7 +135,6 @@ object AnalyseSentence {
                 + (if (s1(i - 1) != s2(j - 1)) 1 else 0)).min
         })
     }
-
     lev((s1.length, s2.length))
   }
 

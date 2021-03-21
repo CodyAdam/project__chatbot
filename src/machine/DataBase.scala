@@ -10,7 +10,7 @@ object DataBase {
 
   /**
    * Initialize the data base with all the alias, places and languages
-   * @note cette fonction est lancé au début du programme 
+   * @note cette fonction est lancé au début du programme
    */
   def init(): Unit = {
     languages = LanguageImporter.getLanguages()
@@ -41,6 +41,7 @@ object DataBase {
     })
     return result
   }
+
   /**
    * @return the current selected language
    */
