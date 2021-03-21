@@ -51,13 +51,65 @@ object AnalyseSentence {
     return keywords;
   }
 
+  /**
+   * @param words from the user sentence
+   * @return the language if a polite language keyword is found
+   */
+  def getLanguageIfPolite(words: List[String]): Option[Language] = {
+    for (language: Language <- DataBase.getLanguages())
+      for (politeWord: String <- language.politesse)
+        if (containsWithTypingError(words, politeWord))
+          return Some(language)
+    return None
+  }
+
+  /**
+   * @param words from the user sentence
+   * @return the language if a search language keyword is found
+   */
+  def getLanguageIfSearching(words: List[String]): Option[Language] = {
+    for (language: Language <- DataBase.getLanguages())
+      for (politeWord: String <- language.recherche)
+        if (containsWithTypingError(words, politeWord))
+          return Some(language)
+    return None
+  }
+
+  /**
+   * @param words from the user sentence
+   * @return if the user input contains a Linternaute triggerword in the current language
+   */
+  def isLinternauteQuery(words: List[String]): Boolean = {
+    for (politeWord: String <- StateManager.currentLanguage.linternauteTrigger)
+      if (containsWithTypingError(words, politeWord))
+        return true
+    return false
+  }
+
+  /**
+   * @param list a list of string
+   * @param str a string
+   * @return is str contained inside list or almost found with typing error
+   */
+  def containsWithTypingError(list: List[String], str: String): Boolean = {
+    for (subStr: String <- list)
+      if (isEqualsWithTypingError(subStr, str))
+        return true
+    return false
+  }
+
+  /**
+   * @param str1 a string
+   * @param str2 a string
+   * @return is str1 and str2 almost the same with typing error
+   */
   def isEqualsWithTypingError(str1: String, str2: String): Boolean = {
     // TODO inplement typing errors
     /*
      * L’avatar tolère l’oubli d’accents, majuscules, ou de mots de liaison.
      * L’avatar accepteau plus une erreur de frappepar mot cle (une lettre soit manquante, soit erronee)
      */
-    return str1 == str2
+    return str1 == str2 //Temporaire
   }
 
   /**
