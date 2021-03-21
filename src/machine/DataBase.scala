@@ -43,7 +43,7 @@ object DataBase {
   }
 
   /**
-   * @return the current selected language
+   * @return all the languages
    */
   def getLanguages(): List[Language] = languages;
 
