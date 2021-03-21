@@ -9,6 +9,10 @@
 
 # GUI
 
+### v1.5
+
+![v1.5](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/V4.gif)
+
 ### v0.3
 
 ![v0.3](https://gitlab.istic.univ-rennes1.fr/arallain/tpavatar/-/raw/master/Prototype%203.gif)
