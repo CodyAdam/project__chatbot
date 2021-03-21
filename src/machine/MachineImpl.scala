@@ -10,24 +10,56 @@ object MachineImpl extends MachineDialogue {
     StateManager.userState match {
       case IsAsking => {
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
-        val politePrefix: List[String] = List[String]()
-        
+
+        if (AnalyseSentence.isLinternauteQuery(words)) {
+          //TODO Search on Linternaute as :
+          //https://wvw.linternaute.com/restaurant/guide/ville-rennes-35000/?name=words(0)+words(1)+words(2)+....+words(length-1)
+          //Create a new Scala object for all Linternaute functions
+          return ???
+        }
+
+        var politePrefix: List[String] = List[String]()
+        AnalyseSentence.getLanguageIfPolite(words) match {
+          case Some(lang: Language) => {
+            if (lang == StateManager.currentLanguage)
+              politePrefix = List(lang.politesse(0))
+            else {
+              StateManager.changeLanguage(lang)
+              StateManager.userState = ChangingLanguage;
+              return List(StateManager.currentLanguage.expression.askLanguage);
+            }
+          }
+          case None => Unit
+        }
+
+        AnalyseSentence.getLanguageIfSearching(words) match {
+          case Some(lang: Language) => {
+            if (lang != StateManager.currentLanguage) {
+              StateManager.changeLanguage(lang)
+              StateManager.userState = ChangingLanguage;
+              return List(StateManager.currentLanguage.expression.askLanguage);
+            }
+          }
+          case None => Unit
+        }
+
         //TODO check if 'words' is in trigger words to perform :
-        // language change, polite word, search in other language
+        // language change, search in other language
 
         val seachKeywords: Set[String] = AnalyseSentence.findKeysFromWords(words);
         val placesFound: List[Place] = DataBase.findByKeywords(seachKeywords);
+
         if (placesFound.length == 0)
-          return List(StateManager.currentLanguage.expression.dontUnderstand)
+          return politePrefix ++ List(StateManager.currentLanguage.expression.dontUnderstand)
         else if (placesFound.length == 1)
-          return MultiRequetes.getAddress(placesFound(0))
+          return politePrefix ++ MultiRequetes.getAddress(placesFound(0))
         else {
           StateManager.userState = IsChosing
-          val response: List[String] = MultiRequetes.formatMultiResults(placesFound)
-          return response;
+          return politePrefix ++ MultiRequetes.formatMultiResults(placesFound)
         }
       }
-      case IsChosing => { 
+
+      case IsChosing => {
         "\\d+".r.findFirstIn(s) match { //extract number from input
           case Some(string) => {
             val number: Int = string.toInt - 1
@@ -45,8 +77,9 @@ object MachineImpl extends MachineDialogue {
           }
         }
       }
+
       case ChangingLanguage => {
-        ??? //TODO
+        ??? //TODO Changing language implem
         /*
          * il demande confirmation de la nouvelle langue à l'utilisateur. Si celui-ci confirme,
          * l'avatar lui demandera de poser sa requête dans cette nouvelle langue.
@@ -56,7 +89,11 @@ object MachineImpl extends MachineDialogue {
          * etc. Pendant la confirmation d'une langue, si l'utilisateur utilise un mot dans
          * une autre langue le changement de langue se poursuit pour cette autre langue.
          */
+
+        // if user say no cycle to next lang
+        // you can cycle language with : StateManager.changeLanguage()  and StateManager.getNextLanguage()
       }
+
       case _ => List(StateManager.currentLanguage.expression.dontUnderstand)
     }
   }
