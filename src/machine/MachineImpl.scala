@@ -91,10 +91,10 @@ object MachineImpl extends MachineDialogue {
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
         if(AnalyseSentence.containsWithTypingError(words, StateManager.currentLanguage.expression.agree)){
           StateManager.userState = IsAsking
-          List(StateManager.currentLanguage.expression.whatQuery)
+          return List(StateManager.currentLanguage.expression.whatQuery)
         } else {
           StateManager.changeLanguage(StateManager.getNextLanguage());
-          List(StateManager.currentLanguage.expression.askLanguage)
+          return List(StateManager.currentLanguage.expression.askLanguage)
         }
       }
 
