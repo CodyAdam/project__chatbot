@@ -79,15 +79,6 @@ object MachineImpl extends MachineDialogue {
       }
 
       case ChangingLanguage => {
-        /*
-         * il demande confirmation de la nouvelle langue à l'utilisateur. Si celui-ci confirme,
-         * l'avatar lui demandera de poser sa requête dans cette nouvelle langue.
-         * Si l'utilisateur ne confirme pas, l'avatar lui proposera la prochaine
-         * langue jusqu'à ce que celui confirme. L'ordre de proposition des langues est :
-         * français, anglais, espagnol, allemand, italien, puis de nouveau français, anglais,
-         * etc. Pendant la confirmation d'une langue, si l'utilisateur utilise un mot dans
-         * une autre langue le changement de langue se poursuit pour cette autre langue.
-         */
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
         if(AnalyseSentence.containsWithTypingError(words, StateManager.currentLanguage.expression.agree)){
           StateManager.userState = IsAsking
