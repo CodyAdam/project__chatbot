@@ -10,18 +10,37 @@ object AnalyseSentence {
     var possibleKeys: Set[List[String]] = Set[List[String]]()
     var keywords: Set[String] = Set[String]()
 
-    for (key: List[String] <- BaseDonnees.getAlias.keys) {
-      breakable {
-        for (word: String <- key) {
-          if (!words.contains(word))
+    var minNumberWord = 1;
+    var incremented = false;
+
+    do {
+      possibleKeys = Set[List[String]]()
+      incremented = false
+      for (key: List[String] <- DataBase.getAlias.keys) {
+        breakable {
+          if (key.length < minNumberWord)
             break
+          for (word: String <- key) {
+            var containsWord = false
+            words.foreach((sentenceWord: String) => {
+              if (isEqualsWithTypingError(sentenceWord, word))
+                containsWord = true
+            })
+            if (!containsWord)
+              break
+          }
+          if (key.length > minNumberWord) {
+            minNumberWord = key.length
+            incremented = true
+            break
+          }
+          possibleKeys += key
         }
-        possibleKeys += key
       }
-    }
+    } while (incremented)
 
     possibleKeys.foreach((key: List[String]) => {
-      BaseDonnees.getAlias.get(key) match {
+      DataBase.getAlias.get(key) match {
         case Some(value) => {
           for (keyword: String <- value)
             keywords += keyword
@@ -32,12 +51,21 @@ object AnalyseSentence {
     return keywords;
   }
 
-  
-  
-  
+  def isEqualsWithTypingError(str1: String, str2: String): Boolean = {
+    // TODO inplement typing errors
+    /*
+     * L’avatar tolère l’oubli d’accents, majuscules, ou de mots de liaison.
+     * L’avatar accepteau plus une erreur de frappepar mot cle (une lettre soit manquante, soit erronee)
+     */
+    return str1 == str2
+  }
+
   /**
+   * split les mots d'une phrase en une liste de mots
    * @param une phrase
-   * @return les mots de la phrase sentence
+   * @return les mots de la phrase sentence dans une liste
    */
-  def getWords(sentence: String): List[String] = "( +)|(,+)|('+)|(\\.+)|(;+)|(:+)|(!+)|(\\?+)|(¿+)".r.split(sentence).toList
+  def getWords(sentence: String): List[String] = {
+    "( +)|(,+)|('+)|(\\.+)|(;+)|(:+)|(!+)|(\\?+)|(¿+)|(-+)|(_+)".r.split(sentence).toList
+  }
 }
