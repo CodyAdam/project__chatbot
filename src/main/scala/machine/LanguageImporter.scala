@@ -27,7 +27,7 @@ object LanguageImporter {
         "J'ai XXX réponses possibles",
         "Quel est votre choix?"))
     val anglais = new Language(
-      "Anglais",
+      "English",
       List("Hi", "Hello", "Morning", "Evening", "Afternoon", "Hey"),
       List("seek", "seeking", "search", "searching", "look", "looking", "where", "find"),
       List("restaurant", "creperie", "pizzeria"),
@@ -41,7 +41,7 @@ object LanguageImporter {
         "I found XXX answers",
         "What is your choice?"))
     val espagnol = new Language(
-      "Espagnol",
+      "Español",
       List("Hola", "Buenos", "Dias"),
       List("donde", "esta", "busco", "buscando"),
       List("restaurante", "creperie", "pizzeria"),
@@ -55,7 +55,7 @@ object LanguageImporter {
         "Tengo XXX opciones",
         "Cuál es su elección?"))
     val allemand = new Language(
-      "Allemand",
+      "Deustch",
       List("Hallo", "Guten", "Morgen", "Tag", "Abend"),
       List("wo", "ist", "such", "suchen"),
       List("restaurant", "creperie", "pizzeria"),
@@ -69,7 +69,7 @@ object LanguageImporter {
         "Ich habe XXX Antworten",
         "Was ist Ihre Wahl?"))
     val italien = new Language(
-      "Italien",
+      "Italiano",
       List("Buongiorno","Ciao","Salve","Buon","Pomeriggio","Buonasera","Incantato"), //TODO à changer
       List("dove","trova","cerco","cercando"),//TODO à changer
       List("ristorante", "creperie", "pizzeria"),

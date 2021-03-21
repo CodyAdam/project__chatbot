@@ -44,10 +44,7 @@ object MachineImpl extends MachineDialogue {
           }
           case None => Unit
         }
-
-        //TODO check if 'words' is in trigger words to perform :
-        // language change
-
+        
         val seachKeywords: Set[String] = AnalyseSentence.findKeysFromWords(words);
         val placesFound: List[Place] = DataBase.findByKeywords(seachKeywords);
 

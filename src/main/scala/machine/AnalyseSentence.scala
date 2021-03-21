@@ -71,9 +71,12 @@ object AnalyseSentence {
    */
   def getLanguageIfSearching(words: List[String]): Option[Language] = {
     for (language: Language <- DataBase.getLanguages())
-      for (politeWord: String <- language.recherche)
+      for (politeWord: String <- language.recherche ++ List(language.langue)) {
+        println(politeWord)
+        println(containsWithTypingError(words, politeWord))
         if (containsWithTypingError(words, politeWord))
           return Some(language)
+      }
     return None
   }
 
