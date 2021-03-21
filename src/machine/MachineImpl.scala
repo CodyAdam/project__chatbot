@@ -73,7 +73,7 @@ object MachineImpl extends MachineDialogue {
           }
           case None => {
             StateManager.userState = IsAsking
-            return List(StateManager.currentLanguage.expression.dontUnderstand)
+            return ask(s)
           }
         }
       }
