@@ -75,10 +75,6 @@ funérarium                  -> funérarium;funéraire
 collectif
 commerce
 industrie
-mcdo                        -> mcdonald;mcdo;fast food; fast foods
-mcdonald                    -> mcdonald;mcdo;fast food; fast foods
-fast;food                   -> mcdonald;mcdo;fast food; fast foods
-fast;foods                  -> mcdonald;mcdo;fast food; fast foods
 immobilière                 -> immobilier;immobilier
 immobilier                  -> immobilier;immobilier
 agence;immobilière          -> agence immobilière
