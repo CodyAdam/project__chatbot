@@ -82,6 +82,7 @@ object LanguageImporter {
         "D'accord, quelle est votre demande?",
         "J'ai XXX réponses possibles",
         "Quel est votre choix?"))
-    List(francais, anglais) //TODO replace with : List(francais, anglais, espagnol, allemand, italien)
+    List(francais, anglais) //TODO replace with : List(francais, anglais, espagnol, allemand, italien) when all
+    //the areas will be filled with the corrects informations
   }
 }
