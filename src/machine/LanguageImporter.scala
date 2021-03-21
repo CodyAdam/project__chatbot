@@ -70,8 +70,8 @@ object LanguageImporter {
         "Was ist Ihre Wahl?"))
     val italien = new Language(
       "Italien",
-      List("bonjour", "salut", "bonsoir"),
-      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
+      List("bonjour", "salut", "bonsoir"), //TODO à changer
+      List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),//TODO à changer
       List("ristorante", "creperie", "pizzeria"),
       new Expression(
         "si",

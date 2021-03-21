@@ -19,10 +19,10 @@ object MachineImpl extends MachineDialogue {
         }
 
         var politePrefix: List[String] = List[String]()
-        AnalyseSentence.getLanguageIfPolite(words) match {
+        AnalyseSentence.getLanguageIfPolite(words) match { 
           case Some(lang: Language) => {
             if (lang == StateManager.currentLanguage)
-              politePrefix = List(lang.politesse(0))
+              politePrefix = List(lang.politesse(0)) //TODO ajouter une majuscule au premier mot de politesse avec AnalyseSentence.AddUpperToFirst() function
             else {
               StateManager.changeLanguage(lang)
               StateManager.userState = ChangingLanguage;
