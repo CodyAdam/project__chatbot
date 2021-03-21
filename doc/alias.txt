@@ -9,11 +9,8 @@
 #   b :
 #     le ou les mots qui vont ensuite etre cherché dans la base de données
 #     avec le ';' qui est utilisé comme un 'OU' logique
-#  
-#     'b' est optionel si 'a' possède 1 seul élément et a == b
 #
-#     si 'b' == 'linternaute' :
-#         on cherche la phrase de l'utilisateur sur Linternaute
+#     'b' est optionel si 'a' possède 1 seul élément et a == b
 #
 #   si la phrase utilisateur ne contien aucun de ses mots clé nous 
 #   renvoyons une erreur à l'utilisateur
