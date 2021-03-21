@@ -8,8 +8,10 @@
 #  
 #   b :
 #     le ou les mots qui vont ensuite etre cherché dans la base de données
-#     avec le ; qui est utilisé comme un 'OU' logique
+#     avec le ';' qui est utilisé comme un 'OU' logique
 #  
+#     'b' est optionel si 'a' possède 1 seul élément et a == b
+#
 #     si 'b' == 'linternaute' :
 #         on cherche la phrase de l'utilisateur sur Linternaute
 #
@@ -17,22 +19,70 @@
 #   renvoyons une erreur à l'utilisateur
 #   
 
-théâtre;national            -> tnb
-théâtre;bretagne            -> tnb
-théâtre;national;bretagne   -> tnb
-theatre;national            -> tnb
-theatre;bretagne            -> tnb
-theatre;national;bretagne   -> tnb
-tnb                         -> tnb
-gare                        -> sncf
-sncf                        -> sncf
-theatre;paillette           -> théâtre la paillette
-hotel;ville                 -> mairie
+théâtre;national            -> Théâtre National de Bretagne
+théâtre;bretagne            -> Théâtre National de Bretagne
+théâtre;national;bretagne   -> Théâtre National de Bretagne
+tnb                         -> Théâtre National de Bretagne
+gare                        -> gare sncf
+gare;sncf                   -> gare sncf
+sncf
+théâtre;paillette           -> théâtre la paillette
 hôtel;ville                 -> mairie
 mairie                      -> mairie
-restaurant                  -> linternaute
-crêperie                    -> linternaute
-creperie                    -> linternaute
-pizzeria                    -> linternaute
-ristorante                  -> linternaute
-restaurante                 -> linternaute
+hôtel
+hôtel;ventes                -> hôtel des ventes
+parc                        
+concert                     -> foire;congrè;concert;expo;concerts;congrès;foires
+expo                        -> foire;congrè;concert;expo;concerts;congrès;foires
+foire                       -> foire;congrè;concert;expo;concerts;congrès;foires
+concert                     -> foire;congrè;concert;expo;concerts;congrès;foires
+rennes
+agence
+aide
+alcooliques                 -> alcooliques;alcoolique
+alcoolique                  -> alcooliques;alcoolique
+archive
+musée
+bibliothèque                -> bibliothèque;librairie
+librairie                   -> bibliothèque;librairie
+université
+université;rennes           -> université rennes
+université;rennes;1         -> université rennes 1
+université;rennes;2         -> université rennes 2
+rennes;2                    -> rennes 2
+rennes;1                    -> rennes 1
+universitaire               -> universitaire;université
+cafétéria                   -> cafétéria;cafet
+cafet                       -> cafétéria;cafet
+école;supérieure            -> école supérieure
+ufr
+iut
+institut                    -> institut;formation
+formation                   -> institut;formation
+pompier                     -> pompier;incendie
+incendie                    -> pompier;incendie
+police
+santé                       -> pharmacie;santé;hôpital;handicap
+pharmacie                   -> pharmacie
+hôpital                     -> 
+handicap                    -> santé;handicap
+culture                     -> culture;musée;art;arts
+école
+public
+service
+piscine
+ciné
+cinéma                      -> cinéma;ciné
+funéraire
+funérarium                  -> funérarium;funéraire
+collectif
+commerce
+industrie
+mcdo                        -> mcdonald;mcdo;fast food; fast foods
+mcdonald                    -> mcdonald;mcdo;fast food; fast foods
+fast;food                   -> mcdonald;mcdo;fast food; fast foods
+fast;foods                  -> mcdonald;mcdo;fast food; fast foods
+immobilière                 -> immobilier;immobilier
+immobilier                  -> immobilier;immobilier
+agence;immobilière          -> agence immobilière
+arc;triomphe                -> arc de triomphe
