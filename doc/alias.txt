@@ -28,7 +28,7 @@ hôtel;ville                 -> mairie
 mairie                      -> mairie
 hôtel
 hôtel;ventes                -> hôtel des ventes
-parc                        
+parc
 concert                     -> foire;congrè;concert;expo;concerts;congrès;foires
 expo                        -> foire;congrè;concert;expo;concerts;congrès;foires
 foire                       -> foire;congrè;concert;expo;concerts;congrès;foires
@@ -68,14 +68,14 @@ culture                     -> culture;musée;art;arts
 public
 service
 piscine
-ciné
+ciné						-> cinéma;ciné
 cinéma                      -> cinéma;ciné
-funéraire
+funéraire					-> funérarium;funéraire
 funérarium                  -> funérarium;funéraire
 collectif
 commerce
 industrie
-immobilière                 -> immobilier;immobilier
-immobilier                  -> immobilier;immobilier
+immobilière                 -> immobilier;immobilière
+immobilier                  -> immobilier;immobilière
 agence;immobilière          -> agence immobilière
 arc;triomphe                -> arc de triomphe
