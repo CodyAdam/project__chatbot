@@ -116,8 +116,8 @@ object UI extends MainFrame {
    * @param name the username to be used
    */
   def setUsername(name: String): Unit = {
-    username = name
     init()
+    username = name
   }
 
   /**
