@@ -11,7 +11,7 @@
 
 ### v1.5
 
-![v1.5](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/V4.gif)
+![v1.5](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v4.gif)
 
 ### v0.3
 
