@@ -19,10 +19,12 @@ object MachineImpl extends MachineDialogue {
         }
 
         var politePrefix: List[String] = List[String]()
-        AnalyseSentence.getLanguageIfPolite(words) match { 
+        AnalyseSentence.getLanguageIfPolite(words) match {
           case Some(lang: Language) => {
+            // TODO si l'utilisateur donne juste mot de politesse alors seulement ..
+            //renvoyer un mot de politesse et ne pas continue l'analyse de la phrase
             if (lang == StateManager.currentLanguage)
-              politePrefix = List(lang.politesse(0)) //TODO ajouter une majuscule au premier mot de politesse avec AnalyseSentence.AddUpperToFirst() function
+              politePrefix = List(lang.politesse(0))
             else {
               StateManager.changeLanguage(lang)
               StateManager.userState = ChangingLanguage;
@@ -80,7 +82,7 @@ object MachineImpl extends MachineDialogue {
 
       case ChangingLanguage => {
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
-        if(AnalyseSentence.containsWithTypingError(words, StateManager.currentLanguage.expression.agree)){
+        if (AnalyseSentence.containsWithTypingError(words, StateManager.currentLanguage.expression.agree)) {
           StateManager.userState = IsAsking
           return List(StateManager.currentLanguage.expression.whatQuery)
         } else {
