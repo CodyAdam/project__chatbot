@@ -9,4 +9,5 @@ project/plugins/project/
 .history
 .cache
 .class
+.settings
 .lib/
