@@ -1,6 +1,8 @@
 package machine
 
 import scala.io.Source
+import scala.collection.mutable.HashMap
+import scala.collection.immutable._
 
 case class Place(
   name:        String,
@@ -16,6 +18,7 @@ object DataBase {
   private var places: List[Place] = List[Place]()
   private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
   private var languages: List[Language] = List[Language]()
+  private var list_Words: HashMap[String, Set[Language]] = new HashMap();
 
   /**
    * Initialize the data base with all the alias, places and languages
@@ -25,6 +28,34 @@ object DataBase {
     languages = LanguageImporter.getLanguages()
     places = XMLImporter.getPlacesFromXml()
     alias = AliasImporter.getAliasFromFile()
+    for(lang <- languages){
+      addWordHashmap(lang.langue.toLowerCase(), lang);
+      for(w <- lang.politesse){
+        println(w)
+        addWordHashmap(w.toLowerCase(), lang);
+      }
+      for(w <- lang.recherche){
+        addWordHashmap(w.toLowerCase(), lang);
+      }
+      for(w <- lang.linternauteTrigger){
+        addWordHashmap(w.toLowerCase(), lang);
+      }
+      addWordHashmap(lang.expression.agree.toLowerCase(), lang);
+      addWordHashmap(lang.expression.disagree.toLowerCase(), lang);
+    }
+  }
+  
+  /**
+   * Add a word in hasmap if it doesn't exist and link this word with its languages
+   * @param w the word to add
+   * @param lang its languages
+   */
+  def addWordHashmap(w : String, lang : Language) : Unit = {
+    var ref : Option[Set[Language]] = list_Words.get(w);
+    ref match {
+      case None => list_Words.put(w, Set(lang));
+      case Some(set) => list_Words(w) = set ++ Set(lang);
+    }
   }
 
   /**
@@ -51,6 +82,11 @@ object DataBase {
     return result
   }
 
+  /**
+   * @return all the words link to their languages
+   */
+  def getWordsLanguage(): HashMap[String, Set[Language]] = list_Words;
+  
   /**
    * @return all the languages
    */

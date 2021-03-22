@@ -10,7 +10,14 @@ object MachineImpl extends MachineDialogue {
     StateManager.userState match {
       case IsAsking => {
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
-
+        val langSentence : Language = AnalyseSentence.getMajorLanguage(words);
+        
+        if(langSentence != null && langSentence != StateManager.currentLanguage){
+          StateManager.changeLanguage(langSentence)
+          StateManager.userState = ChangingLanguage;
+          return List(StateManager.currentLanguage.expression.askLanguage);
+        }
+        
         if (AnalyseSentence.isLinternauteQuery(words)) {
           //TODO Search on Linternaute as :
           //https://wvw.linternaute.com/restaurant/guide/ville-rennes-35000/?name=words(0)+words(1)+words(2)+....+words(length-1)
@@ -19,31 +26,18 @@ object MachineImpl extends MachineDialogue {
         }
 
         var politePrefix: List[String] = List[String]()
-        AnalyseSentence.getLanguageIfPolite(words) match {
+        if(AnalyseSentence.hasPoliteWord(words)){
+          if(words.length==1) return List(StateManager.currentLanguage.politesse(0))
+          politePrefix = List(StateManager.currentLanguage.politesse(0))
+        }
+        
+        /*AnalyseSentence.getLanguageIfPolite(words) match {
           case Some(lang: Language) => {
-            // TODO si l'utilisateur donne juste mot de politesse alors seulement ..
-            //renvoyer un mot de politesse et ne pas continue l'analyse de la phrase
-            if (lang == StateManager.currentLanguage)
-              politePrefix = List(lang.politesse(0))
-            else {
-              StateManager.changeLanguage(lang)
-              StateManager.userState = ChangingLanguage;
-              return List(StateManager.currentLanguage.expression.askLanguage);
-            }
+             if(words.length==1) return List(StateManager.currentLanguage.politesse(0))
+             politePrefix = List(StateManager.currentLanguage.politesse(0))
           }
           case None => Unit
-        }
-
-        AnalyseSentence.getLanguageIfSearching(words) match {
-          case Some(lang: Language) => {
-            if (lang != StateManager.currentLanguage) {
-              StateManager.changeLanguage(lang)
-              StateManager.userState = ChangingLanguage;
-              return List(StateManager.currentLanguage.expression.askLanguage);
-            }
-          }
-          case None => Unit
-        }
+        }*/
         
         val seachKeywords: Set[String] = AnalyseSentence.findKeysFromWords(words);
         val placesFound: List[Place] = DataBase.findByKeywords(seachKeywords);

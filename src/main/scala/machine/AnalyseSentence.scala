@@ -3,6 +3,7 @@ import util.control.Breaks._
 import scala.collection.mutable
 import scala.collection.parallel.ParSeq
 import org.apache.commons.lang3.StringUtils.stripAccents
+import scala.collection.mutable.HashMap
 
 object AnalyseSentence {
   /**
@@ -64,6 +65,48 @@ object AnalyseSentence {
         if (containsWithTypingError(words, politeWord))
           return Some(language)
     return None
+  }
+  
+  def hasPoliteWord(words:List[String]): Boolean = {
+    for (language: Language <- DataBase.getLanguages())
+      for (politeWord: String <- language.politesse)
+        if (containsWithTypingError(words, politeWord))
+          return true
+    return false
+  }
+  
+  /**
+   * @param words from the user sentence
+   * @return the langage with most words from the sentence
+   */
+  def getMajorLanguage(words : List[String]): Language = {
+    var hash : HashMap[Language, Integer] = new HashMap();
+    for(w <- words){
+      var ref = DataBase.getWordsLanguage().get(w);
+      ref match {
+        case None => {}
+        case Some(set) => {
+          for(lang <- set){
+            hash.get(lang) match{
+              case None => hash.put(lang, 1);
+              case Some(set) => hash(lang) = hash(lang)+1;
+            }
+          }
+        }
+      }
+    }
+    var max: Language = null;
+    var maxInt: Integer = 0;
+    hash.foreach  
+    {   
+       case (key, value) => {
+         if(value>maxInt) {
+           max = key;
+           maxInt = value;
+         }
+       }
+    }
+    return max;
   }
 
   /**
