@@ -22,7 +22,7 @@ object Linternaute {
   }
   
   def request(keyWords: String) {
-    Document doc = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get()
+    //Document doc = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get()
   }
 
 }
