@@ -1,11 +1,15 @@
 # TODO :
 
--   [ ] make a UML graph
+
+-   [ ] UI - Add line break on long message
+-   [ ] UI - button for TTS
+-   [ ] UI - make language selection menu
+-   [ ] UI - Ajouter une police custom
 -   [ ] UI - make button change theme
 -   [ ] UI - add timestamps
 -   [ ] UI - avatar PP
--   [ ] UI - Adapter le theme googl
--   [ ] UI - Ajouter une police custom
+-   [ ] make a UML graph
+-   [ ] make Unit Test 
 
 # GUI
 
