@@ -31,7 +31,6 @@ object DataBase {
     for(lang <- languages){
       addWordHashmap(lang.langue.toLowerCase(), lang);
       for(w <- lang.politesse){
-        println(w)
         addWordHashmap(w.toLowerCase(), lang);
       }
       for(w <- lang.recherche){

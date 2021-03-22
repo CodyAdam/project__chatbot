@@ -14,6 +14,7 @@ object LanguageImporter {
   def getLanguages(): List[Language] = {
     val francais = new Language(
       "Français",
+      "fr-FR",
       List("Bonjour", "Salut", "Bonsoir"),
       List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
       List("restaurant", "creperie", "pizzeria"),
@@ -28,6 +29,7 @@ object LanguageImporter {
         "Quel est votre choix?"))
     val anglais = new Language(
       "English",
+      "en-US",
       List("Hi", "Hello", "Morning", "Evening", "Afternoon", "Hey"),
       List("seek", "seeking", "search", "searching", "look", "looking", "where", "find"),
       List("restaurant", "creperie", "pizzeria"),
@@ -42,6 +44,7 @@ object LanguageImporter {
         "What is your choice?"))
     val espagnol = new Language(
       "Español",
+      "es-ES",
       List("Hola", "Buenos", "Dias"),
       List("donde", "esta", "busco", "buscando"),
       List("restaurante", "creperie", "pizzeria"),
@@ -56,6 +59,7 @@ object LanguageImporter {
         "Cuál es su elección?"))
     val allemand = new Language(
       "Deustch",
+      "de-DE",
       List("Hallo", "Guten", "Morgen", "Tag", "Abend"),
       List("wo", "ist", "such", "suchen"),
       List("restaurant", "creperie", "pizzeria"),
@@ -70,6 +74,7 @@ object LanguageImporter {
         "Was ist Ihre Wahl?"))
     val italien = new Language(
       "Italiano",
+      "it-IT",
       List("Buongiorno","Ciao","Salve","Buon","Pomeriggio","Buonasera","Incantato"), //TODO à changer
       List("dove","trova","cerco","cercando"),//TODO à changer
       List("ristorante", "creperie", "pizzeria"),
