@@ -2,6 +2,7 @@ package machine
 import util.control.Breaks._
 import scala.collection.mutable
 import scala.collection.parallel.ParSeq
+import org.apache.commons.lang3.StringUtils.stripAccents
 
 object AnalyseSentence {
   /**
@@ -112,8 +113,10 @@ object AnalyseSentence {
    * @note L’avatar accepteau plus une erreur de frappepar mot cle (une lettre soit manquante, soit erronee)
    */
   def isEqualsWithTypingError(str1: String, str2: String): Boolean = {
-    var s1: String = str1.toLowerCase(); //TODO need to remove accents, waiting sbt project
+    var s1: String = str1.toLowerCase();
     var s2: String = str2.toLowerCase();
+    s1 = stripAccents(s1);
+    s2 = stripAccents(s2);
     return levenshtein(s1, s2) <= 1;
   }
 
