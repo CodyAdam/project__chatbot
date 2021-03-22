@@ -1,5 +1,6 @@
 package ui
 import java.awt.MouseInfo;
+import java.awt.Frame
 import scala.swing._
 import java.awt
 import javax.swing.border._
@@ -62,6 +63,9 @@ class ResizablePane(component: Component) extends BorderPanel {
     }
     case e: event.MouseDragged => {
       if (draggingLeft || draggingTop || draggingRight || draggingBottom) {
+        if (UI.peer.getExtendedState() == Frame.MAXIMIZED_BOTH) {
+          UI.peer.setExtendedState(Frame.NORMAL)
+        }  
         current = MouseInfo.getPointerInfo().getLocation();
         val bound: awt.Rectangle = UI.bounds
         if (draggingRight && bound.width - (start.x - current.x) > UI.minimumSize.width) {

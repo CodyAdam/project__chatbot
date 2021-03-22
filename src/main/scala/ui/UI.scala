@@ -1,5 +1,6 @@
 package ui
 import scala.swing._
+import java.awt.Frame
 import java.awt.Image
 import scala.io.StdIn._
 import java.awt.MouseInfo;
@@ -72,6 +73,9 @@ object UI extends MainFrame {
       case e: event.MouseDragged => {
         if (draggingLeft || draggingTop || draggingRight || draggingBottom) {
           current = MouseInfo.getPointerInfo().getLocation();
+          if (UI.peer.getExtendedState() == Frame.MAXIMIZED_BOTH) {
+            UI.peer.setExtendedState(Frame.NORMAL)
+          }  
           val bound: awt.Rectangle = UI.bounds
           if (draggingRight && bound.width - (start.x - current.x) > UI.minimumSize.width) {
             UI.peer.setSize((bound.width - (start.x - current.x)), bound.height);

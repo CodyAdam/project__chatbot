@@ -24,7 +24,7 @@ class FrameBar extends BorderPanel {
   val minimizeButton: Component = new FrameButton("_") {
     reactions += { case ButtonClicked(_) => { UI.peer.setExtendedState(Frame.ICONIFIED) } }
   }
-  val maximizeButton: Component = new FrameButton("M") {
+  val maximizeButton: Component = new FrameButton("🔳") {
     reactions += {
       case ButtonClicked(_) =>
         if (UI.peer.getExtendedState() == Frame.MAXIMIZED_BOTH) {
@@ -33,7 +33,7 @@ class FrameBar extends BorderPanel {
           UI.peer.setExtendedState(Frame.MAXIMIZED_BOTH)
     }
   }
-  val closeButton: Component = new FrameButton("X") { reactions += { case ButtonClicked(_) => { System.exit(0); } } }
+  val closeButton: Component = new FrameButton("✖") { reactions += { case ButtonClicked(_) => { System.exit(0); } } }
   val title: Component = new Label(UI.title)
   val draggablePanel: Component = new PaddingBox(new DraggablePanel(new Point(5, 5)) {
     maximumSize = new Dimension(99999, height)
