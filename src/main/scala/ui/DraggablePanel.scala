@@ -22,8 +22,6 @@ class DraggablePanel(offset: Point) extends BorderPanel {
           UI.peer.setLocation(start.x,start.y);
           UI.peer.revalidate()
           start = new Point(0 + UI.bounds.width/2,0)
-          //println(bounds.width)
-          //println(start)
         }else if(false){
           //set Frame.MAXIMIZED_BOTH si e.peer.getLocationOnScreen.x est en haut
         }else{

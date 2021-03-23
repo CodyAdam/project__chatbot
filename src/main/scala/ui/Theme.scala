@@ -1,7 +1,8 @@
 package ui
 import java.awt.Color
+import scala.swing._
 
-object Theme {
+object Theme extends Publisher {
 
   class ColorPalette(main: Color, secondary: Color, tertiary: Color, highlight: Color, text: Color, textHighlight: Color, textSecondary: Color) {
     var MAIN: Color = main
@@ -45,9 +46,11 @@ object Theme {
 
   var color: ColorPalette = seaTheme
 
+  case object ThemeChange extends event.Event;
+  
   def cycleTheme(): Unit = {
     color = themeList((themeList.indexOf(color) + 1) % themeList.size)
-    UI.peer.revalidate()
+    publish(ThemeChange)
   }
 
 }

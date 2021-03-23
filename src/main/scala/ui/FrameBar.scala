@@ -14,7 +14,7 @@ import java.awt.Frame
  */
 class FrameBar extends BorderPanel {
   //Style
-  background = java.awt.Color.RED
+  background = Theme.color.MAIN;
   val height: Int = 25
   minimumSize = new Dimension(0, height)
   maximumSize = new Dimension(999999, height)
@@ -54,5 +54,14 @@ class FrameBar extends BorderPanel {
 
   layout(draggablePanel) = BorderPanel.Position.Center
   layout(group) = BorderPanel.Position.East
+
+  listenTo(Theme)
+  reactions += {
+    case Theme.ThemeChange =>
+      {
+        draggablePanel.background = Theme.color.HIGHLIGHT
+        background = Theme.color.MAIN;
+      }
+  }
 
 }

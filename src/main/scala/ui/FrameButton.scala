@@ -6,9 +6,9 @@ class FrameButton(label: String) extends Button(label) {
   foreground = Theme.color.MAIN
   border = new javax.swing.border.EmptyBorder(5, 15, 5, 15)
   
-  listenTo(this)
+  listenTo(Theme)
   reactions += {
-    case event.ButtonClicked(_) =>
+    case Theme.ThemeChange =>
       {
         background = Theme.color.HIGHLIGHT
         foreground = Theme.color.MAIN

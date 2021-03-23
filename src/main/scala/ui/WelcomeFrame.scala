@@ -53,4 +53,19 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   def startWithName(name: String) = {
     setUsername(name)
   }
+
+  listenTo(Theme)
+  reactions += {
+    case Theme.ThemeChange =>
+      {
+        background = Theme.color.MAIN
+        welcomeMessage.foreground = Theme.color.TEXT_HIGHLIGHT
+        nameTextField.background = Theme.color.SECONDARY
+        instruction.foreground = Theme.color.TEXT
+        nameTextField.foreground = Theme.color.TEXT
+        guestButton.background = Theme.color.MAIN
+        guestButton.foreground = Theme.color.TEXT_SECONDARY
+      }
+  }
+
 }

@@ -29,8 +29,6 @@ class ResizablePane(component: Component) extends BorderPanel {
   listenTo(mouse.clicks, mouse.moves)
   reactions += {
     case e: event.MouseMoved => {
-//      println("passe" + e.point)
-//      println(e.point.x-thickness)
       val bound: awt.Rectangle = UI.bounds
       if (e.point.x <= thickness || e.point.x >= bound.width - thickness)
         cursor = new awt.Cursor(awt.Cursor.W_RESIZE_CURSOR)
