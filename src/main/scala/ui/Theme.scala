@@ -1,6 +1,8 @@
 package ui
 import java.awt.Color
+import java.awt
 import scala.swing._
+import java.io._;
 
 object Theme extends Publisher {
 
@@ -33,24 +35,28 @@ object Theme extends Publisher {
     textTertiary = Color.GREEN,
     textSecondary = Color.GRAY)
 
-  val seaTheme: ColorPalette = new ColorPalette(
-    main = new Color(242,244,247),
-    secondary = new Color(229,233,240),
-    tertiary = Color.decode("#276678"),
-    highlight = Color.decode("#4D94FF"),
-    text = Color.decode("#276678"),
-    textTertiary = Color.decode("#4D94FF"),
-    textSecondary = Color.decode("#313333"))
-
-  val themeList: List[ColorPalette] = List(darkTheme, lightTheme, seaTheme)
-
+  val themeList: List[ColorPalette] = List(darkTheme, lightTheme)
   var color: ColorPalette = darkTheme
 
+  var font: Font = null;
+  var fontLight: Font = null;
+  var fontBold: Font = null;
+  try {
+    var url: java.net.URL = getClass().getResource("assets/Roboto-Light.ttf");
+    fontLight = awt.Font.createFont(awt.Font.TRUETYPE_FONT, new File(url.toURI()));
+    url = getClass().getResource("assets/Roboto-Medium.ttf");
+    fontBold = awt.Font.createFont(awt.Font.TRUETYPE_FONT, new File(url.toURI()));
+    url = getClass().getResource("assets/Roboto-Regular.ttf");
+    font = awt.Font.createFont(awt.Font.TRUETYPE_FONT, new File(url.toURI()));
+  } catch {
+    case _: FileNotFoundException | _: java.lang.NullPointerException => println("Font not found")
+    case e: Throwable => throw e
+  }
+
   case object ThemeChange extends event.Event;
-  
+
   def cycleTheme(): Unit = {
     color = themeList((themeList.indexOf(color) + 1) % themeList.size)
     publish(ThemeChange)
   }
-
 }

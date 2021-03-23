@@ -31,6 +31,7 @@ class FrameBar extends BorderPanel {
   })
 
   val title: Component = new Label(UI.title) {
+    font = Theme.font.deriveFont(16f)
     opaque = true;
     foreground = Theme.color.TEXT;
     background = Theme.color.MAIN;

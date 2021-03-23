@@ -4,6 +4,7 @@ import scala.swing._
 class FrameButton(label: String, onClick: () => Unit) extends BorderPanel {
 
   val button = new Button(label) {
+    font = Theme.font.deriveFont(14f);
     background = Theme.color.HIGHLIGHT
     foreground = Theme.color.TEXT
     peer.setFocusPainted(false);

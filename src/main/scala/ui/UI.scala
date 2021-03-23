@@ -2,10 +2,11 @@ package ui
 import scala.swing._
 import java.awt.Frame
 import java.awt.Image
-import scala.io.StdIn._
 import java.awt.MouseInfo;
-import java.awt
 import javax.swing.border._
+import java.awt
+
+
 /**
  * The Main UI class used as the MainFrame
  */
@@ -15,20 +16,22 @@ object UI extends MainFrame {
   preferredSize = new Dimension(640, 480)
   background = awt.Color.RED;
 
+
+
   peer.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
   peer.setUndecorated(true); // set the borderless window
   peer.setLocationRelativeTo(null)
 
-background = awt.Color.BLACK
-  
+  background = awt.Color.BLACK
+
   var username: String = ""
-  val frameBar = new FrameBar{
+  val frameBar = new FrameBar {
     background = awt.Color.RED;
   }
   val top = new TopContainer {
     background = awt.Color.RED;
   }
-  val bottom = new BottomContainer(userSay){
+  val bottom = new BottomContainer(userSay) {
     background = awt.Color.RED;
   }
   init()
@@ -42,7 +45,7 @@ background = awt.Color.BLACK
         background = Theme.color.MAIN
         layout(frameBar) = BorderPanel.Position.North
         layout(new WelcomeFrame(setUsername)) = BorderPanel.Position.Center
-      }){
+      }) {
         background = awt.Color.RED;
       }
     } else {
@@ -50,7 +53,7 @@ background = awt.Color.BLACK
         layout(frameBar) = BorderPanel.Position.North
         layout(top) = BorderPanel.Position.Center
         layout(bottom) = BorderPanel.Position.South
-      }){
+      }) {
         background = awt.Color.RED;
       }
       avatarSay("Ask me anything")

@@ -12,8 +12,8 @@ import scala.swing.event._
  * A swing panel used as a menu to either chose the username or start as a guest
  */
 class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
-  val welcomeMessage: Component = new Label("Welcome the the smart avatar bot !") {
-    peer.setFont(new Font("Sans Serif", Font.PLAIN, 24))
+  val welcomeMessage: Component = new Label("Welcome !") {
+    font = Theme.fontBold.deriveFont(30f)
     opaque = true
     background = Theme.color.MAIN;
     foreground = Theme.color.TEXT
@@ -27,6 +27,7 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
     foreground = Theme.color.TEXT
   }
   val guestButton: Component = new Button("Or start as guest") {
+    font = Theme.font.deriveFont(14f)
     background = Theme.color.HIGHLIGHT
     foreground = Theme.color.TEXT
   }
