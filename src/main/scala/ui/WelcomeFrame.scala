@@ -4,7 +4,7 @@ import scala.swing._
 import scala.swing.Container._
 import javax.swing._
 import java.awt.Color
-import java.awt.Font
+import java.awt
 import scala.swing.event._
 
 /**
@@ -12,42 +12,46 @@ import scala.swing.event._
  * A swing panel used as a menu to either chose the username or start as a guest
  */
 class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
-  val welcomeMessage: Component = new Label("Welcome !") {
-    font = Theme.fontBold.deriveFont(30f)
-    opaque = true
-    background = Theme.color.MAIN;
-    foreground = Theme.color.TEXT
-  }
-  val instruction: Component = new Label("Please enter your name bellow") {
-    foreground = Theme.color.TEXT_TERTIARY
-  }
-  val nameTextField: Component = new TextField {
-    border = new javax.swing.border.EmptyBorder(0, 0, 0, 0);
-    background = Theme.color.SECONDARY
-    foreground = Theme.color.TEXT
-  }
-  val guestButton: Component = new Button("Or start as guest") {
+
+  val icon: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
+  val iconWithPadding = new PaddingBox(icon, 0, 0, 0, 0, true) // center icon
+
+  val flagFR: Component = new Button("FR") {
     font = Theme.font.deriveFont(14f)
     background = Theme.color.HIGHLIGHT
     foreground = Theme.color.TEXT
   }
-
-  listenTo(guestButton, nameTextField)
+  val flagEN: Component = new Button("EN") {
+    font = Theme.font.deriveFont(14f)
+    background = Theme.color.HIGHLIGHT
+    foreground = Theme.color.TEXT
+  }
+  val flagAL: Component = new Button("AL") {
+    font = Theme.font.deriveFont(14f)
+    background = Theme.color.HIGHLIGHT
+    foreground = Theme.color.TEXT
+  }
+  listenTo(flagFR, flagEN, flagAL)
   reactions += {
-    case ButtonClicked(guestButton) => startWithName("Guest")
-    case EditDone(nameTextField)    => startWithName(nameTextField.text)
+    case ButtonClicked(_) => startWithName("Guest")
+  }
+
+  val flagsContainer = new BoxPanel(Orientation.Horizontal) {
+    maximumSize = new Dimension(600, 100)
+    background = Theme.color.MAIN
+    contents += flagFR
+    contents += flagEN
+    contents += flagAL
   }
 
   val group: Component = new BoxPanel(Orientation.Vertical) {
     background = Theme.color.MAIN
-    maximumSize = new Dimension(400, 120)
-    contents += welcomeMessage
-    contents += instruction
-    contents += nameTextField
-    contents += guestButton
+    maximumSize = new Dimension(600, 300)
+    contents += iconWithPadding
+    contents += flagsContainer
   }
 
-  val withPadding = new PaddingBox(group, 20, 20, 50, 50) { background = Theme.color.MAIN }
+  val withPadding = new PaddingBox(group, 20, 20, 20, 20, true) { background = Theme.color.MAIN }
 
   layout(withPadding) = BorderPanel.Position.Center
 
@@ -63,12 +67,8 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   reactions += {
     case Theme.ThemeChange =>
       {
+        icon.background = Theme.color.MAIN
         withPadding.background = Theme.color.MAIN
-        guestButton.background = Theme.color.HIGHLIGHT
-        guestButton.foreground = Theme.color.TEXT
-        nameTextField.background = Theme.color.SECONDARY
-        nameTextField.foreground = Theme.color.TEXT
-        instruction.foreground = Theme.color.TEXT_TERTIARY
         group.background = Theme.color.MAIN
       }
   }
