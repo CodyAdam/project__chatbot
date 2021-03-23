@@ -8,13 +8,15 @@ class FrameButton(label: String, onClick: () => Unit) extends BorderPanel {
     foreground = Theme.color.TEXT
     peer.setFocusPainted(false);
     border = new javax.swing.border.EmptyBorder(20, 20, 20, 20)
+    listenTo(mouse.moves)
     reactions += {
+      case event.MouseEntered(_,_,_) => background = Theme.color.HIGHLIGHT.brighter()
+      case event.MouseExited(_,_,_) => background = Theme.color.HIGHLIGHT
       case event.ButtonClicked(_) => onClick()
     }
   }
-  val withPadding = new PaddingBox(button, 0,0,0,0)
 
-  layout(withPadding) = BorderPanel.Position.Center
+  layout(button) = BorderPanel.Position.Center
 
   listenTo(Theme)
   reactions += {
