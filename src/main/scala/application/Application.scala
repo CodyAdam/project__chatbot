@@ -9,6 +9,5 @@ import machine.TextToSpeech
 
 object Application extends SimpleSwingApplication {
   DataBase.init()
-  
   def top: MainFrame = UI
 }
