@@ -1,12 +1,11 @@
 package ui
 import scala.swing._
-import java.awt.Color
-import javax.swing._
-import scala.io.StdIn._
 import scala.swing.event._
+import java.awt.Color
+import scala.io.StdIn._
 
 class BottomContainer(userSay: String => Unit) extends BoxPanel(Orientation.Horizontal) {
-  val textField = new TextField{
+  val textField = new TextField {
     background = Theme.color.MAIN
     foreground = Theme.color.TEXT
   }
@@ -14,11 +13,14 @@ class BottomContainer(userSay: String => Unit) extends BoxPanel(Orientation.Hori
     preferredSize = new Dimension(44, 40)
     background = Theme.color.SECONDARY
   }
-  
-  listenTo(sendButton, textField)
+
+  listenTo(sendButton, textField.keys)
   reactions += {
-    case ButtonClicked(sendButton) => sendMessage(textField.text)
-    case EditDone(textField)       => sendMessage(textField.text)
+    case ButtonClicked(button) => sendMessage(textField.text)
+    case KeyPressed(component, key, _, _) => {
+      if (key.equals(Key.Enter))
+        sendMessage(textField.text)
+    }
   }
 
   border = new javax.swing.border.LineBorder(Theme.color.SECONDARY, 8, true)
@@ -28,7 +30,7 @@ class BottomContainer(userSay: String => Unit) extends BoxPanel(Orientation.Hori
   contents += sendButton
 
   def sendMessage(msg: String): Unit = {
-    
+
     textField.text = ""
     userSay(msg)
   }
