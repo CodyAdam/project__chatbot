@@ -18,7 +18,6 @@ import java.awt.Color
 class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, paddingLeft: Int, paddingRight: Int, show: Boolean = false) extends BoxPanel(Orientation.Vertical) {
   component.preferredSize = component.maximumSize
   component.minimumSize = new Dimension(0, 0)
-  background = component.background
 
   val top = new Spacer(0, paddingTop) {
     background = if (show) Color.red else component.background
@@ -34,13 +33,15 @@ class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, padd
   val bot = new Spacer(0, paddingBottom) {
     background = if (show) Color.red else component.background
   }
-
-  contents += top
-  contents += new BoxPanel(Orientation.Horizontal) {
+  
+  val middleGroup = new BoxPanel(Orientation.Horizontal) {
     contents += left
     contents += component
     contents += right
   }
+
+  contents += top
+  contents += middleGroup
   contents += bot
 
   listenTo(Theme)
