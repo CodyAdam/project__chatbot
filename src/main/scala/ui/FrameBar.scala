@@ -30,19 +30,24 @@ class FrameBar extends BorderPanel {
       UI.peer.setExtendedState(Frame.MAXIMIZED_BOTH)
   })
 
+  val titleIcon: Component = new Img("assets/source.gif", 30, 30){ border = new javax.swing.border.EmptyBorder(0, 0, 0, 8)}
   val title: Component = new Label(UI.title) {
     font = Theme.font.deriveFont(16f)
     opaque = true;
     foreground = Theme.color.TEXT;
     background = Theme.color.MAIN;
   }
-  val titleWithPadding = new PaddingBox(title, 0, 0, 20, 20)
+  val titleWithIcon = new PaddingBox(new BoxPanel(Orientation.Horizontal) {
+    background = Theme.color.MAIN;
+    contents += titleIcon
+    contents += title
+  }, 0, 0, 8, 8)
   val spacer = new Spacer() { background = Theme.color.MAIN }
   val dragOffset = new Point(title.bounds.width, title.bounds.height)
   val draggable = new DraggablePanel(dragOffset) {
     maximumSize = new Dimension(99999, height)
     layout(spacer) = BorderPanel.Position.Center
-    layout(titleWithPadding) = BorderPanel.Position.West
+    layout(titleWithIcon) = BorderPanel.Position.West
     opaque = true
   }
   val group: Component = new BoxPanel(Orientation.Horizontal) {
@@ -61,6 +66,7 @@ class FrameBar extends BorderPanel {
       {
         title.foreground = Theme.color.TEXT;
         title.background = Theme.color.MAIN;
+        titleWithIcon.background = Theme.color.MAIN;
         spacer.background = Theme.color.MAIN
         draggable.background = Theme.color.MAIN
       }
