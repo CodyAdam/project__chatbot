@@ -24,14 +24,14 @@ class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, padd
   }
   val left = new Spacer(paddingLeft, 2) {
     maximumSize = new Dimension(99999, component.maximumSize.height);
-    background = if (show) Color.red else component.background
+    background = if (show) Color.green else component.background
   }
   val right = new Spacer(paddingRight, 2) {
     maximumSize = new Dimension(99999, component.maximumSize.height);
-    background = if (show) Color.red else component.background
+    background = if (show) Color.blue else component.background
   }
   val bot = new Spacer(0, paddingBottom) {
-    background = if (show) Color.red else component.background
+    background = if (show) Color.yellow else component.background
   }
   
   val middleGroup = new BoxPanel(Orientation.Horizontal) {
@@ -49,9 +49,9 @@ class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, padd
     case Theme.ThemeChange =>
       {
         top.background = if (show) Color.red else component.background
-        left.background = if (show) Color.red else component.background
-        right.background = if (show) Color.red else component.background
-        bot.background = if (show) Color.red else component.background
+        left.background = if (show) Color.green else component.background
+        right.background = if (show) Color.blue else component.background
+        bot.background = if (show) Color.yellow else component.background
       }
   }
 }
