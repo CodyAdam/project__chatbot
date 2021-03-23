@@ -21,7 +21,7 @@ object Theme extends Publisher {
     main = Color.decode("#0B0C0B"),
     secondary = Color.decode("#1F201F"),
     tertiary = Color.decode("#CDD8DD"),
-    highlight = Color.decode("#8653AF"),
+    highlight = Color.decode("#55FF4F"),
     text = Color.WHITE,
     textTertiary = Color.GRAY,
     textSecondary = Color.decode("#0B0C0B"))
@@ -30,7 +30,7 @@ object Theme extends Publisher {
     main = Color.WHITE,
     secondary = Color.GRAY,
     tertiary = Color.BLACK,
-    highlight = Color.GREEN,
+    highlight = Color.decode("#55FF4F"),
     text = Color.BLACK,
     textTertiary = Color.GREEN,
     textSecondary = Color.GRAY)
