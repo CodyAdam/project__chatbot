@@ -33,13 +33,12 @@ class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, padd
   val bot = new Spacer(0, paddingBottom) {
     background = if (show) Color.yellow else component.background
   }
-  
+
   val middleGroup = new BoxPanel(Orientation.Horizontal) {
     contents += left
     contents += component
     contents += right
   }
-
   contents += top
   contents += middleGroup
   contents += bot
