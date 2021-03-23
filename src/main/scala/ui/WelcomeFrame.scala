@@ -13,8 +13,8 @@ import scala.swing.event._
  */
 class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
 
-  val icon: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
-  val iconWithPadding = new PaddingBox(icon, 0, 0, 0, 0, true) // center icon
+  val bannerDark: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
+  val bannerLight: Component = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
 
   val flagFR: Component = new Button("FR") {
     font = Theme.font.deriveFont(14f)
@@ -37,21 +37,22 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   }
 
   val flagsContainer = new BoxPanel(Orientation.Horizontal) {
-    maximumSize = new Dimension(600, 100)
     background = Theme.color.MAIN
     contents += flagFR
     contents += flagEN
     contents += flagAL
   }
 
+  var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
+
   val group: Component = new BoxPanel(Orientation.Vertical) {
     background = Theme.color.MAIN
     maximumSize = new Dimension(600, 300)
-    contents += iconWithPadding
-    contents += flagsContainer
+    contents += new PaddingBox(banner, 0, 0, 0, 0)
+    contents += new PaddingBox(flagsContainer, 0, 0, 0, 0)
   }
 
-  val withPadding = new PaddingBox(group, 20, 20, 20, 20, true) { background = Theme.color.MAIN }
+  val withPadding = new PaddingBox(group, 20, 20, 20, 20)
 
   layout(withPadding) = BorderPanel.Position.Center
 
@@ -67,7 +68,10 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   reactions += {
     case Theme.ThemeChange =>
       {
-        icon.background = Theme.color.MAIN
+        banner = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
+        flagsContainer.background = Theme.color.MAIN
+        bannerLight.background = Theme.color.MAIN
+        bannerDark.background = Theme.color.MAIN
         withPadding.background = Theme.color.MAIN
         group.background = Theme.color.MAIN
       }
