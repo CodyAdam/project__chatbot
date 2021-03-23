@@ -1,6 +1,7 @@
 # TODO :
 
 
+-   [ ] UI - button for VTT
 -   [ ] UI - Add line break on long message
 -   [ ] UI - button for TTS
 -   [ ] UI - make language selection menu
