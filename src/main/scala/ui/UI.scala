@@ -6,7 +6,6 @@ import java.awt.MouseInfo;
 import javax.swing.border._
 import java.awt
 
-
 /**
  * The Main UI class used as the MainFrame
  */
@@ -15,8 +14,6 @@ object UI extends MainFrame {
   minimumSize = new Dimension(500, 300)
   preferredSize = new Dimension(640, 480)
   background = awt.Color.RED;
-
-
 
   peer.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
   peer.setUndecorated(true); // set the borderless window
@@ -65,8 +62,8 @@ object UI extends MainFrame {
    * @param name the username to be used
    */
   def setUsername(name: String): Unit = {
-    init()
     username = name
+    init()
   }
 
   /**
