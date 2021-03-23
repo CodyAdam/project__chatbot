@@ -2,6 +2,7 @@ package ui
 import java.awt.Color
 
 object Theme {
+
   class ColorPalette(main: Color, secondary: Color, tertiary: Color, highlight: Color, text: Color, textHighlight: Color, textSecondary: Color) {
     var MAIN: Color = main
     var SECONDARY: Color = secondary
@@ -44,6 +45,9 @@ object Theme {
 
   var color: ColorPalette = seaTheme
 
-  def cycleTheme(): Unit = color = themeList((themeList.indexOf(color) + 1) % themeList.size)
+  def cycleTheme(): Unit = {
+    color = themeList((themeList.indexOf(color) + 1) % themeList.size)
+    UI.peer.revalidate()
+  }
 
 }

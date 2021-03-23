@@ -21,6 +21,9 @@ class FrameBar extends BorderPanel {
   preferredSize = maximumSize
 
   //Contents
+  val themeButton: Component = new FrameButton("♻") {
+    reactions += { case ButtonClicked(_) => { Theme.cycleTheme() } }
+  }
   val minimizeButton: Component = new FrameButton("_") {
     reactions += { case ButtonClicked(_) => { UI.peer.setExtendedState(Frame.ICONIFIED) } }
   }
@@ -43,6 +46,7 @@ class FrameBar extends BorderPanel {
   }, 5, 0, 5, 0)
 
   val group: Component = new BoxPanel(Orientation.Horizontal) {
+    contents += themeButton
     contents += minimizeButton
     contents += maximizeButton
     contents += closeButton

@@ -22,8 +22,8 @@ class DraggablePanel(offset: Point) extends BorderPanel {
           UI.peer.setLocation(start.x,start.y);
           UI.peer.revalidate()
           start = new Point(0 + UI.bounds.width/2,0)
-          println(bounds.width)
-          println(start)
+          //println(bounds.width)
+          //println(start)
         }else if(false){
           //set Frame.MAXIMIZED_BOTH si e.peer.getLocationOnScreen.x est en haut
         }else{
@@ -33,11 +33,7 @@ class DraggablePanel(offset: Point) extends BorderPanel {
     }
     
     case e: event.MouseReleased => {
-      println("MouseInfo.getPointerInfo().getLocation().y = " + MouseInfo.getPointerInfo().getLocation().y)
-      println("Toolkit.getDefaultToolkit().getScreenSize().getHeight - 50 = " + (Toolkit.getDefaultToolkit().getScreenSize().getHeight - 50))
-      
       if (MouseInfo.getPointerInfo().getLocation().y <= 0 && UI.peer.getExtendedState() == Frame.NORMAL){
-        println("passe")
         UI.peer.setExtendedState(Frame.MAXIMIZED_BOTH)
       }
     }
