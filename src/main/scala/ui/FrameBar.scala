@@ -14,28 +14,28 @@ import java.awt.Frame
  */
 class FrameBar extends BorderPanel {
   //Style
-  val height: Int = 40
+  val height: Int = 35
   minimumSize = new Dimension(0, height)
   maximumSize = new Dimension(999999, height)
   preferredSize = maximumSize
 
   //Contents
-  val themeButton: Component = new FrameButton("♻", () => Theme.cycleTheme())
-  val minimizeButton: Component = new FrameButton("_", () => UI.peer.setExtendedState(Frame.ICONIFIED))
-  val closeButton: Component = new FrameButton("✖", () => System.exit(0))
-  val maximizeButton: Component = new FrameButton("🔳", () => {
+  val themeButton: Component = new FrameButton("assets/theme-dark.png", "assets/theme-light.png", () => Theme.cycleTheme())
+  val minimizeButton: Component = new FrameButton("assets/minimize-dark.png", "assets/minimize-light.png", () => UI.peer.setExtendedState(Frame.ICONIFIED))
+  val closeButton: Component = new FrameButton("assets/close-dark.png", "assets/close-light.png", () => System.exit(0))
+  val maximizeButton: Component = new FrameButton("assets/maximize-dark.png", "assets/maximize-light.png", () => {
     if (UI.peer.getExtendedState() == Frame.MAXIMIZED_BOTH) {
       UI.peer.setExtendedState(Frame.NORMAL)
     } else
       UI.peer.setExtendedState(Frame.MAXIMIZED_BOTH)
   })
 
-  val titleIcon: Component = new Img("assets/kiwi-icon.png", 30, 30){ 
-    border = new javax.swing.border.EmptyBorder(0, 8, 0, 8) 
+  val titleIcon: Component = new Img("assets/kiwi-icon.png", 30, 30) {
+    border = new javax.swing.border.EmptyBorder(0, 8, 0, 8)
     background = Theme.color.MAIN;
   }
   val title: Component = new Label(UI.title) {
-    font = Theme.font.deriveFont(16f)
+    font = Theme.fontLight.deriveFont(16f)
     opaque = true;
     foreground = Theme.color.TEXT;
     background = Theme.color.MAIN;
