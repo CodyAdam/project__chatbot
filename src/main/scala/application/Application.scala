@@ -5,7 +5,6 @@ import scala.swing.MainFrame
 import machine.DataBase
 import ui.UI
 import machine.TextToSpeech
-//TODO implement the TTS functionnality
 
 object Application extends SimpleSwingApplication {
   DataBase.init()
