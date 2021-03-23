@@ -44,9 +44,6 @@ object Theme {
 
   var color: ColorPalette = seaTheme
 
-  def cycleTheme(): Unit = {
-    color = themeList((themeList.indexOf(color) + 1) % themeList.size)
-    UI.peer.revalidate()
-  }
+  def cycleTheme(): Unit = color = themeList((themeList.indexOf(color) + 1) % themeList.size)
 
 }
