@@ -70,16 +70,19 @@ class ResizablePane(component: Component) extends BorderPanel {
         val bound: awt.Rectangle = UI.bounds
         if (draggingRight && bound.width - (start.x - current.x) > UI.minimumSize.width) {
           UI.peer.setSize((bound.width - (start.x - current.x)), bound.height);
+          start = current
         }else if (draggingLeft && bound.width + (start.x - current.x) > UI.minimumSize.width){
           UI.peer.setSize(bound.width + (start.x - current.x), bound.height);
           UI.peer.setLocation(current.x ,UI.peer.getLocationOnScreen.getY.toInt);
+          start = current
         }else if (draggingBottom && bound.height - (start.y - current.y) > UI.minimumSize.height){
           UI.peer.setSize(bound.width, bound.height - (start.y - current.y));
+          start = current
         }else if (draggingTop && bound.height + (start.y - current.y) > UI.minimumSize.height){
           UI.peer.setSize(bound.width, bound.height + (start.y - current.y));
           UI.peer.setLocation(UI.peer.getLocationOnScreen.getX.toInt , current.y);
+          start = current
         }
-        start = current
       }
     }
   }
