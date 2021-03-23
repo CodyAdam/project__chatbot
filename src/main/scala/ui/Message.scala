@@ -15,4 +15,13 @@ class Message(autor: String, msg: String, date: String, isUser: Boolean) extends
 
   layout(autorLabel) = if (isUser) BorderPanel.Position.East else BorderPanel.Position.West
   layout(textBubble) = BorderPanel.Position.Center
+
+  listenTo(Theme)
+  reactions += {
+    case Theme.ThemeChange =>
+      {
+        autorLabel.foreground = Theme.color.TEXT_SECONDARY
+        background = Theme.color.MAIN
+      }
+  }
 }

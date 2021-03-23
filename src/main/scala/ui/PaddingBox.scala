@@ -18,12 +18,39 @@ import java.awt.Color
 class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, paddingLeft: Int, paddingRight: Int, show: Boolean = false) extends BoxPanel(Orientation.Vertical) {
   component.preferredSize = component.maximumSize
   component.minimumSize = new Dimension(0, 0)
+  background = component.background
 
-  contents += new Spacer(0, paddingTop) { if (show) background = Color.red }
-  contents += new BoxPanel(Orientation.Horizontal) {
-    contents += new Spacer(paddingLeft, 2) { maximumSize = new Dimension(99999, component.maximumSize.height); if (show) background = Color.blue }
-    contents += component
-    contents += new Spacer(paddingRight, 2) { maximumSize = new Dimension(99999, component.maximumSize.height); if (show) background = Color.green }
+  val top = new Spacer(0, paddingTop) {
+    background = if (show) Color.red else component.background
   }
-  contents += new Spacer(0, paddingBottom) { if (show) background = Color.yellow }
+  val left = new Spacer(paddingLeft, 2) {
+    maximumSize = new Dimension(99999, component.maximumSize.height);
+    background = if (show) Color.red else component.background
+  }
+  val right = new Spacer(paddingRight, 2) {
+    maximumSize = new Dimension(99999, component.maximumSize.height);
+    background = if (show) Color.red else component.background
+  }
+  val bot = new Spacer(0, paddingBottom) {
+    background = if (show) Color.red else component.background
+  }
+
+  contents += top
+  contents += new BoxPanel(Orientation.Horizontal) {
+    contents += left
+    contents += component
+    contents += right
+  }
+  contents += bot
+
+  listenTo(Theme)
+  reactions += {
+    case Theme.ThemeChange =>
+      {
+        top.background = if (show) Color.red else component.background
+        left.background = if (show) Color.red else component.background
+        right.background = if (show) Color.red else component.background
+        bot.background = if (show) Color.red else component.background
+      }
+  }
 }

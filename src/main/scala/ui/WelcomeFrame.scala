@@ -12,22 +12,23 @@ import scala.swing.event._
  * A swing panel used as a menu to either chose the username or start as a guest
  */
 class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
-  background = Theme.color.MAIN
-
   val welcomeMessage: Component = new Label("Welcome the the smart avatar bot !") {
     peer.setFont(new Font("Sans Serif", Font.PLAIN, 24))
-    foreground = Theme.color.TEXT_HIGHLIGHT
-  }
-  val instruction: Component = new Label("Please enter your name bellow") {
+    opaque = true
+    background = Theme.color.MAIN;
     foreground = Theme.color.TEXT
   }
+  val instruction: Component = new Label("Please enter your name bellow") {
+    foreground = Theme.color.TEXT_TERTIARY
+  }
   val nameTextField: Component = new TextField {
+    border = new javax.swing.border.EmptyBorder(0, 0, 0, 0);
     background = Theme.color.SECONDARY
     foreground = Theme.color.TEXT
   }
   val guestButton: Component = new Button("Or start as guest") {
-    background = Theme.color.MAIN
-    foreground = Theme.color.TEXT_SECONDARY
+    background = Theme.color.HIGHLIGHT
+    foreground = Theme.color.TEXT
   }
 
   listenTo(guestButton, nameTextField)
@@ -37,6 +38,7 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   }
 
   val group: Component = new BoxPanel(Orientation.Vertical) {
+    background = Theme.color.MAIN
     maximumSize = new Dimension(400, 120)
     contents += new PaddingBox(welcomeMessage, 0, 10, 0, 0)
     contents += instruction
@@ -44,7 +46,9 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
     contents += guestButton
   }
 
-  layout(new PaddingBox(group, 20, 20, 50, 50)) = BorderPanel.Position.Center
+  val withPadding = new PaddingBox(group, 20, 20, 50, 50) { background = Theme.color.MAIN }
+
+  layout(withPadding) = BorderPanel.Position.Center
 
   /**
    * Send the username to the main UI Component
@@ -58,13 +62,13 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   reactions += {
     case Theme.ThemeChange =>
       {
-        background = Theme.color.MAIN
-        welcomeMessage.foreground = Theme.color.TEXT_HIGHLIGHT
+        withPadding.background = Theme.color.MAIN
+        guestButton.background = Theme.color.HIGHLIGHT
+        guestButton.foreground = Theme.color.TEXT
         nameTextField.background = Theme.color.SECONDARY
-        instruction.foreground = Theme.color.TEXT
         nameTextField.foreground = Theme.color.TEXT
-        guestButton.background = Theme.color.MAIN
-        guestButton.foreground = Theme.color.TEXT_SECONDARY
+        instruction.foreground = Theme.color.TEXT_TERTIARY
+        group.background = Theme.color.MAIN
       }
   }
 

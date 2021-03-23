@@ -23,4 +23,14 @@ class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
 
   layout(new Spacer) = BorderPanel.Position.Center
   layout(withPadding) = if (isUser) BorderPanel.Position.East else BorderPanel.Position.West
+
+  listenTo(Theme)
+  reactions += {
+    case Theme.ThemeChange =>
+      {
+        message.foreground = if (isUser) Theme.color.MAIN else Theme.color.TEXT_SECONDARY
+        message.background = if (isUser) Theme.color.HIGHLIGHT else Theme.color.SECONDARY
+        background = Theme.color.MAIN
+      }
+  }
 }

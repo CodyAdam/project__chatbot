@@ -4,25 +4,25 @@ import scala.swing._
 
 object Theme extends Publisher {
 
-  class ColorPalette(main: Color, secondary: Color, tertiary: Color, highlight: Color, text: Color, textHighlight: Color, textSecondary: Color) {
+  class ColorPalette(main: Color, secondary: Color, tertiary: Color, highlight: Color, text: Color, textTertiary: Color, textSecondary: Color) {
     var MAIN: Color = main
     var SECONDARY: Color = secondary
     var TERTIARY: Color = tertiary
     var HIGHLIGHT: Color = highlight
 
     var TEXT: Color = text
-    var TEXT_HIGHLIGHT: Color = textHighlight
+    var TEXT_TERTIARY: Color = textTertiary
     var TEXT_SECONDARY: Color = textSecondary
   }
 
   val darkTheme: ColorPalette = new ColorPalette(
-    main = Color.BLACK,
-    secondary = Color.GRAY,
-    tertiary = Color.WHITE,
-    highlight = Color.YELLOW,
+    main = Color.decode("#0B0C0B"),
+    secondary = Color.decode("#1F201F"),
+    tertiary = Color.decode("#CDD8DD"),
+    highlight = Color.decode("#8653AF"),
     text = Color.WHITE,
-    textHighlight = Color.YELLOW,
-    textSecondary = Color.GRAY)
+    textTertiary = Color.GRAY,
+    textSecondary = Color.decode("#0B0C0B"))
 
   val lightTheme: ColorPalette = new ColorPalette(
     main = Color.WHITE,
@@ -30,7 +30,7 @@ object Theme extends Publisher {
     tertiary = Color.BLACK,
     highlight = Color.GREEN,
     text = Color.BLACK,
-    textHighlight = Color.GREEN,
+    textTertiary = Color.GREEN,
     textSecondary = Color.GRAY)
 
   val seaTheme: ColorPalette = new ColorPalette(
@@ -39,12 +39,12 @@ object Theme extends Publisher {
     tertiary = Color.decode("#276678"),
     highlight = Color.decode("#4D94FF"),
     text = Color.decode("#276678"),
-    textHighlight = Color.decode("#4D94FF"),
+    textTertiary = Color.decode("#4D94FF"),
     textSecondary = Color.decode("#313333"))
 
   val themeList: List[ColorPalette] = List(darkTheme, lightTheme, seaTheme)
 
-  var color: ColorPalette = seaTheme
+  var color: ColorPalette = darkTheme
 
   case object ThemeChange extends event.Event;
   

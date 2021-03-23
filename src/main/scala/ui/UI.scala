@@ -10,20 +10,27 @@ import javax.swing.border._
  * The Main UI class used as the MainFrame
  */
 object UI extends MainFrame {
-
   title = "Smart Nagivation Avatar"
   minimumSize = new Dimension(500, 300)
   preferredSize = new Dimension(640, 480)
-  background = Theme.color.MAIN
+  background = awt.Color.RED;
+
   peer.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
   peer.setUndecorated(true); // set the borderless window
   peer.setLocationRelativeTo(null)
 
+background = awt.Color.BLACK
+  
   var username: String = ""
-  val frameBar = new FrameBar
-
-  val top = new TopContainer
-  val bottom = new BottomContainer(userSay)
+  val frameBar = new FrameBar{
+    background = awt.Color.RED;
+  }
+  val top = new TopContainer {
+    background = awt.Color.RED;
+  }
+  val bottom = new BottomContainer(userSay){
+    background = awt.Color.RED;
+  }
   init()
 
   /**
@@ -32,15 +39,20 @@ object UI extends MainFrame {
   def init(): Unit = {
     if (username.equals("")) {
       contents = new ResizablePane(new BorderPanel {
+        background = Theme.color.MAIN
         layout(frameBar) = BorderPanel.Position.North
         layout(new WelcomeFrame(setUsername)) = BorderPanel.Position.Center
-      })
+      }){
+        background = awt.Color.RED;
+      }
     } else {
       contents = new ResizablePane(new BorderPanel {
         layout(frameBar) = BorderPanel.Position.North
         layout(top) = BorderPanel.Position.Center
         layout(bottom) = BorderPanel.Position.South
-      })
+      }){
+        background = awt.Color.RED;
+      }
       avatarSay("Ask me anything")
     }
   }
