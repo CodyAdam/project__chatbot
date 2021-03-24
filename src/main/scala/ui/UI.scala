@@ -34,17 +34,14 @@ object UI extends MainFrame {
         background = Theme.color.MAIN
         layout(FrameBar) = BorderPanel.Position.North
         layout(WelcomeFrame) = BorderPanel.Position.Center
-      }) {
-        background = awt.Color.RED;
-      }
+      })
     } else {
       contents = new ResizablePane(new BorderPanel {
         layout(FrameBar) = BorderPanel.Position.North
         layout(TopContainer) = BorderPanel.Position.Center
         layout(BottomContainer) = BorderPanel.Position.South
-      }) {
-        background = awt.Color.RED;
-      }
+      })
+      BottomContainer.textField.peer.requestFocus()
       avatarSay(machine.StateManager.currentLanguage.politesse(0))
     }
   }
