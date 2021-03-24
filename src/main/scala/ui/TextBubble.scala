@@ -4,24 +4,16 @@ import scala.swing._
 import javax.swing.SwingConstants
 
 class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
-  background = Theme.color.MAIN
   val message: Component = new Label(msg) {
     opaque = true
     foreground = Theme.color.TEXT
-    background = if (isUser) Theme.color.TERTIARY else Theme.color.SECONDARY
+    background = Theme.color.MAIN
   }
 
-  val withBorder: Component = new BorderPanel {
-    border = new javax.swing.border.LineBorder(message.background, 5, true)
-    layout(message) = BorderPanel.Position.Center
-  }
-
-  val withPadding: Component = new BorderPanel {
-    border = new javax.swing.border.EmptyBorder(5, 5, 5, 5)
-    layout(withBorder) = BorderPanel.Position.Center
-  }
-
-  layout(new Spacer) = BorderPanel.Position.Center
+  val withPadding = new PaddingBox(message, 5, 5, 5, 5)
+  val spacer = new Spacer { background = Theme.color.MAIN }
+  
+  layout(spacer) = BorderPanel.Position.Center
   layout(withPadding) = if (isUser) BorderPanel.Position.East else BorderPanel.Position.West
 
   listenTo(Theme)
@@ -29,8 +21,8 @@ class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
     case Theme.ThemeChange =>
       {
         message.foreground = Theme.color.TEXT
-        message.background = if (isUser) Theme.color.TERTIARY else Theme.color.SECONDARY
-        background = Theme.color.MAIN
+        spacer.background = Theme.color.MAIN
+        message.background = Theme.color.MAIN
       }
   }
 }
