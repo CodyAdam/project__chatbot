@@ -12,7 +12,7 @@ import java.awt.Frame
  * A Container class used to make a borderless window with a custom Frame bar.
  * The bar can be used to drag the window or manage the window using the top buttons (ex : Close, minimize, etc.)
  */
-class FrameBar extends BorderPanel {
+object FrameBar extends BorderPanel {
   //Style
   val height: Int = 35
   minimumSize = new Dimension(0, height)

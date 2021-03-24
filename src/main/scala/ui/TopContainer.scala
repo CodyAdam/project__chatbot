@@ -7,7 +7,7 @@ import java.awt
 import java.awt.MouseInfo
 import java.awt.Frame
 
-class TopContainer extends BorderPanel {
+object TopContainer extends BorderPanel {
   val content = new BoxPanel(Orientation.Vertical) {
     background = Theme.color.MAIN
   }

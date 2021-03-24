@@ -4,11 +4,10 @@ import scala.swing.event._
 import java.awt.Color
 import scala.io.StdIn._
 
-class BottomContainer(userSay: String => Unit) extends BoxPanel(Orientation.Horizontal) {
+object BottomContainer extends BoxPanel(Orientation.Horizontal) {
   val textField = new TextField {
     background = Theme.color.MAIN
     foreground = Theme.color.TEXT
-
   }
   val sendButton = new Button(">") {
     preferredSize = new Dimension(44, 40)
@@ -48,6 +47,6 @@ class BottomContainer(userSay: String => Unit) extends BoxPanel(Orientation.Hori
 
   def sendMessage(msg: String): Unit = {
     textField.text = ""
-    userSay(msg)
+    UI.userSay(msg)
   }
 }

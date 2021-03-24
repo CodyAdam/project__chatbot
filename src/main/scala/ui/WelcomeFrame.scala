@@ -6,34 +6,47 @@ import javax.swing._
 import java.awt.Color
 import java.awt
 import scala.swing.event._
-
+import machine.StateManager
+import machine.DataBase
 /**
  * @author Cody
  * A swing panel used as a menu to either chose the username or start as a guest
  */
-class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
+object WelcomeFrame extends BorderPanel {
 
   val bannerDark: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
   val bannerLight: Component = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
 
-  val flagFR: Component = new Flag("assets/france.png" ,50,30)
-  val flagEN: Component = new Flag("assets/england.png" ,50,30)
-  val flagAL: Component = new Flag("assets/allemagne.png" ,50,30)
-  val flagES: Component = new Flag("assets/espagne.png" ,50,30)
-  val flagIT: Component = new Flag("assets/italie.png" ,50,30)
-  listenTo(flagFR, flagEN, flagAL,flagES,flagIT)
+  val flagFR: Component = new Flag("assets/france.png", "FR", 50, 30)
+  val flagEN: Component = new Flag("assets/england.png", "EN", 50, 30)
+  val flagAL: Component = new Flag("assets/allemagne.png", "AL", 50, 30)
+  val flagES: Component = new Flag("assets/espagne.png", "ES", 50, 30)
+  val flagIT: Component = new Flag("assets/italie.png", "IT", 50, 30)
+  listenTo(flagFR, flagEN, flagAL, flagES, flagIT)
   reactions += {
-    case ButtonClicked(_) => startWithName("Guest")
+    case ButtonClicked(button) => {
+      if (button == flagFR)
+        StateManager.changeLanguage(DataBase.getLanguages()(0))
+      else if (button == flagEN)
+        StateManager.changeLanguage(DataBase.getLanguages()(1))
+      else if (button == flagES)
+        StateManager.changeLanguage(DataBase.getLanguages()(2))
+      else if (button == flagAL)
+        StateManager.changeLanguage(DataBase.getLanguages()(3))
+      else if (button == flagIT)
+        StateManager.changeLanguage(DataBase.getLanguages()(4))
+      UI.hasLang = true
+      UI.init()
+    }
   }
 
   val flagsContainer = new BoxPanel(Orientation.Horizontal) {
     background = Theme.color.MAIN
     contents += flagFR
     contents += flagEN
+    contents += flagES
     contents += flagAL
     contents += flagIT
-    contents += flagES
-    
   }
 
   var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
@@ -48,14 +61,6 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   val withPadding = new PaddingBox(group, 20, 20, 20, 20)
 
   layout(withPadding) = BorderPanel.Position.Center
-
-  /**
-   * Send the username to the main UI Component
-   * @param name the username chosen
-   */
-  def startWithName(name: String) = {
-    setUsername(name)
-  }
 
   listenTo(Theme)
   reactions += {
