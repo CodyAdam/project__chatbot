@@ -33,7 +33,6 @@ concert                     -> foire;congrè;concert;expo;concerts;congrès;foir
 expo                        -> foire;congrè;concert;expo;concerts;congrès;foires
 foire                       -> foire;congrè;concert;expo;concerts;congrès;foires
 concert                     -> foire;congrè;concert;expo;concerts;congrès;foires
-rennes
 agence
 aide
 alcooliques                 -> alcooliques;alcoolique
