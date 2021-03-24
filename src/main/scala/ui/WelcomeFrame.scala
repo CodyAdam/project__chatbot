@@ -13,9 +13,11 @@ import machine.DataBase
  */
 object WelcomeFrame extends BorderPanel {
 
-  val bannerDark: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
-  val bannerLight: Component = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
-  var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
+  val bannerDark = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120)
+  val bannerLight = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120)
+  var banner = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) {
+    background = Theme.color.MAIN
+  }
   val flagFR: Flag = new Flag("assets/france.png", 50, 50)
   val flagEN: Flag = new Flag("assets/united-kingdom.png", 50, 50)
   val flagAL: Flag = new Flag("assets/germany.png", 50, 50)
@@ -61,11 +63,14 @@ object WelcomeFrame extends BorderPanel {
     }
     case Theme.ThemeChange =>
       {
-        banner = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
-        flagsContainer.background = Theme.color.MAIN
-        bannerLight.background = Theme.color.MAIN
-        bannerDark.background = Theme.color.MAIN
+        if (Theme.color == Theme.darkTheme) {
+          banner.icon = bannerDark.icon
+        } else {
+          banner.icon = bannerLight.icon
+        }
+        banner.background = Theme.color.MAIN
         group.background = Theme.color.MAIN
+        flagsContainer.background = Theme.color.MAIN
       }
   }
 }

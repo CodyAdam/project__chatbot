@@ -15,10 +15,10 @@ class Flag(imgPath: String, width: Int, height: Int) extends BorderPanel {
 
     icon = resizedIcon
 
-    listenTo(mouse.moves)
+    listenTo(mouse.moves, Theme)
     reactions += {
-      case event.MouseEntered(_, _, _)       => background = Theme.color.MAIN.brighter()
-      case event.MouseExited(_, _, _)        => background = Theme.color.MAIN
+      case event.MouseEntered(_, _, _)                    => background = Theme.color.MAIN.brighter()
+      case event.MouseExited(_, _, _) | Theme.ThemeChange => background = Theme.color.MAIN
     }
   }
 
