@@ -10,7 +10,7 @@ import java.awt
  * The Main UI class used as the MainFrame
  */
 object UI extends MainFrame {
-  title = "Kiwipedia"
+  title = "Kiwipédia"
   minimumSize = new Dimension(500, 300)
   preferredSize = new Dimension(640, 480)
   background = awt.Color.RED;
