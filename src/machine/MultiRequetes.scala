@@ -1,5 +1,0 @@
-package machine
-
-class MultiRequetes {
-  
-}
