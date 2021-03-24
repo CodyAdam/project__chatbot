@@ -128,7 +128,7 @@ object SpeechToText {
   
   def endReco(text : String){
     inRecognition = false;
-    if(text != "") println(text); // TODO add text to input bar
+    if(text != "") ui.UI.avatarSay(text);
   }
   
   def cancelReco(){
