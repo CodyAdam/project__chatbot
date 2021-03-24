@@ -11,7 +11,7 @@ import java.awt
  */
 object UI extends MainFrame {
   title = "Kiwipédia"
-  minimumSize = new Dimension(500, 300)
+  minimumSize = new Dimension(370, 250)
   preferredSize = new Dimension(640, 480)
   background = awt.Color.RED;
 
@@ -22,7 +22,6 @@ object UI extends MainFrame {
   background = awt.Color.BLACK
 
   var hasLang: Boolean = false
-
   init()
 
   /**

@@ -5,6 +5,7 @@ import javax.swing.SwingConstants
 
 class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
   val message: Component = new Label(msg) {
+    font = Theme.fontLight.deriveFont(20f)
     opaque = true
     foreground = Theme.color.TEXT
     background = Theme.color.MAIN

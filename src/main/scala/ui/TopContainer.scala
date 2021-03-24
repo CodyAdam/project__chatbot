@@ -17,7 +17,7 @@ object TopContainer extends BorderPanel {
     border = new javax.swing.border.EmptyBorder(0, 0, 0, 0)
   }
 
-  val withPadding = new PaddingBox(scrollPanel, 10, 10, 5, 5);
+  val withPadding = new PaddingBox(scrollPanel, 0, 10, 5, 5);
   layout(withPadding) = BorderPanel.Position.Center;
 
   listenTo(Theme)
