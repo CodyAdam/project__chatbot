@@ -61,6 +61,19 @@ object DataBase {
       case Some(set) => list_Words(w) = set ++ Set(lang);
     }
   }
+  
+  def getJoke() : Joke = {
+    jokes.get(StateManager.currentLanguage) match {
+      case None => null
+      case Some(w : JokeWheel) => {
+        var joke = w.list(w.current);
+        var index : Integer = w.current+1;
+        if(w.current == w.list.length-1) index = 0;
+        jokes(StateManager.currentLanguage) = new JokeWheel(w.list, index);
+        return joke;
+      }
+    }
+  }
 
   /**
    * search in the places database wich keys correspond to the input keyword

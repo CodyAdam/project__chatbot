@@ -142,6 +142,14 @@ object AnalyseSentence {
     return false
   }
 
+  def isBlagueQuery(words : List[String]): Boolean = {
+    for (language: Language <- DataBase.getLanguages())
+      for (jokeWord: String <- language.blagueTrigger)
+        if (containsWithTypingError(words, jokeWord))
+          return true
+    return false
+  }
+  
   /**
    * @param list a list of string
    * @param str a string
