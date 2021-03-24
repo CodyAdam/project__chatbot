@@ -7,8 +7,8 @@ class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
   background = Theme.color.MAIN
   val message: Component = new Label(msg) {
     opaque = true
-    foreground = if (isUser) Theme.color.MAIN else Theme.color.TEXT_SECONDARY
-    background = if (isUser) Theme.color.HIGHLIGHT else Theme.color.SECONDARY
+    foreground = Theme.color.TEXT
+    background = if (isUser) Theme.color.TERTIARY else Theme.color.SECONDARY
   }
 
   val withBorder: Component = new BorderPanel {
@@ -28,8 +28,8 @@ class TextBubble(msg: String, isUser: Boolean) extends BorderPanel {
   reactions += {
     case Theme.ThemeChange =>
       {
-        message.foreground = if (isUser) Theme.color.MAIN else Theme.color.TEXT_SECONDARY
-        message.background = if (isUser) Theme.color.HIGHLIGHT else Theme.color.SECONDARY
+        message.foreground = Theme.color.TEXT
+        message.background = if (isUser) Theme.color.TERTIARY else Theme.color.SECONDARY
         background = Theme.color.MAIN
       }
   }
