@@ -88,7 +88,9 @@ object AnalyseSentence {
         case Some(set) => {
           for(lang <- set){
             hash.get(lang) match{
-              case None => hash.put(lang, 1);
+              case None => {
+                hash.put(lang, 1);
+              }
               case Some(set) => hash(lang) = hash(lang)+1;
             }
           }
@@ -103,6 +105,11 @@ object AnalyseSentence {
          if(value>maxInt) {
            max = key;
            maxInt = value;
+         } else if(value==maxInt){
+           if(key == StateManager.currentLanguage){
+             max = key;
+             maxInt = value;
+           }
          }
        }
     }

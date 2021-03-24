@@ -39,6 +39,9 @@ object DataBase {
       for(w <- lang.linternauteTrigger){
         addWordHashmap(w.toLowerCase(), lang);
       }
+      for(w <- lang.blagueTrigger){
+        addWordHashmap(w.toLowerCase(), lang);
+      }
       addWordHashmap(lang.expression.agree.toLowerCase(), lang);
       addWordHashmap(lang.expression.disagree.toLowerCase(), lang);
     }
