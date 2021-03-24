@@ -24,6 +24,13 @@ object MachineImpl extends MachineDialogue {
           //Create a new Scala object for all Linternaute functions
           return ???
         }
+        
+        if(AnalyseSentence.isBlagueQuery(words)){
+          var joke = DataBase.getJoke();
+          if(joke != null){
+            return List(joke.text + "   \n\n" + joke.answer);
+          }
+        }
 
         var politePrefix: List[String] = List[String]()
         if(AnalyseSentence.hasPoliteWord(words)){

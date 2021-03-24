@@ -19,6 +19,7 @@ object DataBase {
   private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
   private var languages: List[Language] = List[Language]()
   private var list_Words: HashMap[String, Set[Language]] = new HashMap();
+  private var jokes : HashMap[Language, JokeWheel] = new HashMap();
 
   /**
    * Initialize the data base with all the alias, places and languages
@@ -28,6 +29,7 @@ object DataBase {
     languages = LanguageImporter.getLanguages()
     places = XMLImporter.getPlacesFromXml()
     alias = AliasImporter.getAliasFromFile()
+    jokes = JokesImporter.loadJokes(languages);
     for(lang <- languages){
       addWordHashmap(lang.langue.toLowerCase(), lang);
       for(w <- lang.politesse){
@@ -37,6 +39,9 @@ object DataBase {
         addWordHashmap(w.toLowerCase(), lang);
       }
       for(w <- lang.linternauteTrigger){
+        addWordHashmap(w.toLowerCase(), lang);
+      }
+      for(w <- lang.blagueTrigger){
         addWordHashmap(w.toLowerCase(), lang);
       }
       addWordHashmap(lang.expression.agree.toLowerCase(), lang);
@@ -54,6 +59,19 @@ object DataBase {
     ref match {
       case None => list_Words.put(w, Set(lang));
       case Some(set) => list_Words(w) = set ++ Set(lang);
+    }
+  }
+  
+  def getJoke() : Joke = {
+    jokes.get(StateManager.currentLanguage) match {
+      case None => null
+      case Some(w : JokeWheel) => {
+        var joke = w.list(w.current);
+        var index : Integer = w.current+1;
+        if(w.current == w.list.length-1) index = 0;
+        jokes(StateManager.currentLanguage) = new JokeWheel(w.list, index);
+        return joke;
+      }
     }
   }
 
