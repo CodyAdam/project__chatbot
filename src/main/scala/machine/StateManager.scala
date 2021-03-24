@@ -10,6 +10,7 @@ case object Blocked extends UserState // Can not interract with the application 
 case class Language(
   langue:             String,
   formatxx_XX:        String,
+  blagueTrigger:      List[String],
   politesse:          List[String],
   recherche:          List[String],
   linternauteTrigger: List[String],
