@@ -32,9 +32,3 @@ object Linternaute {
   }
 
 }
-
-object TestLinternaute extends App {
-
-  println(Linternaute.lookForAdress(Linternaute.findRestaurant("la+tomate")))
-
-}
