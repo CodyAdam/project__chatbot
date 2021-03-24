@@ -19,10 +19,17 @@ object MachineImpl extends MachineDialogue {
         }
         
         if (AnalyseSentence.isLinternauteQuery(words)) {
-          //TODO Search on Linternaute as :
-          //https://wvw.linternaute.com/restaurant/guide/ville-rennes-35000/?name=words(0)+words(1)+words(2)+....+words(length-1)
-          //Create a new Scala object for all Linternaute functions
-          return ???
+          val adress = Linternaute.lookForAdress(Linternaute.findRestaurant(Linternaute.keyWords(Linternaute.searchingWords(words))))          
+          if(!adress.equals("")) {
+          return List(adress)
+          }
+        }
+        
+        if(AnalyseSentence.isBlagueQuery(words)){
+          var joke = DataBase.getJoke();
+          if(joke != null){
+            return List(joke.text + "   \n\n" + joke.answer);
+          }
         }
 
         var politePrefix: List[String] = List[String]()

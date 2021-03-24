@@ -15,6 +15,7 @@ object LanguageImporter {
     val francais = new Language(
       "Français",
       "fr-FR",
+      List("Blague", "Plaisanterie"),
       List("Bonjour", "Salut", "Bonsoir"),
       List("recherche", "cherche", "ou", "est", "donc", "trouve", "trouver"),
       List("restaurant", "creperie", "pizzeria"),
@@ -30,6 +31,7 @@ object LanguageImporter {
     val anglais = new Language(
       "English",
       "en-US",
+      List("Joke"),
       List("Hi", "Hello", "Morning", "Evening", "Afternoon", "Hey"),
       List("seek", "seeking", "search", "searching", "look", "looking", "where", "find"),
       List("restaurant", "creperie", "pizzeria"),
@@ -44,7 +46,8 @@ object LanguageImporter {
         "What is your choice?"))
     val espagnol = new Language(
       "Español",
-      "es-ES",
+      "es-ES",	
+      List("broma", "chiste", "chascarrillo", "	chanza"),
       List("Hola", "Buenos", "Dias"),
       List("donde", "esta", "busco", "buscando"),
       List("restaurante", "creperie", "pizzeria"),
@@ -60,6 +63,7 @@ object LanguageImporter {
     val allemand = new Language(
       "Deustch",
       "de-DE",
+      List("Streich", "Witz", "Scherz"),
       List("Hallo", "Guten", "Morgen", "Tag", "Abend"),
       List("wo", "ist", "such", "suchen"),
       List("restaurant", "creperie", "pizzeria"),
@@ -75,6 +79,7 @@ object LanguageImporter {
     val italien = new Language(
       "Italiano",
       "it-IT",
+      List("barzelletta", "storiella", "battuta", "	burlarsi"),
       List("Buongiorno","Ciao","Salve","Buon","Pomeriggio","Buonasera","Incantato"), //TODO à changer
       List("dove","trova","cerco","cercando"),//TODO à changer
       List("ristorante", "creperie", "pizzeria"),
