@@ -19,6 +19,7 @@ object DataBase {
   private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
   private var languages: List[Language] = List[Language]()
   private var list_Words: HashMap[String, Set[Language]] = new HashMap();
+  private var jokes : HashMap[Language, JokeWheel] = new HashMap();
 
   /**
    * Initialize the data base with all the alias, places and languages
@@ -28,6 +29,7 @@ object DataBase {
     languages = LanguageImporter.getLanguages()
     places = XMLImporter.getPlacesFromXml()
     alias = AliasImporter.getAliasFromFile()
+    jokes = JokesImporter.loadJokes(languages);
     for(lang <- languages){
       addWordHashmap(lang.langue.toLowerCase(), lang);
       for(w <- lang.politesse){
