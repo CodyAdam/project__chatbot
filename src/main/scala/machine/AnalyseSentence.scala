@@ -136,9 +136,10 @@ object AnalyseSentence {
    * @return if the user input contains a Linternaute triggerword in the current language
    */
   def isLinternauteQuery(words: List[String]): Boolean = {
-    for (politeWord: String <- StateManager.currentLanguage.linternauteTrigger)
-      if (containsWithTypingError(words, politeWord))
-        return true
+    for (language: Language <- DataBase.getLanguages())
+      for (internauteWord: String <- language.linternauteTrigger)
+        if (containsWithTypingError(words, internauteWord))
+          return true
     return false
   }
 
