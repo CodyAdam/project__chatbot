@@ -54,9 +54,11 @@ object Theme extends Publisher {
   }
 
   case object ThemeChange extends event.Event;
+  case object PostThemeChange extends event.Event;
 
   def cycleTheme(): Unit = {
     color = themeList((themeList.indexOf(color) + 1) % themeList.size)
     publish(ThemeChange)
+    publish(PostThemeChange)
   }
 }
