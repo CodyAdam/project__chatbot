@@ -13,10 +13,13 @@ object Linternaute {
     var searchingWords: List[String] = List()
     var found = false
     for (politeWord: String <- words) {
-      if ((StateManager.currentLanguage.linternauteTrigger).contains(politeWord.toLowerCase()))
-        found = true
-      if (found)
+
+      if (found) {
         searchingWords = searchingWords :+ politeWord
+      }
+      if ((StateManager.currentLanguage.linternauteTrigger).contains(politeWord.toLowerCase())) {
+        found = true
+      }
     }
     searchingWords
   }
@@ -34,12 +37,16 @@ object Linternaute {
   }
 
   /**
-   * Isole l'adresse du restaurant correspond à la recherche à partir des mots clés 
+   * Isole l'adresse du restaurant correspond à la recherche à partir des mots clés
    * @param une chaîne de caractères correspondant aux mots clés à rechercher
    * @return une chaîne de caractères correspondant à l'adresse de la page du restaurant
    */
   def findRestaurant(keyWords: String): String = {
-    Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get().select("h2.bu_restaurant_title_2 > a").first().attr("href")
+    val r = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get().select("h2.bu_restaurant_title_2 > a").first()
+    if (r != null)
+      r.attr("href")
+    else
+      ""
   }
 
   /**
@@ -48,7 +55,19 @@ object Linternaute {
    * @return une chaîne de caractères correspondant à l'adresse physique du restaurant
    */
   def lookForAdress(restaurant: String): String = {
-    Jsoup.connect("https://www.linternaute.com/" + restaurant).get().select("li.icomoon-location > span").first().html()
+    if (restaurant.equals(""))
+      return ""
+    else {
+      val r = Jsoup.connect("https://www.linternaute.com/" + restaurant).get().select("li.icomoon-location > span").first()
+      if (r != null)
+        r.html()
+      else
+        ""
+    }
   }
 
+}
+
+object TestLinternaute extends App {
+  println(Linternaute.lookForAdress(Linternaute.findRestaurant("la+tomate+moulue")))
 }
