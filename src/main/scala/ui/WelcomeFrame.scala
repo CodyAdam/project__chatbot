@@ -16,22 +16,12 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
   val bannerDark: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
   val bannerLight: Component = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
 
-  val flagFR: Component = new Button("FR") {
-    font = Theme.font.deriveFont(14f)
-    background = Theme.color.HIGHLIGHT
-    foreground = Theme.color.TEXT
-  }
-  val flagEN: Component = new Button("EN") {
-    font = Theme.font.deriveFont(14f)
-    background = Theme.color.HIGHLIGHT
-    foreground = Theme.color.TEXT
-  }
-  val flagAL: Component = new Button("AL") {
-    font = Theme.font.deriveFont(14f)
-    background = Theme.color.HIGHLIGHT
-    foreground = Theme.color.TEXT
-  }
-  listenTo(flagFR, flagEN, flagAL)
+  val flagFR: Component = new Flag("assets/france.png" ,50,30)
+  val flagEN: Component = new Flag("assets/england.png" ,50,30)
+  val flagAL: Component = new Flag("assets/allemagne.png" ,50,30)
+  val flagES: Component = new Flag("assets/espagne.png" ,50,30)
+  val flagIT: Component = new Flag("assets/italie.png" ,50,30)
+  listenTo(flagFR, flagEN, flagAL,flagES,flagIT)
   reactions += {
     case ButtonClicked(_) => startWithName("Guest")
   }
@@ -41,6 +31,9 @@ class WelcomeFrame(setUsername: String => Unit) extends BorderPanel {
     contents += flagFR
     contents += flagEN
     contents += flagAL
+    contents += flagIT
+    contents += flagES
+    
   }
 
   var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
