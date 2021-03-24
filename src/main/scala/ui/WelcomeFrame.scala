@@ -2,7 +2,6 @@ package ui
 
 import scala.swing._
 import scala.swing.Container._
-import javax.swing._
 import java.awt.Color
 import java.awt
 import scala.swing.event._
@@ -16,13 +15,35 @@ object WelcomeFrame extends BorderPanel {
 
   val bannerDark: Component = new Img("assets/banner-dark.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
   val bannerLight: Component = new Img("assets/banner-light.png", (120 * 4.15393).toInt, 120) { background = Theme.color.MAIN; }
+  var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
+  val flagFR: Flag = new Flag("assets/france.png", 50, 50)
+  val flagEN: Flag = new Flag("assets/united-kingdom.png", 50, 50)
+  val flagAL: Flag = new Flag("assets/germany.png", 50, 50)
+  val flagES: Flag = new Flag("assets/spain.png", 50, 50)
+  val flagIT: Flag = new Flag("assets/italy.png", 50, 50)
 
-  val flagFR: Component = new Flag("assets/france.png", "FR", 50, 30)
-  val flagEN: Component = new Flag("assets/england.png", "EN", 50, 30)
-  val flagAL: Component = new Flag("assets/allemagne.png", "AL", 50, 30)
-  val flagES: Component = new Flag("assets/espagne.png", "ES", 50, 30)
-  val flagIT: Component = new Flag("assets/italie.png", "IT", 50, 30)
-  listenTo(flagFR, flagEN, flagAL, flagES, flagIT)
+  val flagsContainer = new BoxPanel(Orientation.Horizontal) {
+    background = Theme.color.MAIN
+    maximumSize = new Dimension(500, 70)
+    contents += flagFR
+    contents += flagEN
+    contents += flagES
+    contents += flagAL
+    contents += flagIT
+  }
+
+  val group: Component = new BoxPanel(Orientation.Vertical) {
+    background = Theme.color.MAIN
+    maximumSize = new Dimension(500, 250)
+
+    contents += new PaddingBox(banner, 0, 0, 0, 0)
+    contents += new PaddingBox(flagsContainer, 0, 0, 0, 0)
+  }
+
+  val withPadding = new PaddingBox(group, 6, 6, 20, 20)
+  layout(withPadding) = BorderPanel.Position.Center
+
+  listenTo(flagFR.button, flagEN.button, flagAL.button, flagES.button, flagIT.button, Theme)
   reactions += {
     case ButtonClicked(button) => {
       if (button == flagFR)
@@ -38,41 +59,13 @@ object WelcomeFrame extends BorderPanel {
       UI.hasLang = true
       UI.init()
     }
-  }
-
-  val flagsContainer = new BoxPanel(Orientation.Horizontal) {
-    background = Theme.color.MAIN
-    contents += flagFR
-    contents += flagEN
-    contents += flagES
-    contents += flagAL
-    contents += flagIT
-  }
-
-  var banner: Component = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
-
-  val group: Component = new BoxPanel(Orientation.Vertical) {
-    background = Theme.color.MAIN
-    maximumSize = new Dimension(600, 300)
-    contents += new PaddingBox(banner, 0, 0, 0, 0)
-    contents += new PaddingBox(flagsContainer, 0, 0, 0, 0)
-  }
-
-  val withPadding = new PaddingBox(group, 20, 20, 20, 20)
-
-  layout(withPadding) = BorderPanel.Position.Center
-
-  listenTo(Theme)
-  reactions += {
     case Theme.ThemeChange =>
       {
         banner = if (Theme.color == Theme.darkTheme) bannerDark else bannerLight;
         flagsContainer.background = Theme.color.MAIN
         bannerLight.background = Theme.color.MAIN
         bannerDark.background = Theme.color.MAIN
-        withPadding.background = Theme.color.MAIN
         group.background = Theme.color.MAIN
       }
   }
-
 }
