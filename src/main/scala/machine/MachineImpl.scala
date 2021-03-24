@@ -38,14 +38,6 @@ object MachineImpl extends MachineDialogue {
           politePrefix = List(StateManager.currentLanguage.politesse(0))
         }
         
-        /*AnalyseSentence.getLanguageIfPolite(words) match {
-          case Some(lang: Language) => {
-             if(words.length==1) return List(StateManager.currentLanguage.politesse(0))
-             politePrefix = List(StateManager.currentLanguage.politesse(0))
-          }
-          case None => Unit
-        }*/
-        
         val seachKeywords: Set[String] = AnalyseSentence.findKeysFromWords(words);
         val placesFound: List[Place] = DataBase.findByKeywords(seachKeywords);
 
