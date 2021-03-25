@@ -26,7 +26,7 @@ object WelcomeFrame extends BorderPanel {
 
   val flagsContainer = new BoxPanel(Orientation.Horizontal) {
     background = Theme.color.MAIN
-    maximumSize = new Dimension(500, 70)
+    maximumSize = new Dimension(600, 78)
     contents += flagFR
     contents += flagEN
     contents += flagES
@@ -36,7 +36,7 @@ object WelcomeFrame extends BorderPanel {
 
   val group: Component = new BoxPanel(Orientation.Vertical) {
     background = Theme.color.MAIN
-    maximumSize = new Dimension(500, 250)
+    maximumSize = new Dimension(600, 250)
 
     contents += new PaddingBox(banner, 0, 0, 0, 0)
     contents += new PaddingBox(flagsContainer, 0, 0, 0, 0)
