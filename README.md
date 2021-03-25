@@ -3,11 +3,9 @@
 
 -   [ ] UI - Add line break on long message
 -   [ ] UI - button for TTS
--   [ ] UI - make language selection menu
--   [ ] UI - Ajouter une police custom
--   [ ] UI - make button change theme
 -   [ ] UI - add timestamps
--   [ ] UI - avatar PP
+-   [ ] UI - fix paddingBox white pixels
+-   [ ] UI - fix window size change on flag select
 -   [ ] make a UML graph
 -   [ ] make Unit Test 
 
