@@ -29,8 +29,8 @@ object TopContainer extends BorderPanel {
       }
   }
 
-  def addMessage(autor: String, msg: String, date: String, isUser: Boolean) {
-    messageContainer.contents += new Message(autor, msg, date, isUser)
+  def addMessage(lang: machine.Language, msg: String, date: String, isUser: Boolean) {
+    messageContainer.contents += new Message(lang, msg, date, isUser)
   }
 }
 

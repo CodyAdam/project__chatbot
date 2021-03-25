@@ -64,7 +64,7 @@ object UI extends MainFrame {
    */
   def userSay(msg: String): Unit = {
     if (!msg.equals("")) {
-      TopContainer.addMessage("", msg, getCurrentTime(), true)
+      TopContainer.addMessage(machine.StateManager.currentLanguage, msg, getCurrentTime(), true)
       onNewMessage()
       for (respond: String <- machine.MachineImpl.ask(msg))
         avatarSay(respond)
@@ -77,7 +77,7 @@ object UI extends MainFrame {
    * @param msg the message to be sent
    */
   def avatarSay(msg: String): Unit = {
-    TopContainer.addMessage("Avatar", msg, getCurrentTime(), false)
+    TopContainer.addMessage(machine.StateManager.currentLanguage, msg, getCurrentTime(), false)
     onNewMessage()
   }
 
