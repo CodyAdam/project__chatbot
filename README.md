@@ -1,6 +1,5 @@
 # TODO :
 
-
 -   [ ] UI - Add line break on long message
 -   [ ] UI - button for TTS
 -   [ ] UI - add timestamps
@@ -11,9 +10,13 @@
 
 # GUI
 
-### v1.5
+### v2.1
 
-![v1.5](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v4.gif)
+![v2.1](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v5.png)
+
+### v2.0
+
+![v2.0](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v4.gif)
 
 ### v0.3
 
