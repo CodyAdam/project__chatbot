@@ -1,4 +1,4 @@
-package main.scala.machine
+package test.scala.machine
 import org.junit.Test
 import org.junit.Assert._
 
