@@ -10,8 +10,8 @@ import java.awt
  * The Main UI class used as the MainFrame
  */
 object UI extends MainFrame {
-  title = "Kiwipedia"
-  minimumSize = new Dimension(500, 300)
+  title = "Kiwipédia"
+  minimumSize = new Dimension(500, 250)
   preferredSize = new Dimension(640, 480)
   background = awt.Color.RED;
 
@@ -21,49 +21,28 @@ object UI extends MainFrame {
 
   background = awt.Color.BLACK
 
-  var username: String = ""
-  val frameBar = new FrameBar {
-    background = awt.Color.RED;
-  }
-  val top = new TopContainer {
-    background = awt.Color.RED;
-  }
-  val bottom = new BottomContainer(userSay) {
-    background = awt.Color.RED;
-  }
+  var hasLang: Boolean = false
   init()
 
   /**
    * Initialise the layout content
    */
   def init(): Unit = {
-    if (username.equals("")) {
+    if (!hasLang) {
       contents = new ResizablePane(new BorderPanel {
         background = Theme.color.MAIN
-        layout(frameBar) = BorderPanel.Position.North
-        layout(new WelcomeFrame(setUsername)) = BorderPanel.Position.Center
-      }) {
-        background = awt.Color.RED;
-      }
+        layout(FrameBar) = BorderPanel.Position.North
+        layout(WelcomeFrame) = BorderPanel.Position.Center
+      })
     } else {
       contents = new ResizablePane(new BorderPanel {
-        layout(frameBar) = BorderPanel.Position.North
-        layout(top) = BorderPanel.Position.Center
-        layout(bottom) = BorderPanel.Position.South
-      }) {
-        background = awt.Color.RED;
-      }
-      avatarSay("Ask me anything")
+        layout(FrameBar) = BorderPanel.Position.North
+        layout(TopContainer) = BorderPanel.Position.Center
+        layout(BottomContainer) = BorderPanel.Position.South
+      })
+      BottomContainer.textField.peer.requestFocus()
+      avatarSay(machine.StateManager.currentLanguage.politesse(0))
     }
-  }
-
-  /**
-   * set the username and update window
-   * @param name the username to be used
-   */
-  def setUsername(name: String): Unit = {
-    username = name
-    init()
   }
 
   /**
@@ -71,10 +50,10 @@ object UI extends MainFrame {
    */
   def onNewMessage(): Unit = {
     // re-draw the ScrollPane since canvas doesn't update automatically
-    top.validate()
+    TopContainer.validate()
 
     // set scroll bar to the bottom
-    val scrollBar: ScrollBar = top.scrollPanel.verticalScrollBar
+    val scrollBar: ScrollBar = TopContainer.scrollPanel.verticalScrollBar
     scrollBar.value = scrollBar.maximum
   }
 
@@ -85,7 +64,7 @@ object UI extends MainFrame {
    */
   def userSay(msg: String): Unit = {
     if (!msg.equals("")) {
-      top.addMessage(username, msg, getCurrentTime(), true)
+      TopContainer.addMessage(machine.StateManager.currentLanguage, msg, getCurrentTime(), true)
       onNewMessage()
       for (respond: String <- machine.MachineImpl.ask(msg))
         avatarSay(respond)
@@ -98,7 +77,7 @@ object UI extends MainFrame {
    * @param msg the message to be sent
    */
   def avatarSay(msg: String): Unit = {
-    top.addMessage("Avatar", msg, getCurrentTime(), false)
+    TopContainer.addMessage(machine.StateManager.currentLanguage, msg, getCurrentTime(), false)
     onNewMessage()
   }
 

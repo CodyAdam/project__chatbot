@@ -32,6 +32,7 @@ object Linternaute {
   def keyWords(searchingWords: List[String]): String = {
     searchingWords match {
       case Nil    => ""
+      case List() => ""
       case e :: r => e + "+" + keyWords(r)
     }
   }
@@ -42,11 +43,15 @@ object Linternaute {
    * @return une chaîne de caractères correspondant à l'adresse de la page du restaurant
    */
   def findRestaurant(keyWords: String): String = {
-    val r = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get().select("h2.bu_restaurant_title_2 > a").first()
-    if (r != null)
-      r.attr("href")
-    else
+    if (!keyWords.equals("")) {
+      val r = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get().select("h2.bu_restaurant_title_2 > a").first()
+      if (r != null)
+        r.attr("href")
+      else
+        ""
+    } else {
       ""
+    }
   }
 
   /**

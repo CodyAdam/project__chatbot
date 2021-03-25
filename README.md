@@ -1,21 +1,22 @@
 # TODO :
 
-
 -   [ ] UI - Add line break on long message
 -   [ ] UI - button for TTS
--   [ ] UI - make language selection menu
--   [ ] UI - Ajouter une police custom
--   [ ] UI - make button change theme
 -   [ ] UI - add timestamps
--   [ ] UI - avatar PP
+-   [ ] UI - fix paddingBox white pixels
+-   [ ] UI - fix window size change on flag select
 -   [ ] make a UML graph
 -   [ ] make Unit Test 
 
 # GUI
 
-### v1.5
+### v2.1
 
-![v1.5](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v4.gif)
+![v2.1](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v5.png)
+
+### v2.0
+
+![v2.0](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/v4.gif)
 
 ### v0.3
 

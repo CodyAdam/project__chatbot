@@ -12,9 +12,9 @@ import java.awt.Frame
  * A Container class used to make a borderless window with a custom Frame bar.
  * The bar can be used to drag the window or manage the window using the top buttons (ex : Close, minimize, etc.)
  */
-class FrameBar extends BorderPanel {
+object FrameBar extends BorderPanel {
   //Style
-  val height: Int = 35
+  val height: Int = 45
   minimumSize = new Dimension(0, height)
   maximumSize = new Dimension(999999, height)
   preferredSize = maximumSize
@@ -31,11 +31,11 @@ class FrameBar extends BorderPanel {
   })
 
   val titleIcon: Component = new Img("assets/kiwi-icon.png", 30, 30) {
-    border = new javax.swing.border.EmptyBorder(0, 8, 0, 8)
+    border = new javax.swing.border.EmptyBorder(10, 10, 10, 10)
     background = Theme.color.MAIN;
   }
   val title: Component = new Label(UI.title) {
-    font = Theme.fontLight.deriveFont(16f)
+    font = Theme.font.deriveFont(20f)
     opaque = true;
     foreground = Theme.color.TEXT;
     background = Theme.color.MAIN;

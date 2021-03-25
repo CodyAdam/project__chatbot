@@ -1,26 +1,23 @@
 package ui
 import scala.swing._
 
-class Message(autor: String, msg: String, date: String, isUser: Boolean) extends BorderPanel {
-  val HEIGHT: Int = 40
+class Message(lang: machine.Language, msg: String, date: String, isUser: Boolean) extends BorderPanel {
+  val HEIGHT: Int = 50
   maximumSize = new Dimension(9999, HEIGHT)
   preferredSize = new Dimension(1, HEIGHT)
-  background = Theme.color.MAIN
 
-  val autorLabel = new PaddingBox(new Label(autor) {
-    foreground = Theme.color.TEXT_SECONDARY
-    xLayoutAlignment = if (isUser) 1 else 0
-  }, 0, 0, 10, 10)
-  val textBubble = new TextBubble(msg, isUser)
+  val autorLabel = new Img("assets/kiwi-pp.png", 40, 40) { background = Theme.color.MAIN }
+  val textBubble = new TextBubble(lang ,msg, isUser)
 
-  layout(autorLabel) = if (isUser) BorderPanel.Position.East else BorderPanel.Position.West
+  if (!isUser)
+    layout(new PaddingBox(autorLabel, 0, 0, 10, 10)) = BorderPanel.Position.West
   layout(textBubble) = BorderPanel.Position.Center
 
   listenTo(Theme)
   reactions += {
     case Theme.ThemeChange =>
       {
-        autorLabel.foreground = Theme.color.TEXT_SECONDARY
+        autorLabel.background = Theme.color.MAIN
         background = Theme.color.MAIN
       }
   }
