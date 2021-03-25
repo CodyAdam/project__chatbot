@@ -6,34 +6,25 @@ import java.io._;
 
 object Theme extends Publisher {
 
-  class ColorPalette(main: Color, secondary: Color, tertiary: Color, highlight: Color, text: Color, textTertiary: Color, textSecondary: Color) {
-    var MAIN: Color = main
-    var SECONDARY: Color = secondary
-    var TERTIARY: Color = tertiary
-    var HIGHLIGHT: Color = highlight
-
-    var TEXT: Color = text
-    var TEXT_TERTIARY: Color = textTertiary
-    var TEXT_SECONDARY: Color = textSecondary
-  }
+  case class ColorPalette(MAIN: Color, SECONDARY: Color, TERTIARY: Color, HIGHLIGHT: Color, TEXT: Color, TEXT_TERTIARY: Color, TEXT_SECONDARY: Color)
 
   val darkTheme: ColorPalette = new ColorPalette(
-    main = Color.decode("#0B0C0B"),
-    secondary = Color.decode("#1F201F"),
-    tertiary = Color.decode("#CDD8DD"),
-    highlight = Color.decode("#55FF4F"),
-    text = Color.WHITE,
-    textTertiary = Color.GRAY,
-    textSecondary = Color.decode("#0B0C0B"))
+    Color.decode("#0B0C0B"),
+    Color.decode("#1F201F"),
+    Color.decode("#CDD8DD"),
+    Color.decode("#55FF4F"),
+    Color.WHITE,
+    Color.GRAY,
+    Color.decode("#0B0C0B"))
 
   val lightTheme: ColorPalette = new ColorPalette(
-    main = Color.WHITE,
-    secondary = Color.GRAY,
-    tertiary = Color.BLACK,
-    highlight = Color.decode("#55FF4F"),
-    text = Color.BLACK,
-    textTertiary = Color.GREEN,
-    textSecondary = Color.GRAY)
+    Color.decode("#EAE3E5"),
+    Color.GRAY,
+    Color.BLACK,
+    Color.decode("#55FF4F"),
+    Color.BLACK,
+    Color.GREEN,
+    Color.GRAY)
 
   val themeList: List[ColorPalette] = List(darkTheme, lightTheme)
   var color: ColorPalette = darkTheme
@@ -54,9 +45,11 @@ object Theme extends Publisher {
   }
 
   case object ThemeChange extends event.Event;
+  case object PostThemeChange extends event.Event;
 
   def cycleTheme(): Unit = {
     color = themeList((themeList.indexOf(color) + 1) % themeList.size)
     publish(ThemeChange)
+    publish(PostThemeChange)
   }
 }

@@ -16,7 +16,10 @@ import java.awt.Color
  * @param paddingRight the padding amound on the right side (in pixel)
  */
 class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, paddingLeft: Int, paddingRight: Int, show: Boolean = false) extends BoxPanel(Orientation.Vertical) {
-  component.preferredSize = component.maximumSize
+  var dim = component.maximumSize
+  var total = UI.bounds
+  dim = new Dimension((total.width - dim.width) % 2, (total.height - dim.height) % 2)
+  component.preferredSize = new Dimension(component.maximumSize.width - dim.width, component.maximumSize.height - dim.height)
   component.minimumSize = new Dimension(0, 0)
 
   val top = new Spacer(0, paddingTop) {
@@ -45,7 +48,7 @@ class PaddingBox(component: Component, paddingTop: Int, paddingBottom: Int, padd
 
   listenTo(Theme)
   reactions += {
-    case Theme.ThemeChange =>
+    case Theme.PostThemeChange =>
       {
         top.background = if (show) Color.red else component.background
         left.background = if (show) Color.green else component.background
