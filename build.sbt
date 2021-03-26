@@ -10,3 +10,5 @@ libraryDependencies += "org.jsoup" % "jsoup" % "1.11.3"
 libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.3.2"
 libraryDependencies += "com.google.cloud" % "google-cloud-texttospeech" % "1.3.0"
 libraryDependencies += "com.google.cloud" % "google-cloud-speech" % "1.25.1"
+
+libraryDependencies += "junit" % "junit" % "4.13.2"
