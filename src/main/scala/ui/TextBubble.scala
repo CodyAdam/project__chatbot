@@ -20,7 +20,6 @@ class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWid
   if (maxWidth != 0)
     line = math.ceil(textWidth / maxWidth).toInt + 1
 
-
   preferredSize = new Dimension(0, lineHeight * line);
 
   reactions += {
