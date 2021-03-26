@@ -3,29 +3,25 @@ package ui
 import scala.swing._
 import javax.swing.SwingConstants
 
-class TextBubble(lang: machine.Language, msg: String, isUser: Boolean) extends BorderPanel {
-  val messageButton: Component = new Button(msg) {
-    font = Theme.fontLight.deriveFont(20f)
-    opaque = true
-    foreground = Theme.color.TEXT
-    background = Theme.color.MAIN
-    peer.setFocusPainted(false);
-  }
+class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWidth: Int) extends Button("<html>" + msg) {
 
-  val withPadding = new PaddingBox(messageButton, 5, 5, 5, 5)
-  val spacer = new Spacer { background = Theme.color.MAIN }
+  
+  font = Theme.fontLight.deriveFont(20f)
+  opaque = true
+  foreground = Theme.color.TEXT
+  background = Theme.color.SECONDARY
+  border = new javax.swing.border.EmptyBorder(0, 0, 0, 0)
+  if (isUser) horizontalAlignment = (Alignment.Right)
+  else horizontalAlignment = (Alignment.Left)
 
-  layout(spacer) = BorderPanel.Position.Center
-  layout(withPadding) = if (isUser) BorderPanel.Position.East else BorderPanel.Position.West
+  val maxWidth = (parentWidth * 1).toInt
+  val textWidth = peer.getFontMetrics(font).stringWidth(msg)
+  val lineHeight = peer.getFontMetrics(font).getHeight;
+  var line = 1
+  if (maxWidth != 0)
+    line = math.ceil(textWidth / maxWidth).toInt + 1
 
-  listenTo(Theme, messageButton)
-  reactions += {
-    case event.ButtonClicked(_) => machine.TextToSpeech.speak(msg, lang)
-    case Theme.ThemeChange =>
-      {
-        messageButton.foreground = Theme.color.TEXT
-        spacer.background = Theme.color.MAIN
-        messageButton.background = Theme.color.MAIN
-      }
-  }
+  //maximumSize = new Dimension(maxWidth, 999999)
+  preferredSize = new Dimension(0, lineHeight * line);
+
 }

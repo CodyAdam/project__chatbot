@@ -8,7 +8,10 @@ import java.awt.MouseInfo
 import java.awt.Frame
 
 object TopContainer extends BorderPanel {
+  var msgCount = 0;
+  val l = "<html> dwadhw akdjwah djkhwakj <br>hdjwah kdhwajhdkjhw ajkjhdk jhdkjhwajkjhdk<br> jhwajkjhdk jhwajkjhdkjh ajkjhwajkj hdkjhwajk  jhdkjhwajk dhjkwah djkhwajk hdjkwah jkdhwajk hdjkhwa jkhdkwajh kjdhajkwh dkjhwk"
   val messageContainer = new BoxPanel(Orientation.Vertical) {
+    minimumSize = preferredSize
     background = Theme.color.MAIN
   }
 
@@ -30,7 +33,7 @@ object TopContainer extends BorderPanel {
   }
 
   def addMessage(lang: machine.Language, msg: String, date: String, isUser: Boolean) {
-    messageContainer.contents += new Message(lang, msg, date, isUser)
+    messageContainer.contents += new TextBubble(lang, msg , isUser, messageContainer.size.width)
   }
 }
 

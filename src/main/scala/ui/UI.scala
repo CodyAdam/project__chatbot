@@ -21,7 +21,7 @@ object UI extends MainFrame {
 
   background = awt.Color.BLACK
 
-  var hasLang: Boolean = false
+  var hasLang: Boolean = true
   init()
 
   /**
