@@ -18,9 +18,14 @@ object TextToSpeech {
   
   private var isSpeaking : Boolean = false;
   private var queue : List[SpeakRequest] = List();
+  private var initializing : Boolean = true;
+  
+  def init() : Unit = {
+    initializing = true;
+    speak("Initialisation Programme", DataBase.getLanguages()(0));
+  }
   
   def speak(text: String, lang : Language) : Unit = {
-    println("ask Speak")
     queue = queue ++ List(new SpeakRequest(text, lang));
     if(isSpeaking) return;
     isSpeaking = true;
@@ -29,7 +34,7 @@ object TextToSpeech {
   
   private def writeFile(){
     if(queue.size==0) return;
-    println("Starting initializing")
+
     var speak : SpeakRequest = queue(0);
     queue = queue.drop(1);
     
@@ -37,8 +42,10 @@ object TextToSpeech {
     try {
       // Set the text input to be synthesized
     var textToSpeechClient : TextToSpeechClient = TextToSpeechClient.create()
-    var input : SynthesisInput = SynthesisInput.newBuilder().setText(speak.text).build();
+    //textToSpeechClient = TextToSpeechClient.create();
 
+    var input : SynthesisInput = SynthesisInput.newBuilder().setText(speak.text).build();
+    
       // Build the voice request, select the language code ("en-US") and the ssml voice gender
       // ("neutral")
       var voice : VoiceSelectionParams =
@@ -50,24 +57,17 @@ object TextToSpeech {
       // Select the type of audio file you want returned
       var audioConfig : AudioConfig =
           AudioConfig.newBuilder().setAudioEncoding(AudioEncoding.LINEAR16).build();
-
-      println("ask response")
       
       // Perform the text-to-speech request on the text input with the selected voice parameters and
       // audio file type
       var response : SynthesizeSpeechResponse  =
           textToSpeechClient.synthesizeSpeech(input, voice, audioConfig);
-
-      println("end configuration")
       
       // Get the audio contents from the response
       var audioContents: ByteString  = response.getAudioContent();
-
-      println("getting audio")
       
       // Write the response to the output file.
       try  {
-        println("writing audio")
         var out : OutputStream  = new FileOutputStream("output.wav")
         out.write(audioContents.toByteArray());
         textToSpeechClient.shutdown();
@@ -96,7 +96,6 @@ object TextToSpeech {
   
   private def readFile(){
     try {
-      println("reading audio")
          // Open an audio input stream.
       var file : File  = new File("output.wav");
       
@@ -105,13 +104,20 @@ object TextToSpeech {
          // Get a sound clip resource.
          var clip : Clip = AudioSystem.getClip();
          // Open audio clip and load samples from the audio input stream.
+         clip.open(audioIn);
+         
+         if(initializing){
+           var gainControl : FloatControl = clip.getControl(FloatControl.Type.MASTER_GAIN).asInstanceOf[FloatControl];        
+           gainControl.setValue(20f * Math.log10(0).toFloat);
+           initializing = false;
+         }
+         
          clip.addLineListener(e => {
             if (e.getType() == LineEvent.Type.STOP) {
               nextSpeak();
             }
           });
          
-         clip.open(audioIn);
          clip.start();
          
       } catch {

@@ -34,6 +34,8 @@ object SpeechToText {
   private var inRecognition : Boolean = false;
   private var cancel : Boolean = false;
   
+  
+  
   def startRecognition() : Unit = {
     
     if(inRecognition) {
