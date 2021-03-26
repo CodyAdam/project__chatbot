@@ -11,7 +11,8 @@ project/plugins/project/
 .class
 .lib/
 .classpath
-/.sbt
+/.bsp
+/.settings
 .classpath
 /output.wav
 /org.eclipse.core.resources.prefs
