@@ -10,4 +10,6 @@ project/plugins/project/
 .cache
 .class
 .lib/
-/.classpath
+.classpath
+/.sbt
+.classpath
