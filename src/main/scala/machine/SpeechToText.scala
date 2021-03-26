@@ -36,6 +36,11 @@ object SpeechToText {
   
   def startRecognition() : Unit = {
     
+    if(inRecognition) {
+      this.cancelReco();
+      return;
+    }
+    
     inRecognition = true;
     
     var responseObserver : ResponseObserver[StreamingRecognizeResponse] = null;
