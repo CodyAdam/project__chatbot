@@ -14,3 +14,4 @@ project/plugins/project/
 /.sbt
 .classpath
 /output.wav
+/org.eclipse.core.resources.prefs
