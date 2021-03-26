@@ -23,22 +23,4 @@ object AliasImporter {
     }
     return alias
   }
-
-  /**
-   * @return the stringify of the alias map
-   * @note never used
-   */
-  def aliasToString(alias: Map[List[String], List[String]]): String = {
-    var output = "";
-    for (key <- alias.keys) {
-      for (s <- key)
-        output += s + " / "
-      output += " -> "
-      for (value <- alias.get(key))
-        for (s1 <- value)
-          output += s1 + " / "
-      output += "\n"
-    }
-    return output
-  }
 }
