@@ -13,3 +13,4 @@ project/plugins/project/
 .classpath
 /.sbt
 .classpath
+/output.wav
