@@ -3,8 +3,8 @@ package application
 import scala.swing.SimpleSwingApplication
 import scala.swing.MainFrame
 import machine.DataBase
-import ui.UI
 import machine.TextToSpeech
+import ui.UI
 
 object Application extends SimpleSwingApplication {
   DataBase.init()

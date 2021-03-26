@@ -5,7 +5,7 @@ import org.jsoup.Jsoup
 object Linternaute {
 
   /**
-   * Crée une liste de mots utilisés pour la recherche
+   * prend les mots de l'utilisateurs et 
    * @param la liste de mots rentrés par l'utilisateur
    * @return les mots utilisés pour la recherche sur l'Internaute
    */
@@ -13,7 +13,6 @@ object Linternaute {
     var searchingWords: List[String] = List()
     var found = false
     for (politeWord: String <- words) {
-
       if (found) {
         searchingWords = searchingWords :+ politeWord
       }
@@ -70,9 +69,4 @@ object Linternaute {
         ""
     }
   }
-
-}
-
-object TestLinternaute extends App {
-  println(Linternaute.lookForAdress(Linternaute.findRestaurant("la+tomate+moulue")))
 }
