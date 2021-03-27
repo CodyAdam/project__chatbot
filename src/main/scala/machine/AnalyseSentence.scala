@@ -58,6 +58,8 @@ object AnalyseSentence {
   /**
    * @param words from the user sentence
    * @return the language if a polite language keyword is found
+   * if multiples words from different languages found, return one of the 
+   * languages without preferences
    */
   def getLanguageIfPolite(words: List[String]): Option[Language] = {
     for (language: Language <- DataBase.getLanguages())
@@ -205,6 +207,7 @@ object AnalyseSentence {
 
   /**
    * split les mots d'une phrase en une liste de mots
+   * les charactères séparateurs sont : " ,'.;:!?¿-_"
    * @param une phrase
    * @return les mots de la phrase sentence dans une liste
    */

@@ -10,34 +10,34 @@ object MachineImpl extends MachineDialogue {
     StateManager.userState match {
       case IsAsking => {
         val words: List[String] = AnalyseSentence.getWords(s.toLowerCase())
-        val langSentence : Language = AnalyseSentence.getMajorLanguage(words);
-        
-        if(langSentence != null && langSentence != StateManager.currentLanguage){
+        val langSentence: Language = AnalyseSentence.getMajorLanguage(words);
+
+        if (langSentence != null && langSentence != StateManager.currentLanguage) {
           StateManager.changeLanguage(langSentence)
           StateManager.userState = ChangingLanguage;
           return List(StateManager.currentLanguage.expression.askLanguage);
         }
-        
+
         if (AnalyseSentence.isLinternauteQuery(words)) {
-          val adress = Linternaute.lookForAdress(Linternaute.findRestaurant(Linternaute.keyWords(Linternaute.searchingWords(words))))          
-          if(!adress.equals("")) {
+          val adress = Linternaute.lookForAdress(Linternaute.findRestaurant(Linternaute.keyWords(Linternaute.searchingWords(words))))
+          if (!adress.equals("")) {
             return List(adress)
           }
         }
-        
-        if(AnalyseSentence.isBlagueQuery(words)){
+
+        if (AnalyseSentence.isBlagueQuery(words)) {
           var joke = DataBase.getJoke();
-          if(joke != null){
+          if (joke != null) {
             return List(joke.text + "   \n\n" + joke.answer);
           }
         }
 
         var politePrefix: List[String] = List[String]()
-        if(AnalyseSentence.hasPoliteWord(words)){
-          if(words.length==1) return List(StateManager.currentLanguage.politesse(0))
+        if (AnalyseSentence.hasPoliteWord(words)) {
+          if (words.length == 1) return List(StateManager.currentLanguage.politesse(0))
           politePrefix = List(StateManager.currentLanguage.politesse(0))
         }
-        
+
         val seachKeywords: Set[String] = AnalyseSentence.findKeysFromWords(words);
         val placesFound: List[Place] = DataBase.findByKeywords(seachKeywords);
 
@@ -91,11 +91,4 @@ object MachineImpl extends MachineDialogue {
     StateManager.userState = IsAsking
     StateManager.currentLanguage = DataBase.getLanguages()(0)
   }
-
-  /**
-   * test de l'avatar
-   *  @param l une liste de requête
-   *  @return la liste des réponses produites par l'avatar
-   */
-  def test(l: List[String]): List[String] = ???
 }

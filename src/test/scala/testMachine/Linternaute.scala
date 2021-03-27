@@ -1,9 +1,61 @@
 package testMachine
 
 import org.junit.Test
+import org.junit.Before
 import org.junit.Assert._
 import machine._
 
 class Linternaute {
-  
+  // initialisation des objets sous test
+  DataBase.init()
+  @Before
+  def resetState = {
+    MachineImpl.reinit
+  }
+
+  //TODO TEST DE LA FONCTION : Linternaute.searchingWords()
+
+  /*
+   * Cas à tester :
+   *
+   * - Avec 1 trigger words dans la phrase et 0 autre mot
+   * - Avec 2 trigger words dans la phrase et 0 autre mot
+   * - Avec 1 trigger words dans la phrase et 1 autre mot
+   * - Avec 2 trigger words dans la phrase et 1 autre mot
+   * - Avec 1 trigger words dans la phrase et pleins autres mots
+   * - Avec 2 trigger words dans la phrase et pleins autres mots
+   */
+
+  //TODO TEST DE LA FONCTION : Linternaute.keyWords()
+
+  /*
+   * Cas à tester :
+   *
+   * - Avec mot vide
+   * - Avec 1 mot
+   * - Avec 2 mots
+   * - Avec 3 mots
+   */
+
+  //TODO TEST DE LA FONCTION : Linternaute.findRestaurant()
+
+  /*
+   * Cas à tester :
+   *
+   * - Avec mot vide
+   * - Avec des mots clés qui mêne à un restaurant qui existe
+   * - Avec des mots clés qui mêne à un restaurant qui existe pas
+   */
+
+  //TODO TEST DE LA FONCTION : Linternaute.lookForAdress()
+
+  /*
+   * Cas à tester :
+   *
+   * - Avec un lien vide
+   * - Avec un lien de restaurant qui existe
+   * - Avec un lien de restaurant qui existe restaurant qui existe pas
+   * - Avec un lien de restaurant qui existe mais qui n'as pas d'addresses
+   */
+
 }

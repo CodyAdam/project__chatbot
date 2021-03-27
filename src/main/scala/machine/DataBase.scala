@@ -15,10 +15,15 @@ case class Place(
 
 object DataBase {
 
+  // All the places we have on Rennes
   private var places: List[Place] = List[Place]()
+  // All the keywords linked to search Keywords
   private var alias: Map[List[String], List[String]] = Map[List[String], List[String]]()
+  // All the languages with their expressions
   private var languages: List[Language] = List[Language]()
+  // All the words there is all the languages 
   private var list_Words: HashMap[String, Set[Language]] = new HashMap();
+  // All the jokes linked to a language
   private var jokes : HashMap[Language, JokeWheel] = new HashMap();
 
   /**
@@ -30,6 +35,7 @@ object DataBase {
     places = XMLImporter.getPlacesFromXml()
     alias = AliasImporter.getAliasFromFile()
     jokes = JokesImporter.loadJokes(languages);
+    
     for(lang <- languages){
       addWordHashmap(lang.langue.toLowerCase(), lang);
       for(w <- lang.politesse){
@@ -76,7 +82,7 @@ object DataBase {
   }
 
   /**
-   * search in the places database wich keys correspond to the input keyword
+   * search in the places database wich places correspond to the input keyword
    * @param keyword the keyword
    * @return list of all the places found
    */
@@ -87,7 +93,7 @@ object DataBase {
   }
 
   /**
-   * search in the places database wich keys correspond to the input keywords
+   * search in the places database wich places correspond to the input keywords
    * @param keywords all the keywords
    * @return list of all the places found
    */
