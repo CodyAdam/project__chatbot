@@ -5,8 +5,10 @@ import org.jsoup.Jsoup
 object Linternaute {
 
   /**
-   * prend les mots de l'utilisateurs et 
-   * @param la liste de mots rentrés par l'utilisateur
+   * prend les mots de l'utilisateurs et supprime le trigger word de
+   * l'internaute (ex : "restaurant") pour rendre uniquement les autres mots
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * triggerword
    * @return les mots utilisés pour la recherche sur l'Internaute
    */
   def searchingWords(words: List[String]): List[String] = {
@@ -25,21 +27,23 @@ object Linternaute {
 
   /**
    * Crée une chaîne de caractères à partir de la liste de mots à rechercher sur l'Internaute
-   * @param une liste de chaîne de caractères à recherche
+   * avec des "+" entre chaques mots
+   * @param une liste de chaîne de caractères non vide à rechercher
    * @return une chaîne de caractères à rechercher
    */
   def keyWords(searchingWords: List[String]): String = {
     searchingWords match {
       case Nil    => ""
-      case List() => ""
       case e :: r => e + "+" + keyWords(r)
     }
   }
 
   /**
    * Isole l'adresse du restaurant correspond à la recherche à partir des mots clés
-   * @param une chaîne de caractères correspondant aux mots clés à rechercher
-   * @return une chaîne de caractères correspondant à l'adresse de la page du restaurant
+   * @param une chaîne de caractères correspondant aux mots clés à rechercher qui 
+   * est de la forme "mot1+mot2+mot3"
+   * @return une chaîne de caractères correspondant à la fin du lien qui mene vers la page du restaurant
+   * ex : "/restaurant/restaurant/9072/la-tomate.shtml"
    */
   def findRestaurant(keyWords: String): String = {
     if (!keyWords.equals("")) {
@@ -55,7 +59,8 @@ object Linternaute {
 
   /**
    * Se rend à l'adresse de la page du restaurant recherché et trouve l'adresse de celui-ci
-   * @param une chaîne de caractères correspondant à l'adresse internet du restaurant
+   * @param une chaîne de caractères correspondant à la fin de l'adresse internet du restaurant
+   * ex : "/restaurant/restaurant/9072/la-tomate.shtml"
    * @return une chaîne de caractères correspondant à l'adresse physique du restaurant
    */
   def lookForAdress(restaurant: String): String = {
