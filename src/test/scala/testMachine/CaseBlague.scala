@@ -29,6 +29,8 @@ class CaseBlague {
   def ask() {
     StateManager.currentLanguage = DataBase.getLanguages()(0)
     assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+    assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+    assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
   }
 
   // Anglais
@@ -47,6 +49,8 @@ class CaseBlague {
   def ask3() {
     StateManager.currentLanguage = DataBase.getLanguages()(2)
     assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+    assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+    assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
   }
 
     // Allemand
@@ -55,12 +59,16 @@ class CaseBlague {
     def ask4() {
       StateManager.currentLanguage = DataBase.getLanguages()(3)
       assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+      assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+      assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
     }
 
     // Italien
     @Test
     def ask5() {
       StateManager.currentLanguage = DataBase.getLanguages()(4)
+      assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
+      assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
       assertTrue(DataBase.getJokesCurrentLang.list.contains(DataBase.getJoke()))
     }
 
