@@ -5,48 +5,39 @@ import java.awt.Color
 import scala.io.StdIn._
 
 object BottomContainer extends BoxPanel(Orientation.Horizontal) {
-  val textField = new TextField {
-    background = Theme.color.MAIN
-    foreground = Theme.color.TEXT
-  }
   val sendButton = new Button(">") {
-    preferredSize = new Dimension(44, 40)
+    preferredSize = new Dimension(44, 50)
     background = Theme.color.SECONDARY
   }
   val vttButton = new Button("startRecognition") {
-    preferredSize = new Dimension(150, 40)
+    preferredSize = new Dimension(150, 50)
     background = Theme.color.SECONDARY
   }
 
-  listenTo(sendButton, vttButton, textField.keys, Theme)
+  listenTo(sendButton, vttButton, Theme)
   reactions += {
     case ButtonClicked(button) => {
       if (button == sendButton)
-        sendMessage(textField.text)
+        sendMessage(MessageTextField.text)
       else if (button == vttButton)
         machine.SpeechToText.startRecognition()
-    }
-    case KeyPressed(component, key, _, _) => {
-      if (key.equals(Key.Enter))
-        sendMessage(textField.text)
     }
     case Theme.ThemeChange =>
       {
         sendButton.background = Theme.color.SECONDARY
-        textField.background = Theme.color.MAIN
-        textField.foreground = Theme.color.TEXT
       }
   }
 
-  border = new javax.swing.border.LineBorder(Theme.color.SECONDARY, 8, true)
-  preferredSize = new Dimension(0, 40)
+  border = new javax.swing.border.EmptyBorder(10, 10, 10, 10)
+  background = Theme.color.MAIN
+  preferredSize = new Dimension(0, 50)
 
-  contents += textField
+  contents += MessageTextField
   contents += sendButton
   contents += vttButton
 
   def sendMessage(msg: String): Unit = {
-    textField.text = ""
+    MessageTextField.text = ""
     UI.userSay(msg)
   }
 }
