@@ -11,8 +11,18 @@ case class Place(
   address:     String,
   zipcode:     String,
   city:        String,
-  phoneNumber: String)
-
+  phoneNumber: String){
+     override def toString() ={
+       "Place(\"" + name +"\",\n\"" +
+       description + "\",\n\"" +
+       website + "\",\n\"" +
+       address + "\",\n\"" +
+       zipcode + "\",\n\"" +
+       city + "\",\n\"" +
+       phoneNumber + "\"" 
+     }
+  }
+  
 object DataBase {
 
   // All the places we have on Rennes
