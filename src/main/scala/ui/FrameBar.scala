@@ -46,8 +46,9 @@ object FrameBar extends BorderPanel {
     contents += title
   }
   val spacer = new Spacer() { background = Theme.color.MAIN }
-  val dragOffset = new Point(title.bounds.width, title.bounds.height)
+  val dragOffset = new Point(title.bounds.width + 5, title.bounds.height + 5)
   val draggable = new DraggablePanel(dragOffset) {
+    background = Theme.color.MAIN;
     maximumSize = new Dimension(99999, height)
     layout(spacer) = BorderPanel.Position.Center
     layout(titleWithIcon) = BorderPanel.Position.West
@@ -60,7 +61,9 @@ object FrameBar extends BorderPanel {
     contents += closeButton
   }
 
-  layout(draggable) = BorderPanel.Position.Center
+  background = Theme.color.MAIN;
+  //border = new javax.swing.border.EmptyBorder(5, 5, 0, 5)
+  layout(new PaddingBox(draggable, 5, 0, 5, 0)) = BorderPanel.Position.Center
   layout(group) = BorderPanel.Position.East
 
   listenTo(Theme)
