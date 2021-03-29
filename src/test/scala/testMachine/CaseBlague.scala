@@ -31,7 +31,7 @@ class CaseBlague {
     assertTrue(DataBase.getJokesCurrentLang.list.contains(MachineImpl.ask("blague")))
   }
  
- @Test
+  @Test
   def ask13(){
      StateManager.currentLanguage = DataBase.getLanguages()(0)
     assertTrue(DataBase.getJokesCurrentLang.list.contains(MachineImpl.ask("plasanterie")))
