@@ -13,7 +13,7 @@ class Linternaute {
     MachineImpl.reinit
   }
 
-  //TODO TEST DE LA FONCTION : Linternaute.searchingWords()
+  //TEST DE LA FONCTION : Linternaute.searchingWords()
 
   /*
    * Cas à tester :
@@ -36,7 +36,7 @@ class Linternaute {
     assertEquals(Linternaute.searchingWords(List("creperie", "gare", "bonjour","restaurant", "la", "tomate")),List("gare", "bonjour","restaurant", "la", "tomate"))
   }
 
-  //TODO TEST DE LA FONCTION : Linternaute.keyWords()
+  //TEST DE LA FONCTION : Linternaute.keyWords()
 
   /*
    * Cas à tester :
@@ -46,8 +46,17 @@ class Linternaute {
    * - Avec 2 mots
    * - Avec 3 mots
    */
+  
+  @Test 
+  def keyWords(){
+    assertEquals(Linternaute.keyWords(List()),"")
+    assertEquals(Linternaute.keyWords(List("")),"+")
+    assertEquals(Linternaute.keyWords(List("tomate")),"tomate+")
+    assertEquals(Linternaute.keyWords(List("la", "tomate")),"la+tomate+")
+    assertEquals(Linternaute.keyWords(List("la", "grosse", "tomate")),"la+grosse+tomate+")
+  }
 
-  //TODO TEST DE LA FONCTION : Linternaute.findRestaurant()
+  //TEST DE LA FONCTION : Linternaute.findRestaurant()
 
   /*
    * Cas à tester :
@@ -57,6 +66,8 @@ class Linternaute {
    * - Avec des mots clés qui mêne à un restaurant qui existe pas
    */
 
+  
+  
   //TODO TEST DE LA FONCTION : Linternaute.lookForAdress()
 
   /*
