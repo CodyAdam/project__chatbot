@@ -73,4 +73,5 @@ object WelcomeFrame extends BorderPanel {
         flagsContainer.background = Theme.color.MAIN
       }
   }
+
 }
