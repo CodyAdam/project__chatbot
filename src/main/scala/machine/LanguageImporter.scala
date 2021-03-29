@@ -47,7 +47,7 @@ object LanguageImporter {
     val espagnol = new Language(
       "Español",
       "es-ES",	
-      List("broma", "chiste", "chascarrillo", "	chanza"),
+      List("broma", "chiste", "chascarrillo", "chanza"),
       List("Hola", "Buenos", "Dias"),
       List("donde", "esta", "busco", "buscando"),
       List("restaurante", "creperie", "pizzeria"),
