@@ -19,7 +19,7 @@ object MachineImpl extends MachineDialogue {
         }
 
         if (AnalyseSentence.isLinternauteQuery(words)) {
-          val adress = Linternaute.lookForAdress(Linternaute.findRestaurant(Linternaute.keyWords(Linternaute.searchingWords(words))))
+          val adress = Linternaute.lookForAdress(words)
           if (!adress.equals("")) {
             return List(adress)
           }
@@ -28,7 +28,7 @@ object MachineImpl extends MachineDialogue {
         if (AnalyseSentence.isBlagueQuery(words)) {
           var joke = DataBase.getJoke();
           if (joke != null) {
-            return List(joke.text + "   \n\n" + joke.answer);
+            return List(joke.text + "<br/><br/><br/><i>" + joke.answer + "</i>");
           }
         }
 

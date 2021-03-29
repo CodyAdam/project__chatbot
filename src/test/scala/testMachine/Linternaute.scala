@@ -63,25 +63,31 @@ class Linternaute {
    *
    * - Avec mot vide
    * - Avec des mots clés qui mêne à un restaurant qui existe
-   * - Avec des mots clés qui mêne à un restaurant qui existe pas
+   * - Avec des mots clés qui mêne à un restaurant qui n'existe pas
    */
-
+   
   @Test
   def findRestaurant(){
-    assertEquals(Linternaute.findRestaurant(""),"")
-    assertEquals(Linternaute.findRestaurant("la+tomate+"),"/restaurant/restaurant/9072/la-tomate.shtml")
-    assertEquals(Linternaute.findRestaurant("le+petit+paradis"),"")
+    assertEquals(Linternaute.findRestaurant(List()),"")
+    assertEquals(Linternaute.findRestaurant(List("restaurant", "la","tomate")),"/restaurant/restaurant/9072/la-tomate.shtml")
+    assertEquals(Linternaute.findRestaurant(List("restaurant", "le", "petit", "paradis")),"")
   }
   
-  //TODO TEST DE LA FONCTION : Linternaute.lookForAdress()
+  //TEST DE LA FONCTION : Linternaute.lookForAdress()
 
-  /*
+ /*
    * Cas à tester :
    *
-   * - Avec un lien vide
-   * - Avec un lien de restaurant qui existe
-   * - Avec un lien de restaurant qui existe restaurant qui existe pas
-   * - Avec un lien de restaurant qui existe mais qui n'as pas d'addresses
+   * - Avec mot vide
+   * - Avec des mots clés qui mêne à un restaurant qui existe
+   * - Avec des mots clés qui mêne à un restaurant qui n'existe pas
    */
+  
+  @Test
+  def lookForAdresse(){
+    assertEquals(Linternaute.lookForAdress(List()),"")
+    assertEquals(Linternaute.lookForAdress(List("restaurant", "la","tomate")),"18, rue Saint Georges")
+    assertEquals(Linternaute.lookForAdress(List("restaurant", "le", "petit", "paradis")),"")
+  }
 
 }
