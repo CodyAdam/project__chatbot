@@ -20,8 +20,9 @@ class CaseErrors {
    * Cas à tester :
    * 
    * - Accents
-   * - Mots de même longueur mais change de 1 lettre
-   * - Mots avec 1 lettre en moins
+   * - Mots de même longueur mais change de 1 lettre 	(déjà fait par zoé)
+   * - Mots avec une erreur trop importante 					(déjà fait par zoé)
+   * - Mots avec 1 lettre en moins 
    * - Mots avec 1 lettre en plus
    */
 
