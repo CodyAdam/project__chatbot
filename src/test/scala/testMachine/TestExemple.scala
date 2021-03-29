@@ -9,6 +9,7 @@ class TestExemple{
   // initialisation des objets sous test
   
   DataBase.init()
+  
   @Before 
   def resetState = { // Cette fonction est lancé avant chaque fonctions @Test
     MachineImpl.reinit // Reset la langue en francais et le mode de dialogue par defaut
