@@ -5,9 +5,9 @@ import org.junit.Before
 import org.junit.Assert._
 import machine._
 
-class TestExemple {
-
+class TestExemple{
   // initialisation des objets sous test
+  
   DataBase.init()
   @Before 
   def resetState = { // Cette fonction est lancé avant chaque fonctions @Test
