@@ -19,7 +19,7 @@ object MachineImpl extends MachineDialogue {
         }
 
         if (AnalyseSentence.isLinternauteQuery(words)) {
-          val adress = Linternaute.lookForAdress(Linternaute.findRestaurant(Linternaute.keyWords(Linternaute.searchingWords(words))))
+          val adress = Linternaute.lookForAdress(words)
           if (!adress.equals("")) {
             return List(adress)
           }

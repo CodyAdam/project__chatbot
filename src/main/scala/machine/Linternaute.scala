@@ -40,14 +40,15 @@ object Linternaute {
 
   /**
    * Isole l'adresse du restaurant correspond à la recherche à partir des mots clés
-   * @param une chaîne de caractères correspondant aux mots clés à rechercher qui 
-   * est de la forme "mot1+mot2+mot3"
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * triggerword
    * @return une chaîne de caractères correspondant à la fin du lien qui mene vers la page du restaurant
    * ex : "/restaurant/restaurant/9072/la-tomate.shtml"
    */
-  def findRestaurant(keyWords: String): String = {
-    if (!keyWords.equals("")) {
-      val r = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + keyWords).get().select("h2.bu_restaurant_title_2 > a").first()
+  def findRestaurant(words: List[String]): String = {
+    val findingWord = keyWords(searchingWords(words))
+    if (!findingWord.equals("")) {
+      val r = Jsoup.connect("https://www.linternaute.com/restaurant/guide/ville-rennes-35000/?name=" + findingWord).get().select("h2.bu_restaurant_title_2 > a").first()
       if (r != null)
         r.attr("href")
       else
@@ -59,11 +60,12 @@ object Linternaute {
 
   /**
    * Se rend à l'adresse de la page du restaurant recherché et trouve l'adresse de celui-ci
-   * @param une chaîne de caractères correspondant à la fin de l'adresse internet du restaurant
-   * ex : "/restaurant/restaurant/9072/la-tomate.shtml"
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * triggerword
    * @return une chaîne de caractères correspondant à l'adresse physique du restaurant
    */
-  def lookForAdress(restaurant: String): String = {
+  def lookForAdress(words: List[String]): String = {
+    val restaurant = findRestaurant(words)
     if (restaurant.equals(""))
       return ""
     else {
