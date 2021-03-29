@@ -23,6 +23,9 @@ class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWid
   preferredSize = new Dimension(0, lineHeight * line);
 
   reactions += {
-    case event.ButtonClicked(_) => machine.TextToSpeech.speak(msg, lang)
+    case event.ButtonClicked(_) => {
+      val tssInput = msg.replaceAll("<br/>", " ").replaceAll("<i>", "").replaceAll("</i>", "")
+      machine.TextToSpeech.speak(tssInput, lang)
+    }
   }
 }
