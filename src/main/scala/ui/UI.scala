@@ -21,7 +21,7 @@ object UI extends MainFrame {
 
   background = awt.Color.BLACK
 
-  var hasLang: Boolean = true
+  var hasLang: Boolean = false
   init()
 
   /**
@@ -40,7 +40,7 @@ object UI extends MainFrame {
         layout(TopContainer) = BorderPanel.Position.Center
         layout(BottomContainer) = BorderPanel.Position.South
       })
-      BottomContainer.textField.peer.requestFocus()
+      MessageTextField.peer.requestFocus()
       avatarSay(machine.StateManager.currentLanguage.politesse(0))
     }
   }
