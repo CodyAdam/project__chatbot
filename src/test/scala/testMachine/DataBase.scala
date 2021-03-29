@@ -28,9 +28,9 @@ class DataBase {
    * Cas à tester :
    *
    * - Avec un mot vide
-   * - Avec un mot qui est dans un nom d'Endroit (ex : "mairie")
-   * - Avec un mot qui est dans un nom d'Endroit avec majuscules (ex : "mAiRiE")
-   * - Avec un mot qui est dans plusieurs nom d'Endroits (ex : "piscine")
+   * - Avec un mot qui correspond à un nom d'Endroit (ex : "mairie")
+   * - Avec un mot qui correspond à un nom d'Endroit avec majuscules (ex : "mAiRiE")
+   * - Avec un mot qui correspond à plusieurs noms d'Endroits (ex : "piscine")
    * - Avec un mot qui est dans auncun nom d'Endroit (ex : "djkxvn")
    */
    
@@ -63,6 +63,13 @@ class DataBase {
    def DataBasefindKeyword4{
         assertEquals(DataBase.findByKeyword("mAiRiE"),resultatmairie)
    }
+   
+   //Avec un mot qui correspond à plusieurs noms d'Endroits
+   @Test
+   def DataBasefindKeyword5{
+        assertEquals(DataBase.findByKeyword("mAiRiE"),resultatmairie)
+   }
+   
    
    
   //TODO TEST DE LA FONCTION : DataBate.findByKeywords()
