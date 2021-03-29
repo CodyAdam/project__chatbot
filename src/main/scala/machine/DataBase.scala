@@ -13,13 +13,13 @@ case class Place(
   city:        String,
   phoneNumber: String){
      override def toString() ={
-       "Place(\"" + name +"\",\n\"" +
+       "\nPlace(\"" + name +"\",\n\"" +
        description + "\",\n\"" +
        website + "\",\n\"" +
        address + "\",\n\"" +
        zipcode + "\",\n\"" +
        city + "\",\n\"" +
-       phoneNumber + "\"" 
+       phoneNumber + "\")" 
      }
   }
   
