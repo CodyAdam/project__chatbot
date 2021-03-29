@@ -8,9 +8,18 @@ import machine._
 class DataBase {
   // initialisation des objets sous test
   DataBase.init()
+  var resultatmairie = List[machine.Place]();
+  
   @Before
   def resetState = {
     MachineImpl.reinit
+     resultatmairie = List(Place("Mairie de Rennes",
+     "Mme Nathalie APPERE, maire.\n217 309 habitants (source INSEE - recensement de la population 2013).",
+     "metropole.rennes.fr",
+     "Place de la Mairie",
+     "35031",
+     "Rennes",
+     "02 23 62 10 10"))
   }
 
   //TODO TEST DE LA FONCTION : DataBate.findByKeyword()
@@ -32,6 +41,30 @@ class DataBase {
          DataBase.findByKeyword(""),
          DataBase.getPlaces())
    }
+   
+   //même resultat qu'avec un filter
+   @Test
+   def DataBasefindKeyword2{
+     assertEquals(
+         DataBase.findByKeyword("mairie"),
+         DataBase.getPlaces().filter((place: Place) => {
+      place.name.toLowerCase().contains("mairie".toLowerCase())
+    }))
+   }
+   
+   //Avec un mot qui correspond à un nom d'Endroit
+   @Test
+   def DataBasefindKeyword3{
+        assertEquals(DataBase.findByKeyword("mairie"),resultatmairie)
+   }
+   
+   //Avec un mot qui correspond à un nom d'Endroit avec majuscules
+   @Test
+   def DataBasefindKeyword4{
+        assertEquals(DataBase.findByKeyword("mAiRiE"),resultatmairie)
+   }
+   
+   
   //TODO TEST DE LA FONCTION : DataBate.findByKeywords()
 
   /**
