@@ -112,7 +112,7 @@ object SpeechToText {
         var estimatedTime: Long = System.currentTimeMillis() - startTime;
         var data: Array[Byte] = new Array[Byte](6400);
         audio.read(data);
-        if (estimatedTime > 10000 || cancel) { // 10 seconds
+        if (estimatedTime > 5000 || cancel) { // 5 seconds
           println("Stop speaking.");
           targetDataLine.stop();
           targetDataLine.close();
