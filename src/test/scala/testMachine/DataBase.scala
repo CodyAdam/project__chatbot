@@ -66,7 +66,7 @@ class DataBase {
    
    //Avec un mot qui correspond à plusieurs noms d'Endroits
    @Test
-   def DataBasefindKeyword4{
+   def DataBasefindKeyword5{
         assertEquals(DataBase.findByKeyword("mAiRiE"),resultatmairie)
    }
    
