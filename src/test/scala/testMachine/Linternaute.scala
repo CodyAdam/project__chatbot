@@ -26,6 +26,16 @@ class Linternaute {
    * - Avec 2 trigger words dans la phrase et pleins autres mots
    */
 
+  @Test
+  def searchingWords() {
+    assertEquals(Linternaute.searchingWords(List("restaurant")),List())
+    assertEquals(Linternaute.searchingWords(List("restaurant", "creperie")),List("creperie"))
+    assertEquals(Linternaute.searchingWords(List("restaurant", "gare")),List("gare"))
+    assertEquals(Linternaute.searchingWords(List("restaurant", "creperie", "gare")),List("creperie", "gare"))
+    assertEquals(Linternaute.searchingWords(List("salut", "bonjour","restaurant", "la", "tomate")),List("la", "tomate"))
+    assertEquals(Linternaute.searchingWords(List("creperie", "gare", "bonjour","restaurant", "la", "tomate")),List("gare", "bonjour","restaurant", "la", "tomate"))
+  }
+
   //TODO TEST DE LA FONCTION : Linternaute.keyWords()
 
   /*
