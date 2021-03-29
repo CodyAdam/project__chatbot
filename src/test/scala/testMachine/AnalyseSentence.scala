@@ -21,72 +21,68 @@ class AnalyseSentence {
    *  Avec une liste vide
    *  Avec un mot contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
    *  Avec un mot non contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
-   * - Avec des mots contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
-   * - Avec des mots non contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
+   *  Avec des mots contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
+   *  Avec des mots non contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
    */
 
-  
-  //TODO TEST DE LA FONCTION : AnalyseSentence.getMajorLanguage()
-  
   /*
    * Liste vide
    */
-    @Test
-  def findKeys{
-     assertEquals(AnalyseSentence.findKeysFromWords(List()), (Set()))
-   }
-  
-    /*
+  @Test
+  def findKeys {
+    assertEquals(AnalyseSentence.findKeysFromWords(List()), (Set()))
+  }
+
+  /*
      * Mot vide
      */
-   @Test
-  def findKeys2{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("")), (Set()))
-   }
-   
-   /*
+  @Test
+  def findKeys2 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("")), (Set()))
+  }
+
+  /*
     * Mot contenu dans la liste des alias
     */
-   @Test
-  def findKeys3{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("gare")), (Set("gare sncf")))
-   }
-   
-   /*
+  @Test
+  def findKeys3 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("gare")), (Set("gare sncf")))
+  }
+
+  /*
     * Mot non contenu dans la liste des alias
     */
-   @Test
-  def findKeys4{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("stade")), (Set()))
-   }
+  @Test
+  def findKeys4 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("stade")), (Set()))
+  }
 
-   
-   /*
+  /*
     * Mot séparé par ; dans la liste des alias
     */
-   @Test
-  def findKeys5{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("gare","sncf")), (Set("gare sncf")))
-   }
-   
-   
-    /*
+  @Test
+  def findKeys5 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("gare", "sncf")), (Set("gare sncf")))
+  }
+
+  /*
     * Mot séparé par ; dans la liste des alias
     */
-   @Test
-  def findKeys6{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("théâtre","national","bretagne")), (Set("Théâtre National de Bretagne")))
-   }
-   
-   
-    /*
+  @Test
+  def findKeys6 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("théâtre", "national", "bretagne")), (Set("Théâtre National de Bretagne")))
+  }
+
+  /*
     * Mot séparé par ; non contenu dans la liste des alias
     */
-   @Test
-  def findKeys7{
-     assertEquals(AnalyseSentence.findKeysFromWords(List("stade","foot")), (Set()))
-   }
-   
+  @Test
+  def findKeys7 {
+    assertEquals(AnalyseSentence.findKeysFromWords(List("stade", "foot")), (Set()))
+  }
+
+  //TODO TEST DE LA FONCTION : AnalyseSentence.getMajorLanguage()
+
   /**
    * Cas à tester :
    *
@@ -98,6 +94,101 @@ class AnalyseSentence {
    * - Avec 1 mot de langue1 et 2 mots de langue2
    */
 
+  /**
+    * Liste Vide
+    */
+  @Test
+  def getMajorLanguage {
+    assertEquals(AnalyseSentence.getMajorLanguage(List()), null)
+  }
+
+  /**
+    * mot qui n'est pas dans la liste
+    */
+  @Test
+  def getMajorLanguage2 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("crêpes")), null)
+  }
+
+  /**
+    * mots qui ne sont pas dans la liste
+    */
+  @Test
+  def getMajorLanguage3 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("barbecue","valorant")), null)
+  }
+
+
+  
+   /**
+    * mot qui n'est pas dans la liste
+    */
+   @Test
+  def getMajorLanguage4{
+     assertEquals(AnalyseSentence.getMajorLanguage(List("foot","batiment 28","etoile","vilaine")), null)
+   }
+
+  /**
+    * 1 mot d'une seule langue (FR)
+    */
+  @Test
+  def getMajorLanguage5 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour")), DataBase.getLanguages()(0))
+  }
+    /**
+    * 1 mot d'une seule langue (EN)
+    */
+  @Test
+  def getMajorLanguage6 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("hello")), DataBase.getLanguages()(1))
+  }
+    /**
+    * 1 mot d'une seule langue (ES)
+    */
+  @Test
+  def getMajorLanguage7 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("hola")), DataBase.getLanguages()(2))
+    }
+    
+    /**
+    * 1 mot d'une seule langue (AL)
+    */
+  @Test
+  def getMajorLanguage8 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("hallo")), DataBase.getLanguages()(3))
+    
+    }
+    /**
+    * 1 mot d'une seule langue (IT)
+    */
+  @Test
+  def getMajorLanguage9 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("buongiorno")), DataBase.getLanguages()(4))
+    }
+  
+  /**
+    * 1 mot d'une seule langue et mot random
+    */
+  @Test
+  def getMajorLanguage10 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","crêpes")), DataBase.getLanguages()(0))
+    }
+  
+  /**
+    * 1 mot de langue1 et 2 mots de langue2
+    */
+  @Test
+  def getMajorLanguage11 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde")), DataBase.getLanguages()(2))
+    }
+  
+   /**
+    * 1 mot de langue1 et 2 mots de langue2 3 mots langue3
+    */
+  @Test
+  def getMajorLanguage12 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde","esta","hallo","ist")), DataBase.getLanguages()(2))
+    }
   //TODO TEST DE LA FONCTION : AnalyseSentence.getLanguageIfSearching()
 
   /**
@@ -187,4 +278,5 @@ class AnalyseSentence {
    * - Avec une liste de mots random et un mot qui est dans la liste
    * - Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
    */
+
 }
