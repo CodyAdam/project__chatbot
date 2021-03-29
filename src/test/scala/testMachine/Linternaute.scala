@@ -66,7 +66,12 @@ class Linternaute {
    * - Avec des mots clés qui mêne à un restaurant qui existe pas
    */
 
-  
+  @Test
+  def findRestaurant(){
+    assertEquals(Linternaute.findRestaurant(""),"")
+    assertEquals(Linternaute.findRestaurant("la+tomate+"),"/restaurant/restaurant/9072/la-tomate.shtml")
+    assertEquals(Linternaute.findRestaurant("le+petit+paradis"),"")
+  }
   
   //TODO TEST DE LA FONCTION : Linternaute.lookForAdress()
 
