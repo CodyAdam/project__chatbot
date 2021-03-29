@@ -24,7 +24,14 @@ class DataBase {
    * - Avec un mot qui est dans plusieurs nom d'Endroits (ex : "piscine")
    * - Avec un mot qui est dans auncun nom d'Endroit (ex : "djkxvn")
    */
-
+   
+   //mot vide
+   @Test
+   def DataBasefindKeyword1{
+     assertEquals(
+         DataBase.findByKeyword(""),
+         DataBase.getPlaces())
+   }
   //TODO TEST DE LA FONCTION : DataBate.findByKeywords()
 
   /**

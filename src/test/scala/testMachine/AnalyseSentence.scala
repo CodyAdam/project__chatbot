@@ -18,15 +18,75 @@ class AnalyseSentence {
   /**
    * Cas à tester :
    *
-   * - Avec une liste vide
-   * - Avec un mot contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
-   * - Avec un mot non contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
+   *  Avec une liste vide
+   *  Avec un mot contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
+   *  Avec un mot non contenu dans la liste des alias (la partie gauche de "doc/alias.txt")
    * - Avec des mots contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
    * - Avec des mots non contenu dans la liste des alias séparé de ";" (la partie gauche de "doc/alias.txt")
    */
 
+  
   //TODO TEST DE LA FONCTION : AnalyseSentence.getMajorLanguage()
+  
+  /*
+   * Liste vide
+   */
+    @Test
+  def findKeys{
+     assertEquals(AnalyseSentence.findKeysFromWords(List()), (Set()))
+   }
+  
+    /*
+     * Mot vide
+     */
+   @Test
+  def findKeys2{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("")), (Set()))
+   }
+   
+   /*
+    * Mot contenu dans la liste des alias
+    */
+   @Test
+  def findKeys3{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("gare")), (Set("gare sncf")))
+   }
+   
+   /*
+    * Mot non contenu dans la liste des alias
+    */
+   @Test
+  def findKeys4{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("stade")), (Set()))
+   }
 
+   
+   /*
+    * Mot séparé par ; dans la liste des alias
+    */
+   @Test
+  def findKeys5{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("gare","sncf")), (Set("gare sncf")))
+   }
+   
+   
+    /*
+    * Mot séparé par ; dans la liste des alias
+    */
+   @Test
+  def findKeys6{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("théâtre","national","bretagne")), (Set("Théâtre National de Bretagne")))
+   }
+   
+   
+    /*
+    * Mot séparé par ; non contenu dans la liste des alias
+    */
+   @Test
+  def findKeys7{
+     assertEquals(AnalyseSentence.findKeysFromWords(List("stade","foot")), (Set()))
+   }
+   
   /**
    * Cas à tester :
    *

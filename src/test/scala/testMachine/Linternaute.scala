@@ -13,7 +13,7 @@ class Linternaute {
     MachineImpl.reinit
   }
 
-  //TODO TEST DE LA FONCTION : Linternaute.searchingWords()
+  //TEST DE LA FONCTION : Linternaute.searchingWords()
 
   /*
    * Cas à tester :
@@ -26,7 +26,17 @@ class Linternaute {
    * - Avec 2 trigger words dans la phrase et pleins autres mots
    */
 
-  //TODO TEST DE LA FONCTION : Linternaute.keyWords()
+  @Test
+  def searchingWords() {
+    assertEquals(Linternaute.searchingWords(List("restaurant")),List())
+    assertEquals(Linternaute.searchingWords(List("restaurant", "creperie")),List("creperie"))
+    assertEquals(Linternaute.searchingWords(List("restaurant", "gare")),List("gare"))
+    assertEquals(Linternaute.searchingWords(List("restaurant", "creperie", "gare")),List("creperie", "gare"))
+    assertEquals(Linternaute.searchingWords(List("salut", "bonjour","restaurant", "la", "tomate")),List("la", "tomate"))
+    assertEquals(Linternaute.searchingWords(List("creperie", "gare", "bonjour","restaurant", "la", "tomate")),List("gare", "bonjour","restaurant", "la", "tomate"))
+  }
+
+  //TEST DE LA FONCTION : Linternaute.keyWords()
 
   /*
    * Cas à tester :
@@ -36,8 +46,17 @@ class Linternaute {
    * - Avec 2 mots
    * - Avec 3 mots
    */
+  
+  @Test 
+  def keyWords(){
+    assertEquals(Linternaute.keyWords(List()),"")
+    assertEquals(Linternaute.keyWords(List("")),"+")
+    assertEquals(Linternaute.keyWords(List("tomate")),"tomate+")
+    assertEquals(Linternaute.keyWords(List("la", "tomate")),"la+tomate+")
+    assertEquals(Linternaute.keyWords(List("la", "grosse", "tomate")),"la+grosse+tomate+")
+  }
 
-  //TODO TEST DE LA FONCTION : Linternaute.findRestaurant()
+  //TEST DE LA FONCTION : Linternaute.findRestaurant()
 
   /*
    * Cas à tester :
@@ -47,6 +66,13 @@ class Linternaute {
    * - Avec des mots clés qui mêne à un restaurant qui existe pas
    */
 
+  @Test
+  def findRestaurant(){
+    assertEquals(Linternaute.findRestaurant(""),"")
+    assertEquals(Linternaute.findRestaurant("la+tomate+"),"/restaurant/restaurant/9072/la-tomate.shtml")
+    assertEquals(Linternaute.findRestaurant("le+petit+paradis"),"")
+  }
+  
   //TODO TEST DE LA FONCTION : Linternaute.lookForAdress()
 
   /*

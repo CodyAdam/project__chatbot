@@ -119,4 +119,8 @@ object DataBase {
    * @return the aliases map
    */
   def getAlias(): Map[List[String], List[String]] = alias;
+  
+  def getPlaces() : List[machine.Place] = {
+    places
+  }
 }
