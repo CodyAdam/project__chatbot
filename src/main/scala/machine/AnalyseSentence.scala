@@ -145,10 +145,27 @@ object AnalyseSentence {
     return false
   }
 
+  
+  /**
+   * @param words from the user sentence
+   * @return if the user input contains a joke triggerword in the current language
+   */
   def isBlagueQuery(words : List[String]): Boolean = {
     for (language: Language <- DataBase.getLanguages())
       for (jokeWord: String <- language.blagueTrigger)
         if (containsWithTypingError(words, jokeWord))
+          return true
+    return false
+  }
+  
+   /**
+   * @param words from the user sentence
+   * @return if the user input contains a definition triggerword in the current language
+   */
+  def isDefinitionQuery(words: List[String]): Boolean = {
+    for (language: Language <- DataBase.getLanguages())
+      for (definitionWord: String <- language.definitionTrigger)
+        if (containsWithTypingError(words, definitionWord))
           return true
     return false
   }
