@@ -49,6 +49,7 @@ object DefinitionLinternaute {
 
   def lookingForDefinition(words: List[String]): String = {
     val unknownWord = searchingWord(words)
+    println(unknownWord)
     if (!unknownWord.equals("")) {
       val r = Jsoup.connect("https://www.linternaute.fr/dictionnaire/fr/definition/" + unknownWord).get().select("div.grid_last > a")
       if (r != null)
