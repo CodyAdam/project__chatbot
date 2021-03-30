@@ -36,7 +36,7 @@ class CaseLinternaute {
   
   @Test
   def ask3(){
-    assertEquals(MachineImpl.ask("restaurant le petit"), List("L'adresse 5 r Chapitre"))
+    assertEquals(MachineImpl.ask("restaurant le petit"), List("L'adresse de Au Petit Grenier est : 5 r Chapitre"))
   }
   
 }

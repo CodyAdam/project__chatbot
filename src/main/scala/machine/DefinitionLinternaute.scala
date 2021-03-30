@@ -14,7 +14,7 @@ object DefinitionLinternaute {
   def searchingWord(words: List[String]): String = {
     var found = false
     for (unknownWord: String <- words) {
-      if (found) {
+      if (found && !(StateManager.currentLanguage.ignore).contains(unknownWord.toLowerCase())) {
         return unknownWord
       }
       if ((StateManager.currentLanguage.definitionTrigger).contains(unknownWord.toLowerCase())) {
@@ -47,23 +47,31 @@ object DefinitionLinternaute {
     withoutAccent
   }
 
-  def lookingForDefinition(words: List[String]): String = {
+  
+  /**
+   * Cherche les définitions sur le site de Larousse
+   * @param la liste de chaîne de caractères
+   * @return le lsite des chaînes de caractère correspondant aux définitions
+   */
+  def lookingForDefinition(words: List[String]): List[String] = {
     val unknownWord = searchingWord(words)
-    println(unknownWord)
+    var listDefinitions: List[String] = List()
     if (!unknownWord.equals("")) {
-      val r = Jsoup.connect("https://www.linternaute.fr/dictionnaire/fr/definition/" + unknownWord).get().select("div.grid_last > a")
-      if (r != null)
-        r.html
-      else
-        ""
-    } else {
-      ""
+      val r = Jsoup.connect("https://www.larousse.fr/dictionnaires/francais/" + unknownWord).get().select("ul.Definitions > li.DivisionDefinition")
+      if (r != null) {
+        val definitions = r.html.split("\n")
+        for (s <- definitions) {
+          val tSplit = s.split("&")
+          listDefinitions = listDefinitions :+ tSplit(0)
+        }
+      }
     }
+    listDefinitions
   }
 
 }
 
 object TestAccent extends App {
-
-  println(DefinitionLinternaute.lookingForDefinition(List("définition","théâtre")))
+  DataBase.init
+  println(DefinitionLinternaute.lookingForDefinition(List("définition")))
 }
