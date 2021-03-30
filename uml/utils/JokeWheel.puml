@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class JokeWheel {
+List[Joke] list
+Integer current
+}
+
+@enduml

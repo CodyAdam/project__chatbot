@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DefinitionLinternaute << (O, #FF7700) >> {
+searchingWord()
+ignoreAccent()
+lookingForDefinition()
+}
+
+@enduml

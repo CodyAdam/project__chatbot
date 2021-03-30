@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class SpeechToText << (O, #FF7700) >> {
+Boolean inRecognition
+Boolean cancel
+SpeechClient client
+ResponseObserver responseObserver
+startRecognition()
+endReco()
+closeSpeech()
+cancelReco()
+}
+
+@enduml

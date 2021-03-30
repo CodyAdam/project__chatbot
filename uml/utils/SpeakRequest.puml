@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class SpeakRequest {
+String text
+Language lang
+}
+
+
+@enduml

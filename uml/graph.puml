@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include application/Application.puml
+' #############################   Machine
+!include machine/AliasImporter.puml
+!include machine/AnalyseSentence.puml
+!include machine/DataBase.puml
+!include machine/DefinitionLinternaute.puml
+!include machine/JokesImporter.puml
+!include machine/LanguageImporter.puml
+!include machine/Linternaute.puml
+!include machine/MachineDialogue.puml
+!include machine/MachineImpl.puml
+!include machine/MultiRequetes.puml
+!include machine/SpeechToText.puml
+!include machine/StateManager.puml
+!include machine/TextToSpeech.puml
+!include machine/XMLImporter.puml
+' #############################   Utils
+!include utils/Expression.puml
+!include utils/Joke.puml
+!include utils/JokeWheel.puml
+!include utils/Language.puml
+!include utils/Place.puml
+!include utils/SpeakRequest.puml
+!include utils/UserState.puml
+' #############################   UI
+!include ui/UI.puml
+!include ui/BottomContainer.puml
+!include ui/DraggablePanel.puml
+!include ui/Flag.puml
+!include ui/FrameBar.puml
+!include ui/FrameButton.puml
+!include ui/Img.puml
+!include ui/MessageTextField.puml
+!include ui/PaddingBox.puml
+!include ui/ResizablePane.puml
+!include ui/RoundButton.puml
+!include ui/Spacer.puml
+!include ui/TextBubble.puml
+!include ui/Theme.puml
+!include ui/TopContainer.puml
+!include ui/WelcomeFrame.puml
+
+UI <-u- Application
+Application -|> DataBase
+Application -d-> TextToSpeech
+UserState -u-> StateManager
+UI -|> MachineImpl
+MachineDialogue .d.> MachineImpl
+MachineImpl -d-> AnalyseSentence
+MachineImpl -d-> StateManager
+MachineImpl -d-> Linternaute
+MachineImpl -d-> DataBase
+MachineImpl -d-> MultiRequetes
+Joke -u-> JokesImporter
+JokeWheel -u-> JokesImporter
+Place -u-> DataBase
+XMLImporter -u-> DataBase
+AliasImporter -u-> DataBase
+JokesImporter -u-> DataBase
+Expression -u-> StateManager
+Language -u-> StateManager
+SpeakRequest -u-> TextToSpeech
+UI -d-> SpeechToText
+DefinitionLinternaute -u-> Linternaute
+LanguageImporter -u-> DataBase
+
+UI -d-> ResizablePane
+UI -d-> TopContainer
+UI -d-> StateManager
+UI -d-> WelcomeFrame
+UI -d-> BottomContainer
+UI -d-> FrameBar
+RoundButton <-u- BottomContainer
+Theme <-u- BottomContainer
+SpeechToText <-u- BottomContainer
+MessageTextField <-u- BottomContainer
+Spacer <-u- BottomContainer
+Theme <-u- Flag
+Img <-u- WelcomeFrame
+Flag <-u- WelcomeFrame
+PaddingBox <-u- WelcomeFrame
+Theme <-u- WelcomeFrame
+Spacer <-u- FrameBar
+DraggablePanel <-u- FrameBar
+Theme <-u- FrameBar
+PaddingBox <-u- FrameBar
+Theme <-u- TopContainer
+ScrollPane <-u- TopContainer
+TextBubble <-u- TopContainer
+FrameButton <-u- FrameBar
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class TextToSpeech << (O, #FF7700) >> {
+Boolean isSpeaking
+List[SpeakRequest] queue
+Boolean initializing
+init()
+speak()
+writeFile()
+nextSpeak()
+readFile()
+}
+
+@enduml

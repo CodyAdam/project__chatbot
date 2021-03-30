@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Place {
+String name
+String description
+String website
+String address
+String zipcode
+String city
+String phoneNumber
+}
+
+@enduml

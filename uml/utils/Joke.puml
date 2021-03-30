@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Joke {
+String text
+String answer
+}
+
+@enduml

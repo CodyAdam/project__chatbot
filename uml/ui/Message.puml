@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Message(lang,msg,date,isUser) {
+Language lang
+String msg
+String date
+Boolean isUser
+Img kiwi
+TextBubble textBubble
+Label d
+}
+
+@enduml

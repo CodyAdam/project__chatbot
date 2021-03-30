@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DataBase << (O, #FF7700) >> {
+List[Place] places
+Map[List[String], List[String]] alias
+List[Language] languages
+HashMap[String, Set[Language]] list_Words
+HashMap[Language, JokeWheel] jokes
+init()
+addWordHashmap()
+getJoke()
+getJokesCurrentLang()
+findByKeyword()
+findByKeywords()
+getWordsLanguage()
+getLanguages()
+getAlias()
+getPlaces()
+}
+
+
+@enduml

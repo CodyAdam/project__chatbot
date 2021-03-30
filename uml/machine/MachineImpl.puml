@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MachineImpl << (O, #FF7700) >> {
+ask()
+reinit()
+}
+
+@enduml

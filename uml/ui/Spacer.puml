@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Spacer {
+Integer width
+Integer height
+}
+
+@enduml

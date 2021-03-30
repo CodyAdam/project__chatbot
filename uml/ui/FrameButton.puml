@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class FrameButton{
+String pathDark
+String pathLight
+Img imgDark
+Img imgLight
+Button button
+}
+
+@enduml

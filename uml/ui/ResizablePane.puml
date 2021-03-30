@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class ResizablePane {
+Integer thickness
+BorderPanel rightSide
+BorderPanel leftSide
+Boolean draggingLeft
+Boolean draggingTop
+Boolean draggingRight
+Boolean draggingBottom
+Point start
+Point current
+}
+
+@enduml
