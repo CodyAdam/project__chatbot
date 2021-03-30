@@ -286,6 +286,8 @@ class AnalyseSentence {
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.getWords()
 
+  
+ 
   /**
    * Cas à tester :
    *
@@ -310,6 +312,8 @@ class AnalyseSentence {
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.containsWithTypingError()
 
+   
+  
   /**
    * Cas à tester :
    *
@@ -319,4 +323,35 @@ class AnalyseSentence {
    * - Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
    */
 
+  /**
+   * Avec une liste vide et un mot random
+   */
+  @Test
+  def containsWithTypingError{
+    assertEquals(AnalyseSentence.containsWithTypingError(List(),"baguette"), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot vide
+   */
+  @Test
+  def containsWithTypingError2{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("baguette","crêpes","riz"),""), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste
+   */
+  @Test
+  def containsWithTypingError3{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"baguette"), true)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
+   */
+  @Test
+  def containsWithTypingError4{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"bagette"), true)
+  }
 }
