@@ -70,9 +70,11 @@ object Linternaute {
     if (!adressWeb.equals("")) {
       val page = Jsoup.connect("https://www.linternaute.com/" + adressWeb).get()
       val adress = page.select("li.icomoon-location > span").first()
-      val name = page.select("h1.bu_restaurant_title_xl").first()
+      println(adress)
+      val name = page.select("div.grid_left > h1").first()
+      println(name)
       if (name != null && adress != null)
-        return Some(new Place(name.html(), "", "", adress.html(), "", "", ""))
+        return Some(new Place(name.html, "", "", adress.html, "", "", ""))
     }
     None
   }
@@ -91,8 +93,3 @@ object Linternaute {
   }
   
 }
-
-object TestAdress extends App {
-  DataBase.init
-  println(Linternaute.messageAdress(List("restaurant", "le", "petit")))
-  }

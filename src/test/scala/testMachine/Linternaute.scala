@@ -142,5 +142,20 @@ class Linternaute {
   def lookForAdresse3() {
       assertEquals(Linternaute.lookForAdress(List("restaurant", "le", "petit", "paradis")), None)
     }
+    
+    @Test
+  def messageAdress1(){
+    assertEquals(Linternaute.messageAdress(List("restaurant", "la", "tomate")), List("L'adresse de La Tomate est : 18, rue Saint Georges"))
+  }
+  
+  @Test
+  def messageAdress2(){
+    assertEquals(Linternaute.messageAdress(List("restaurant", "le", "petit", "chef", "en", "paille")), List("Je ne comprends pas votre demande"))
+  }
+  
+  @Test
+  def messageAdress3(){
+    assertEquals(Linternaute.messageAdress(List("restaurant", "le", "petit")), List("L'adresse de Au Petit Grenier est : 5 r Chapitre"))
+  }
   
 }
