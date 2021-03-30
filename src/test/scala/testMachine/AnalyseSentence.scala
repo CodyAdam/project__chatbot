@@ -8,6 +8,13 @@ import machine._
 class AnalyseSentence {
   // initialisation des objets sous test
   DataBase.init()
+  
+  val Francais = DataBase.getLanguages()(0)
+  val Anglais = DataBase.getLanguages()(1)
+  val Espagnol = DataBase.getLanguages()(2)
+  val Allemand = DataBase.getLanguages()(3)
+  val Italien = DataBase.getLanguages()(4)
+  
   @Before
   def resetState = {
     MachineImpl.reinit
@@ -95,110 +102,114 @@ class AnalyseSentence {
    */
 
   /**
-    * Liste Vide
-    */
+   * Liste Vide
+   */
   @Test
   def getMajorLanguage {
     assertEquals(AnalyseSentence.getMajorLanguage(List()), null)
   }
 
   /**
-    * mot qui n'est pas dans la liste
-    */
+   * mot qui n'est pas dans la liste
+   */
   @Test
   def getMajorLanguage2 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("crêpes")), null)
   }
 
   /**
-    * mots qui ne sont pas dans la liste
-    */
+   * mots qui ne sont pas dans la liste
+   */
   @Test
   def getMajorLanguage3 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("barbecue","valorant")), null)
+    assertEquals(AnalyseSentence.getMajorLanguage(List("barbecue", "valorant")), null)
   }
 
-
-  
-   /**
-    * mot qui n'est pas dans la liste
-    */
-   @Test
-  def getMajorLanguage4{
-     assertEquals(AnalyseSentence.getMajorLanguage(List("foot","batiment 28","etoile","vilaine")), null)
-   }
+  /**
+   * mot qui n'est pas dans la liste
+   */
+  @Test
+  def getMajorLanguage4 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("foot", "batiment 28", "etoile", "vilaine")), null)
+  }
 
   /**
-    * 1 mot d'une seule langue (FR)
-    */
+   * 1 mot d'une seule langue (FR)
+   */
   @Test
   def getMajorLanguage5 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour")), DataBase.getLanguages()(0))
   }
-    /**
-    * 1 mot d'une seule langue (EN)
-    */
+  /**
+   * 1 mot d'une seule langue (EN)
+   */
   @Test
   def getMajorLanguage6 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hello")), DataBase.getLanguages()(1))
   }
-    /**
-    * 1 mot d'une seule langue (ES)
-    */
+  /**
+   * 1 mot d'une seule langue (ES)
+   */
   @Test
   def getMajorLanguage7 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hola")), DataBase.getLanguages()(2))
-    }
-    
-    /**
-    * 1 mot d'une seule langue (AL)
-    */
+  }
+
+  /**
+   * 1 mot d'une seule langue (AL)
+   */
   @Test
   def getMajorLanguage8 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hallo")), DataBase.getLanguages()(3))
-    
-    }
-    /**
-    * 1 mot d'une seule langue (IT)
-    */
+
+  }
+  /**
+   * 1 mot d'une seule langue (IT)
+   */
   @Test
   def getMajorLanguage9 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("buongiorno")), DataBase.getLanguages()(4))
-    }
-  
+  }
+
   /**
-    * 1 mot d'une seule langue et mot random
-    */
+   * 1 mot d'une seule langue et mot random
+   */
   @Test
   def getMajorLanguage10 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","crêpes")), DataBase.getLanguages()(0))
-    }
-  
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "crêpes")), DataBase.getLanguages()(0))
+  }
+
   /**
-    * 1 mot de langue1 et 2 mots de langue2
-    */
+   * 1 mot de langue1 et 2 mots de langue2
+   */
   @Test
   def getMajorLanguage11 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde")), DataBase.getLanguages()(2))
-    }
-  
-   /**
-    * 1 mot de langue1 et 2 mots de langue2 3 mots langue3
-    */
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "hola", "donde")), DataBase.getLanguages()(2))
+  }
+
+  /**
+   * 1 mot de langue1 et 2 mots de langue2 3 mots langue3
+   */
   @Test
   def getMajorLanguage12 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde","esta","hallo","ist")), DataBase.getLanguages()(2))
-    }
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "hola", "donde", "esta", "hallo", "ist")), DataBase.getLanguages()(2))
+  }
   //TODO TEST DE LA FONCTION : AnalyseSentence.getLanguageIfSearching()
 
   /**
    * Cas à tester :
    *
    * - Avec une liste vide
-   * - Avec un mot contenu dans la liste des language keywords de recherche
+   * - Avec un mot contenu dans la liste des language keywords de recherche 
    * - Avec aucun mot contenu dans la liste des language keywords de recherche
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de recherche de même langue
    */
+
+  @Test
+  def getLanguageIfSearching1 {
+    val inputs = List("motRandom1", "recherche", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Francais))
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.getLanguageIfPolite()
 
