@@ -33,6 +33,8 @@ object SpeechToText {
 
   private var inRecognition: Boolean = false;
   private var cancel: Boolean = false;
+  var client : SpeechClient = null;
+  var responseObserver: ResponseObserver[StreamingRecognizeResponse] = null;
 
   def startRecognition(): Unit = {
 
@@ -43,9 +45,8 @@ object SpeechToText {
 
     inRecognition = true;
 
-    var responseObserver: ResponseObserver[StreamingRecognizeResponse] = null;
     try {
-      var client: SpeechClient = SpeechClient.create();
+      client = SpeechClient.create();
 
       responseObserver =
         new ResponseObserver[StreamingRecognizeResponse]() {
@@ -69,10 +70,10 @@ object SpeechToText {
           }
 
           def onError(t: Throwable): Unit = {
-            endReco("");
+            closeSpeech();
           }
         };
-
+        
       var clientStream: ClientStream[StreamingRecognizeRequest] =
         client.streamingRecognizeCallable().splitCall(responseObserver);
 
@@ -117,6 +118,8 @@ object SpeechToText {
           targetDataLine.stop();
           targetDataLine.close();
           responseObserver.onComplete();
+          closeSpeech();
+          
           return ;
         }
         request =
@@ -126,16 +129,24 @@ object SpeechToText {
         clientStream.send(request);
       }
     } catch {
-      case e: Throwable => { endReco(""); }
+      case e: Throwable => { closeSpeech(); }
     }
     responseObserver.onComplete();
+    closeSpeech();
   }
 
   def endReco(text: String) {
-    inRecognition = false;
+    //inRecognition = false;
     if (text != "") ui.MessageTextField.text = text;
   }
-
+  
+  def closeSpeech(){
+    responseObserver = null;
+    client.shutdown();
+    client = null;
+    inRecognition = false;
+  }
+  
   def cancelReco() {
     if (inRecognition) cancel = true;
   }
