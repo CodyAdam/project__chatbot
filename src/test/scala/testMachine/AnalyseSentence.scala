@@ -294,6 +294,30 @@ class AnalyseSentence {
    * - Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
    * - Avec deux mots séparé de plusieurs charactères séparateurs (" ,'.;:!?¿-_")
    */
+  
+    // Avec un mot vide
+  @Test
+  def getWords0 {
+    assertEquals(AnalyseSentence.getWords(""), List(""))
+  }
+  
+      // Avec deux mots séparé d'un charactère séparateur (" ,'.;:!?¿-_")
+  @Test
+  def getWords1 {
+    assertEquals(AnalyseSentence.getWords("bonjour,web"), List("bonjour","web"))
+  }
+
+      // Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
+  @Test
+  def getWords2 {
+    assertEquals(AnalyseSentence.getWords("mot,"), List("mot"))
+  }
+  
+      // Avec deux mots séparé de plusieurs charactères séparateurs (" ,'.;:!?¿-_"))
+  @Test
+  def getWords3 {
+    assertEquals(AnalyseSentence.getWords("bonjour,,web"), List("bonjour","web"))
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.isEqualsWithTypingError()
 
