@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class BottomContainer  << (O, #FF7700) >> {
+RoundButton sendButton
+RoundButton vttButton
+Spacer spacer
+sendMessage()
+}
+
+
+@enduml

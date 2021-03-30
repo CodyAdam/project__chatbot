@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MultiRequetes << (O, #FF7700) >> {
+formatMultiResults()
+getAddress()
+}
+
+@enduml

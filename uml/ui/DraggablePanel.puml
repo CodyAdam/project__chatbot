@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class DraggablePanel {
+Integer offset
+Point start
+}
+@enduml

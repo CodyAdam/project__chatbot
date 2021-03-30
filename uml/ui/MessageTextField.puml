@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class MessageTextField << (O, #FF7700) >> {
+sendMessage(String message)
+Override paint(g: Graphics2D)
+}
+
+
+@enduml

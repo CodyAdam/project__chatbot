@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Application << (O, #FF7700) >> {
+top()
+}
+
+@enduml

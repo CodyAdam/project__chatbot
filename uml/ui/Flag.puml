@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Flag {
+String imgPath
+Integer width
+Integer height
+Button button
+ImageIcon resizedIcon
+}
+
+@enduml

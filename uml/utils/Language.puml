@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Language {
+String langue
+String formatxx_XX
+List[String] blagueTrigger
+List[String] definitionTrigger
+List[String] politesse
+List[String] recherche
+List[String] linternauteTrigger
+Expression expression
+}
+
+
+@enduml

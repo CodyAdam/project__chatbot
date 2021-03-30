@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Theme << (O, #FF7700) >> {
+ColorPalette darkTheme
+ColorPalette lightTheme
+List[ColorPalette] themeList
+ColorPalette color
+Font font
+Font fontLight
+Font fontBold
+cycleTheme()
+}
+
+class ThemeChange << (O, #FF7700) >> {
+
+}
+
+class PostThemeChange << (O, #FF7700) >> {
+
+}
+
+ThemeChange -u-> Theme
+PostThemeChange -u-> Theme
+Event .u.> PostThemeChange
+Event .u.> ThemeChange
+
+@enduml

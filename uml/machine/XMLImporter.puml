@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class XMLImporter << (O, #FF7700) >> {
+getPlacesFromXml()
+}
+
+
+@enduml

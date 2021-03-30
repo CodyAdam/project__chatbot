@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AliasImporter << (O, #FF7700) >> {
+getAliasFromFile()
+}
+
+@enduml

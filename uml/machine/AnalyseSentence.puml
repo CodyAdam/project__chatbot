@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class AnalyseSentence << (O, #FF7700) >> {
+findKeysFromWords()
+hasPoliteWord()
+getMajorLanguage()
+isLinternauteQuery()
+isBlagueQuery()
+isDefinitionQuery()
+containsWithTypingError()
+isEqualsWithTypingError()
+levenshtein()
+getWords()
+}
+
+@enduml

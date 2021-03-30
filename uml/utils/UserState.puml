@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+UserState <.d. IsAsking
+UserState <.d. IsChosing
+UserState <.d. ChangingLanguage
+UserState <.d. Waiting
+UserState <.d. Blocked
+
+class UserState << (T, #77FF77) >> {
+}
+
+class IsAsking << (O, #FF7700) >> {
+}
+class IsChosing << (O, #FF7700) >> {
+}
+class ChangingLanguage << (O, #FF7700) >> {
+}
+class Waiting << (O, #FF7700) >> {
+}
+class Blocked << (O, #FF7700) >> {
+}
+
+@enduml

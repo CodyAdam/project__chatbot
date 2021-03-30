@@ -19,7 +19,6 @@ class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWid
 
   val lineHeight = 26;
   var line = getLinesNumber()._1
-  println(line)
   preferredSize = new Dimension(0, lineHeight * line);
   maximumSize = new Dimension(999999, lineHeight * line);
   minimumSize = new Dimension(0, lineHeight * line);

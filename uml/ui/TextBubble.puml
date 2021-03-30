@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class TextBubble {
+Language lang
+String msg
+Boolean isUser
+Integer parentWidth
+Integer maxWidth
+Integer textWidth
+Integer lineHeight
+Integer line
+}
+
+@enduml

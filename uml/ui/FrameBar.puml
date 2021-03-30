@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class FrameBar << (O, #FF7700) >> {
+Integer height
+FrameButton themeButton
+FrameButton minimizeButton
+FrameButton closeButton
+FrameButton maximizeButton
+Img titleIcon
+Label title
+BoxPanel titleWithIcon
+Spacer spacer
+Point dragOffset
+DraggablePanel draggable
+BoxPanel group
+}
+
+@enduml

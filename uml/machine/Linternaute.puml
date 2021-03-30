@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Linternaute << (O, #FF7700) >> {
+searchingWords()
+keyWords()
+findRestaurant()
+lookForAdress()
+}
+
+
+@enduml

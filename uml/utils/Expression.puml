@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Expression {
+String agree
+String disagree
+String address
+String dontUnderstand
+String askLanguage
+String whatQuery
+String foundPossibles
+String chose
+}
+
+
+@enduml

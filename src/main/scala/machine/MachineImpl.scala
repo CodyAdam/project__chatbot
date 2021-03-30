@@ -19,9 +19,9 @@ object MachineImpl extends MachineDialogue {
         }
 
         if (AnalyseSentence.isLinternauteQuery(words)) {
-          val adress = Linternaute.lookForAdress(words)
+          val adress = Linternaute.messageAdress(words)
           if (!adress.equals("")) {
-            return List(adress)
+            return adress
           }
         }
 
