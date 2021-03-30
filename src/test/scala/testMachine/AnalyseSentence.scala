@@ -8,6 +8,13 @@ import machine._
 class AnalyseSentence {
   // initialisation des objets sous test
   DataBase.init()
+
+  val Francais = DataBase.getLanguages()(0)
+  val Anglais = DataBase.getLanguages()(1)
+  val Espagnol = DataBase.getLanguages()(2)
+  val Allemand = DataBase.getLanguages()(3)
+  val Italien = DataBase.getLanguages()(4)
+
   @Before
   def resetState = {
     MachineImpl.reinit
@@ -95,100 +102,98 @@ class AnalyseSentence {
    */
 
   /**
-    * Liste Vide
-    */
+   * Liste Vide
+   */
   @Test
   def getMajorLanguage {
     assertEquals(AnalyseSentence.getMajorLanguage(List()), null)
   }
 
   /**
-    * mot qui n'est pas dans la liste
-    */
+   * mot qui n'est pas dans la liste
+   */
   @Test
   def getMajorLanguage2 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("crêpes")), null)
   }
 
   /**
-    * mots qui ne sont pas dans la liste
-    */
+   * mots qui ne sont pas dans la liste
+   */
   @Test
   def getMajorLanguage3 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("barbecue","valorant")), null)
+    assertEquals(AnalyseSentence.getMajorLanguage(List("barbecue", "valorant")), null)
   }
 
-
-  
-   /**
-    * mot qui n'est pas dans la liste
-    */
-   @Test
-  def getMajorLanguage4{
-     assertEquals(AnalyseSentence.getMajorLanguage(List("foot","batiment 28","etoile","vilaine")), null)
-   }
+  /**
+   * mot qui n'est pas dans la liste
+   */
+  @Test
+  def getMajorLanguage4 {
+    assertEquals(AnalyseSentence.getMajorLanguage(List("foot", "batiment 28", "etoile", "vilaine")), null)
+  }
 
   /**
-    * 1 mot d'une seule langue (FR)
-    */
+   * 1 mot d'une seule langue (FR)
+   */
   @Test
   def getMajorLanguage5 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour")), DataBase.getLanguages()(0))
   }
-    /**
-    * 1 mot d'une seule langue (EN)
-    */
+  /**
+   * 1 mot d'une seule langue (EN)
+   */
   @Test
   def getMajorLanguage6 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hello")), DataBase.getLanguages()(1))
   }
-    /**
-    * 1 mot d'une seule langue (ES)
-    */
+  /**
+   * 1 mot d'une seule langue (ES)
+   */
   @Test
   def getMajorLanguage7 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hola")), DataBase.getLanguages()(2))
-    }
-    
-    /**
-    * 1 mot d'une seule langue (AL)
-    */
+  }
+
+  /**
+   * 1 mot d'une seule langue (AL)
+   */
   @Test
   def getMajorLanguage8 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("hallo")), DataBase.getLanguages()(3))
-    
-    }
-    /**
-    * 1 mot d'une seule langue (IT)
-    */
+
+  }
+  /**
+   * 1 mot d'une seule langue (IT)
+   */
   @Test
   def getMajorLanguage9 {
     assertEquals(AnalyseSentence.getMajorLanguage(List("buongiorno")), DataBase.getLanguages()(4))
-    }
-  
+  }
+
   /**
-    * 1 mot d'une seule langue et mot random
-    */
+   * 1 mot d'une seule langue et mot random
+   */
   @Test
   def getMajorLanguage10 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","crêpes")), DataBase.getLanguages()(0))
-    }
-  
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "crêpes")), DataBase.getLanguages()(0))
+  }
+
   /**
-    * 1 mot de langue1 et 2 mots de langue2
-    */
+   * 1 mot de langue1 et 2 mots de langue2
+   */
   @Test
   def getMajorLanguage11 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde")), DataBase.getLanguages()(2))
-    }
-  
-   /**
-    * 1 mot de langue1 et 2 mots de langue2 3 mots langue3
-    */
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "hola", "donde")), DataBase.getLanguages()(2))
+  }
+
+  /**
+   * 1 mot de langue1 et 2 mots de langue2 3 mots langue3
+   */
   @Test
   def getMajorLanguage12 {
-    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour","hola","donde","esta","hallo","ist")), DataBase.getLanguages()(2))
-    }
+    assertEquals(AnalyseSentence.getMajorLanguage(List("bonjour", "hola", "donde", "esta", "hallo", "ist")), DataBase.getLanguages()(2))
+  }
   //TODO TEST DE LA FONCTION : AnalyseSentence.getLanguageIfSearching()
 
   /**
@@ -199,6 +204,41 @@ class AnalyseSentence {
    * - Avec aucun mot contenu dans la liste des language keywords de recherche
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de recherche de même langue
    */
+
+  // Avec une liste vide
+  @Test
+  def getLanguageIfSearching0 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), None)
+  }
+
+  //Avec un mot contenu dans la liste des language keywords de recherche
+  @Test
+  def getLanguageIfSearching1 {
+    val inputs = List("motRandom1", "recherche", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Francais))
+  }
+
+  @Test
+  def getLanguageIfSearching2 {
+    val inputs = List("motRandom1", "search", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Anglais))
+  }
+
+  //Avec aucun mot contenu dans la liste des language keywords de recherche
+
+  @Test
+  def getLanguageIfSearching3 {
+    val inputs = List("motRandom1", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), None)
+  }
+
+  //Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de recherche de même langue
+  @Test
+  def getLanguageIfSearching4 {
+    val inputs = List("motRandom1", "recherche", "motRandom2", "trouve", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Francais))
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.getLanguageIfPolite()
 
@@ -246,6 +286,8 @@ class AnalyseSentence {
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.getWords()
 
+  
+ 
   /**
    * Cas à tester :
    *
@@ -254,6 +296,30 @@ class AnalyseSentence {
    * - Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
    * - Avec deux mots séparé de plusieurs charactères séparateurs (" ,'.;:!?¿-_")
    */
+  
+    // Avec un mot vide
+  @Test
+  def getWords0 {
+    assertEquals(AnalyseSentence.getWords(""), List(""))
+  }
+  
+      // Avec deux mots séparé d'un charactère séparateur (" ,'.;:!?¿-_")
+  @Test
+  def getWords1 {
+    assertEquals(AnalyseSentence.getWords("bonjour,web"), List("bonjour","web"))
+  }
+
+      // Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
+  @Test
+  def getWords2 {
+    assertEquals(AnalyseSentence.getWords("mot,"), List("mot"))
+  }
+  
+      // Avec deux mots séparé de plusieurs charactères séparateurs (" ,'.;:!?¿-_"))
+  @Test
+  def getWords3 {
+    assertEquals(AnalyseSentence.getWords("bonjour,,web"), List("bonjour","web"))
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.isEqualsWithTypingError()
 
@@ -267,9 +333,47 @@ class AnalyseSentence {
    * - Avec deux mots proche avec l'un qui n'à pas d'accent
    * - Avec deux mots proche avec l'un qui est en minusclue et l'autre en majuscule
    */
+  
+      // Avec un mot vide et un mot vide
+  @Test
+  def isEqualsWithTypingError0 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("",""), true)
+  }
+  
+        // Avec un mot vide et un charactère
+  @Test
+  def isEqualsWithTypingError1 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("a",""), false)
+  }
+  
+        // Avec deux mots proche de 1 lettre
+  @Test
+  def isEqualsWithTypingError2 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjoer","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui à une lettre en plus ou en moins
+  @Test
+  def isEqualsWithTypingError3 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjours","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui n'à pas d'accent
+  @Test
+  def isEqualsWithTypingError4 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjoùr","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui est en minusclue et l'autre en majuscule
+  @Test
+  def isEqualsWithTypingError5 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("BONJOUR","bonjour"), true)
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.containsWithTypingError()
 
+   
+  
   /**
    * Cas à tester :
    *
@@ -279,4 +383,35 @@ class AnalyseSentence {
    * - Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
    */
 
+  /**
+   * Avec une liste vide et un mot random
+   */
+  @Test
+  def containsWithTypingError{
+    assertEquals(AnalyseSentence.containsWithTypingError(List(),"baguette"), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot vide
+   */
+  @Test
+  def containsWithTypingError2{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("baguette","crêpes","riz"),""), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste
+   */
+  @Test
+  def containsWithTypingError3{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"baguette"), true)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
+   */
+  @Test
+  def containsWithTypingError4{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"bagette"), true)
+  }
 }
