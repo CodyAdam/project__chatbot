@@ -250,7 +250,34 @@ class AnalyseSentence {
    * - Avec aucun mot contenu dans la liste des language keywords de politesse
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de politesse de même langue
    */
-
+  //Avec une liste vide
+  @Test
+  def getLanguageIfPolite1 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.getLanguageIfPolite(inputs), None)
+  }
+  
+  //Avec un mot contenu dans la liste des language keywords de politesse
+  @Test
+  def getLanguageIfPolite2 {
+    val inputs = List("motRandom1", "Hi", "motRandom2", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfPolite(inputs), Some(Anglais))
+  }
+  
+  //Avec aucun mot contenu dans la liste des language keywords de politesse
+  @Test
+  def getLanguageIfPolite3 {
+    val inputs = List("motRandom1", "motRandom2","motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfPolite(inputs), None)
+  }
+  
+  //- Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de politesse de même langue
+  @Test
+  def getLanguageIfPolite4 {
+    val inputs = List("motRandom1", "Bonjour","motRandom3","Bonsoir", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfPolite(inputs), Some(Francais))
+  }
+  
   //TODO TEST DE LA FONCTION : AnalyseSentence.hasPoliteWord()
 
   /**
@@ -261,7 +288,34 @@ class AnalyseSentence {
    * - Avec aucun mot contenu dans la liste des language keywords
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de même langue
    */
-
+  //Avec une liste vide
+  @Test
+  def hasPoliteWord1 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.hasPoliteWord(inputs), false)
+  }
+  
+  //Avec un mot contenu dans la liste des language keywords
+  @Test
+  def hasPoliteWord2 {
+    val inputs = List("motRandom1", "Hallo", "motRandom2", "motRandom4")
+    assertEquals(AnalyseSentence.hasPoliteWord(inputs), true)
+  }
+  
+  //Avec aucun mot contenu dans la liste des language keywords
+  @Test
+  def hasPoliteWord3 {
+    val inputs = List("motRandom1", "motRandom2", "motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.hasPoliteWord(inputs), false)
+  }
+  
+  //Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de même langue
+  @Test
+  def hasPoliteWord4 {
+    val inputs = List("motRandom1", "Buenos","motRandom2","Dias","motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.hasPoliteWord(inputs), true)
+  }
+  
   //TODO TEST DE LA FONCTION : AnalyseSentence.isLinternauteQuery()
 
   /**
@@ -272,7 +326,36 @@ class AnalyseSentence {
    * - Avec aucun mot contenu dans la liste des language keywords de linternaute
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de linternaute de même langue
    */
-
+  
+  //Avec une liste vide
+  @Test
+  def isLinternauteQuery1 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.isLinternauteQuery(inputs), false)
+  }
+  
+  //Avec un mot contenu dans la liste des language keywords de linternaute
+  @Test
+  def isLinternauteQuery2{
+    val inputs = List("motRandom1", "ristorante", "motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.isLinternauteQuery(inputs), true)
+  }
+  
+  //Avec aucun mot contenu dans la liste des language keywords de linternaute
+  @Test
+  def isLinternauteQuery3{
+    val inputs = List("motRandom1", "motrandom2", "motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.isLinternauteQuery(inputs), false)
+  }
+  
+  //Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de linternaute de même langue
+  @Test
+  def isLinternauteQuery4{
+    val inputs = List("motRandom1", "creperie", "motrandom3", "motRandom4","pizzeria")
+    assertEquals(AnalyseSentence.isLinternauteQuery(inputs), true)
+  }
+  
+  
   //TODO TEST DE LA FONCTION : AnalyseSentence.isBlagueQuery()
 
   /**
@@ -283,6 +366,34 @@ class AnalyseSentence {
    * - Avec aucun mot contenu dans la liste des language keywords de blagues
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de blagues de même langue
    */
+  
+  //Avec une liste vide
+  @Test
+  def isBlagueQuery1 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.isBlagueQuery(inputs), false)
+  }
+  
+  //Avec un mot contenu dans la liste des language keywords de blagues
+  @Test
+  def isBlagueQuery2 {
+    val inputs = List("motRandom1", "Witz", "motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.isBlagueQuery(inputs), true)
+  }
+  
+  //Avec aucun mot contenu dans la liste des language keywords de blagues
+  @Test
+  def isBlagueQuery3 {
+    val inputs = List("motRandom1", "motrandom2", "motrandom3", "motRandom4")
+    assertEquals(AnalyseSentence.isBlagueQuery(inputs), false)
+  }
+  
+   //Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de blagues de même langue
+  @Test
+  def isBlagueQuery4 {
+    val inputs = List("motRandom1", "barzelletta", "motrandom3", "battuta","motRandom4")
+    assertEquals(AnalyseSentence.isBlagueQuery(inputs), true)
+  }
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.getWords()
 
@@ -292,8 +403,37 @@ class AnalyseSentence {
    * - Avec un mot vide
    * - Avec deux mots séparé d'un charactère séparateur (" ,'.;:!?¿-_")
    * - Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
-   * - Avec deux mots séparé de plusieurs charactères séparateurs (" ,'.;:!?¿-_")
+   * - Avec plusieurs mots séparés de charactère séparateur (" ,'.;:!?¿-_")
    */
+  
+  //Avec un mot vide
+  @Test
+  def getWords1 {
+    val inputs = ""
+    assertEquals(AnalyseSentence.getWords(inputs), List(""))
+  }
+  
+  //Avec deux mots séparé d'un charactère séparateur (" ,'.;:!?¿-_")
+  @Test
+  def getWords2 {
+    val inputs = "je:suis"
+    assertEquals(AnalyseSentence.getWords(inputs), List("je","suis"))
+  }
+  
+  //Avec un mot suivis de charactère séparateur à la fin (" ,'.;:!?¿-_")
+  @Test
+  def getWords3 {
+    val inputs = "je!"
+    assertEquals(AnalyseSentence.getWords(inputs), List("je"))
+  }
+  
+  //Avec plusieurs mots séparés de charactère séparateur (" ,'.;:!?¿-_")
+  @Test
+  def getWords4 {
+    val inputs = "nous;sommes!content?de_coder"
+    assertEquals(AnalyseSentence.getWords(inputs), List("nous","sommes","content","de","coder"))
+  }
+
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.isEqualsWithTypingError()
 
