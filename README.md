@@ -1,9 +1,6 @@
 # TODO :
 
--   [ ] multisearch as one message
 -   [ ] linternaute phrase
--   [ ] fix word wrap
--   [ ] UI - add timestamps
 -   [ ] UI - fix window size change on flag select
 -   [ ] make a UML graph
 
