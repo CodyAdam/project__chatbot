@@ -31,6 +31,10 @@ object MachineImpl extends MachineDialogue {
             return List(joke.text + "<br/><br/><br/><i>" + joke.answer + "</i>");
           }
         }
+        
+        if (AnalyseSentence.isDefinitionQuery(words)) {
+          
+        }
 
         var politePrefix: List[String] = List[String]()
         if (AnalyseSentence.hasPoliteWord(words)) {
