@@ -178,6 +178,7 @@ object AnalyseSentence {
     var s2: String = str2.toLowerCase();
     s1 = stripAccents(s1);
     s2 = stripAccents(s2);
+    if(s2.length<=2) return s1 == s2;
     return levenshtein(s1, s2) <= 1;
   }
 
