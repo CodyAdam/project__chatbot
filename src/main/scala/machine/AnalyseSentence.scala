@@ -184,7 +184,7 @@ object AnalyseSentence {
    * @return is str1 and str2 almost the same with typing error
    *
    * @note L’avatar tolère l’oubli d’accents, majuscules, ou de mots de liaison.
-   * @note L’avatar accepteau plus une erreur de frappepar mot cle (une lettre soit manquante, soit erronee)
+   * @note L’avatar accepte au plus une erreur de frappe par mot cle (une lettre soit manquante, soit erronee)
    */
   def isEqualsWithTypingError(str1: String, str2: String): Boolean = {
     var s1: String = str1.toLowerCase();
