@@ -28,7 +28,7 @@ object MachineImpl extends MachineDialogue {
         if (AnalyseSentence.isBlagueQuery(words)) {
           var joke = DataBase.getJoke();
           if (joke != null) {
-            return List(joke.text + "<br/><br/><br/><i>" + joke.answer + "</i>");
+            return List(joke.text + " <br/> <br/> <br/> <i>" + joke.answer + "</i>");
           }
         }
 
@@ -47,7 +47,7 @@ object MachineImpl extends MachineDialogue {
           return politePrefix ++ MultiRequetes.getAddress(placesFound(0))
         else {
           StateManager.userState = IsChosing
-          return politePrefix ++ MultiRequetes.formatMultiResults(placesFound)
+          return politePrefix ++ MultiRequetes.addLineBreaks(MultiRequetes.formatMultiResults(placesFound))
         }
       }
 
