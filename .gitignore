@@ -17,3 +17,4 @@ project/plugins/project/
 /output.wav
 /org.eclipse.core.resources.prefs
 /.cache-tests
+/null/
