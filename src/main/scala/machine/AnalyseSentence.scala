@@ -58,7 +58,7 @@ object AnalyseSentence {
   /**
    * @param words from the user sentence
    * @return the language if a polite language keyword is found
-   * if multiples words from different languages found, return one of the 
+   * if multiples words from different languages found, return one of the
    * languages without preferences
    */
   def getLanguageIfPolite(words: List[String]): Option[Language] = {
@@ -68,32 +68,32 @@ object AnalyseSentence {
           return Some(language)
     return None
   }
-  
-  def hasPoliteWord(words:List[String]): Boolean = {
+
+  def hasPoliteWord(words: List[String]): Boolean = {
     for (language: Language <- DataBase.getLanguages())
       for (politeWord: String <- language.politesse)
         if (containsWithTypingError(words, politeWord))
           return true
     return false
   }
-  
+
   /**
    * @param words from the user sentence
    * @return the langage with most words from the sentence
    */
-  def getMajorLanguage(words : List[String]): Language = {
-    var hash : HashMap[Language, Integer] = new HashMap();
-    for(w <- words){
+  def getMajorLanguage(words: List[String]): Language = {
+    var hash: HashMap[Language, Integer] = new HashMap();
+    for (w <- words) {
       var ref = DataBase.getWordsLanguage().get(w);
       ref match {
         case None => {}
         case Some(set) => {
-          for(lang <- set){
-            hash.get(lang) match{
+          for (lang <- set) {
+            hash.get(lang) match {
               case None => {
                 hash.put(lang, 1);
               }
-              case Some(set) => hash(lang) = hash(lang)+1;
+              case Some(set) => hash(lang) = hash(lang) + 1;
             }
           }
         }
@@ -101,19 +101,18 @@ object AnalyseSentence {
     }
     var max: Language = null;
     var maxInt: Integer = 0;
-    hash.foreach  
-    {   
-       case (key, value) => {
-         if(value>maxInt) {
-           max = key;
-           maxInt = value;
-         } else if(value==maxInt){
-           if(key == StateManager.currentLanguage){
-             max = key;
-             maxInt = value;
-           }
-         }
-       }
+    hash.foreach {
+      case (key, value) => {
+        if (value > maxInt) {
+          max = key;
+          maxInt = value;
+        } else if (value == maxInt) {
+          if (key == StateManager.currentLanguage) {
+            max = key;
+            maxInt = value;
+          }
+        }
+      }
     }
     return max;
   }
@@ -125,8 +124,6 @@ object AnalyseSentence {
   def getLanguageIfSearching(words: List[String]): Option[Language] = {
     for (language: Language <- DataBase.getLanguages())
       for (politeWord: String <- language.recherche ++ List(language.langue)) {
-        println(politeWord)
-        println(containsWithTypingError(words, politeWord))
         if (containsWithTypingError(words, politeWord))
           return Some(language)
       }
@@ -145,20 +142,19 @@ object AnalyseSentence {
     return false
   }
 
-  
   /**
    * @param words from the user sentence
    * @return if the user input contains a joke triggerword in the current language
    */
-  def isBlagueQuery(words : List[String]): Boolean = {
+  def isBlagueQuery(words: List[String]): Boolean = {
     for (language: Language <- DataBase.getLanguages())
       for (jokeWord: String <- language.blagueTrigger)
         if (containsWithTypingError(words, jokeWord))
           return true
     return false
   }
-  
-   /**
+
+  /**
    * @param words from the user sentence
    * @return if the user input contains a definition triggerword in the current language
    */
@@ -169,7 +165,7 @@ object AnalyseSentence {
           return true
     return false
   }
-  
+
   /**
    * @param list a list of string
    * @param str a string
@@ -195,7 +191,7 @@ object AnalyseSentence {
     var s2: String = str2.toLowerCase();
     s1 = stripAccents(s1);
     s2 = stripAccents(s2);
-    if(s2.length<=2) return s1 == s2;
+    if (s2.length <= 2) return s1 == s2;
     return levenshtein(s1, s2) <= 1;
   }
 

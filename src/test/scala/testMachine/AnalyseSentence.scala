@@ -8,13 +8,13 @@ import machine._
 class AnalyseSentence {
   // initialisation des objets sous test
   DataBase.init()
-  
+
   val Francais = DataBase.getLanguages()(0)
   val Anglais = DataBase.getLanguages()(1)
   val Espagnol = DataBase.getLanguages()(2)
   val Allemand = DataBase.getLanguages()(3)
   val Italien = DataBase.getLanguages()(4)
-  
+
   @Before
   def resetState = {
     MachineImpl.reinit
@@ -200,14 +200,43 @@ class AnalyseSentence {
    * Cas à tester :
    *
    * - Avec une liste vide
-   * - Avec un mot contenu dans la liste des language keywords de recherche 
+   * - Avec un mot contenu dans la liste des language keywords de recherche
    * - Avec aucun mot contenu dans la liste des language keywords de recherche
    * - Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de recherche de même langue
    */
 
+  // Avec une liste vide
+  @Test
+  def getLanguageIfSearching0 {
+    val inputs = List()
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), None)
+  }
+
+  //Avec un mot contenu dans la liste des language keywords de recherche
   @Test
   def getLanguageIfSearching1 {
     val inputs = List("motRandom1", "recherche", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Francais))
+  }
+
+  @Test
+  def getLanguageIfSearching2 {
+    val inputs = List("motRandom1", "search", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Anglais))
+  }
+
+  //Avec aucun mot contenu dans la liste des language keywords de recherche
+
+  @Test
+  def getLanguageIfSearching3 {
+    val inputs = List("motRandom1", "motRandom2", "motRandom3", "motRandom4")
+    assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), None)
+  }
+
+  //Avec plusieurs mots dont un qui est contenu dans la liste des language keywords de recherche de même langue
+  @Test
+  def getLanguageIfSearching4 {
+    val inputs = List("motRandom1", "recherche", "motRandom2", "trouve", "motRandom4")
     assertEquals(AnalyseSentence.getLanguageIfSearching(inputs), Some(Francais))
   }
 
