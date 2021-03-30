@@ -9,7 +9,8 @@ class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWid
   opaque = true
   foreground = Theme.color.TEXT
   background = Theme.color.SECONDARY
-  border = new javax.swing.border.EmptyBorder(0, 0, 0, 0)
+  border = new javax.swing.border.EmptyBorder(10, 10, 10, 10)
+  peer.setFocusPainted(false);
   if (isUser) horizontalAlignment = (Alignment.Right)
   else horizontalAlignment = (Alignment.Left)
 
@@ -22,10 +23,15 @@ class TextBubble(lang: machine.Language, msg: String, isUser: Boolean, parentWid
 
   preferredSize = new Dimension(0, lineHeight * line);
 
+  listenTo(Theme)
   reactions += {
     case event.ButtonClicked(_) => {
       val tssInput = msg.replaceAll("<br/>", " ").replaceAll("<i>", "").replaceAll("</i>", "")
       machine.TextToSpeech.speak(tssInput, lang)
+    }
+    case Theme.ThemeChange => {
+      foreground = Theme.color.TEXT
+      background = Theme.color.SECONDARY
     }
   }
 }

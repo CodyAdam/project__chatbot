@@ -48,15 +48,15 @@ object WelcomeFrame extends BorderPanel {
   listenTo(flagFR.button, flagEN.button, flagAL.button, flagES.button, flagIT.button, Theme)
   reactions += {
     case ButtonClicked(button) => {
-      if (button == flagFR)
+      if (button == flagFR.button)
         StateManager.changeLanguage(DataBase.getLanguages()(0))
-      else if (button == flagEN)
+      else if (button == flagEN.button)
         StateManager.changeLanguage(DataBase.getLanguages()(1))
-      else if (button == flagES)
+      else if (button == flagES.button)
         StateManager.changeLanguage(DataBase.getLanguages()(2))
-      else if (button == flagAL)
+      else if (button == flagAL.button)
         StateManager.changeLanguage(DataBase.getLanguages()(3))
-      else if (button == flagIT)
+      else if (button == flagIT.button)
         StateManager.changeLanguage(DataBase.getLanguages()(4))
       UI.hasLang = true
       UI.init()

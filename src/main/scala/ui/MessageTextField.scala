@@ -9,15 +9,19 @@ import scala.io.StdIn._
 
 object MessageTextField extends TextField {
   opaque = false
-   font = Theme.font.deriveFont(18f);
+  font = Theme.font.deriveFont(18f);
   foreground = Theme.color.TEXT
   border = new javax.swing.border.EmptyBorder(0, 20, 0, 20)
 
-  listenTo(keys)
+  listenTo(keys, Theme)
   reactions += {
     case KeyPressed(component, key, _, _) => {
       if (key.equals(Key.Enter))
         sendMessage(MessageTextField.text)
+    }
+    case Theme.ThemeChange => {
+      background = Theme.color.MAIN
+      foreground = Theme.color.TEXT
     }
   }
 
