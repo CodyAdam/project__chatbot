@@ -22,4 +22,22 @@ class CasePolite {
    * - avec un mot de politesse de la langue actuel
    * - avec un mot de politesse de la langue actuel et d'autres mots
    */
+  
+  //avec un mot de politesse de la langue actuel
+  @Test
+  def politesse1() = {
+    assertEquals(MachineImpl.ask("Bonjour"), List("Bonjour"))
+  }
+  @Test
+  def politesse2() = {
+    assertEquals(MachineImpl.ask("Morgen"), List("Sprechen Sie Deutsch?"))
+  }
+  
+  //avec un mot de politesse de la langue actuel et d'autres mots
+  @Test
+  def politesse3() = {
+    assertEquals(MachineImpl.ask("Bonjour agaghdhhjd"), List("Bonjour","Je ne comprends pas votre demande"))
+    assertEquals(MachineImpl.ask("Joke"), List("Do you speak english?"))
+  }
+  
 }
