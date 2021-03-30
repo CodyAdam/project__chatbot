@@ -25,11 +25,18 @@ class CaseLinternaute {
    */
   
   @Test
-  def ask(){
-    assertEquals(MachineImpl.ask("restaurant la tomate"), List("18, rue Saint Georges"))
-    assertEquals(MachineImpl.ask("restaurant le petit chef en paille"), List("Je ne comprends pas votre demande"))
-    assertEquals(MachineImpl.ask("restaurant le petit"), List("5 r Chapitre"))
-
-
+  def ask1(){
+    assertEquals(MachineImpl.ask("restaurant la tomate"), List("L'adresse de La Tomate est : 18, rue Saint Georges"))
   }
+  
+  @Test
+  def ask2(){
+    assertEquals(MachineImpl.ask("restaurant le petit chef en paille"), List("Je ne comprends pas votre demande"))
+  }
+  
+  @Test
+  def ask3(){
+    assertEquals(MachineImpl.ask("restaurant le petit"), List("L'adresse 5 r Chapitre"))
+  }
+  
 }

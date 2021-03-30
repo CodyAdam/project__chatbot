@@ -7,7 +7,7 @@ object Linternaute {
   /**
    * prend les mots de l'utilisateurs et supprime le trigger word de
    * l'internaute (ex : "restaurant") pour rendre uniquement les autres mots
-   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un
    * triggerword
    * @return les mots utilisés pour la recherche sur l'Internaute
    */
@@ -40,7 +40,7 @@ object Linternaute {
 
   /**
    * Isole l'adresse du restaurant correspond à la recherche à partir des mots clés
-   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un
    * triggerword
    * @return une chaîne de caractères correspondant à la fin du lien qui mene vers la page du restaurant
    * ex : "/restaurant/restaurant/9072/la-tomate.shtml"
@@ -60,20 +60,39 @@ object Linternaute {
 
   /**
    * Se rend à l'adresse de la page du restaurant recherché et trouve l'adresse de celui-ci
-   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un 
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un
    * triggerword
-   * @return une chaîne de caractères correspondant à l'adresse physique du restaurant
+   * @return une Option de Place avec l'adresse et le nom du restaurant
    */
-  def lookForAdress(words: List[String]): String = {
-    val restaurant = findRestaurant(words)
-    if (restaurant.equals(""))
-      return ""
-    else {
-      val r = Jsoup.connect("https://www.linternaute.com/" + restaurant).get().select("li.icomoon-location > span").first()
-      if (r != null)
-        r.html()
-      else
-        ""
+  def lookForAdress(words: List[String]): Option[Place] = {
+    val adressWeb = findRestaurant(words)
+    var restaurant = new Place("", "", "", "", "", "", "")
+    if (!adressWeb.equals("")) {
+      val page = Jsoup.connect("https://www.linternaute.com/" + adressWeb).get()
+      val adress = page.select("li.icomoon-location > span").first()
+      val name = page.select("h1.bu_restaurant_title_xl").first()
+      if (name != null && adress != null)
+        return Some(new Place(name.html(), "", "", adress.html(), "", "", ""))
+    }
+    None
+  }
+
+  /**
+   * Génère un message avec le nom et l'adresse du restaurant
+   * @param words la liste de mots rentrés par l'utilisateur contient forcément au moins un
+   * triggerword
+   * @return une liste de chaînes de caractères étant le message retourné par l'avatar
+   */
+  def messageAdress(words: List[String]): List[String] = { 
+    lookForAdress(words) match {
+      case None => List(StateManager.currentLanguage.expression.dontUnderstand)
+      case Some(place) => MultiRequetes.getAddress(place)
     }
   }
+  
 }
+
+object TestAdress extends App {
+  DataBase.init
+  println(Linternaute.messageAdress(List("restaurant", "le", "petit")))
+  }
