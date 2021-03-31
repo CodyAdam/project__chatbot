@@ -20,9 +20,8 @@ object MachineImpl extends MachineDialogue {
 
         if (AnalyseSentence.isLinternauteQuery(words)) {
           val adress = Linternaute.messageAdress(words)
-          if (!adress.equals("")) {
+          if (!adress.equals(List()))
             return adress
-          }
         }
 
         if (AnalyseSentence.isBlagueQuery(words)) {
@@ -31,9 +30,11 @@ object MachineImpl extends MachineDialogue {
             return List(joke.text + " <br/> <br/> <br/> <i>" + joke.answer + "</i>");
           }
         }
-        
+
         if (AnalyseSentence.isDefinitionQuery(words)) {
-          
+          val definition = DefinitionLinternaute.lookingForDefinition(words)
+          if (!definition.equals(List()))
+            return definition
         }
 
         var politePrefix: List[String] = List[String]()
