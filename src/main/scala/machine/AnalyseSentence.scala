@@ -86,7 +86,19 @@ object AnalyseSentence {
     for (w <- words) {
       var ref = DataBase.getWordsLanguage().get(w);
       ref match {
-        case None => {}
+        case None => {
+          for((k,v) <- DataBase.getWordsLanguage()){
+            if(isEqualsWithTypingError(k,w)){
+              var ll = getMajorLanguage(List(k))
+              hash.get(ll) match {
+                case None => {
+                  hash.put(ll, 1);
+                }
+                case Some(set) => hash(ll) = hash(ll) + 1;
+              }
+            }
+          }
+        }
         case Some(set) => {
           for (lang <- set) {
             hash.get(lang) match {
