@@ -17,7 +17,7 @@ object DefinitionLinternaute {
       if (found && !(StateManager.currentLanguage.ignore).contains(unknownWord.toLowerCase())) {
         return unknownWord
       }
-      if ((StateManager.currentLanguage.definitionTrigger).contains(unknownWord.toLowerCase())) {
+      if (AnalyseSentence.containsWithTypingError(StateManager.currentLanguage.definitionTrigger, unknownWord.toLowerCase())) {
         found = true
       }
     }

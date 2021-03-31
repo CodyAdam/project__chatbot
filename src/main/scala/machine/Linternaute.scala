@@ -18,7 +18,7 @@ object Linternaute {
       if (found) {
         searchingWords = searchingWords :+ politeWord
       }
-      if ((StateManager.currentLanguage.linternauteTrigger).contains(politeWord.toLowerCase())) {
+      if (AnalyseSentence.containsWithTypingError(StateManager.currentLanguage.linternauteTrigger, politeWord.toLowerCase())) {
         found = true
       }
     }
