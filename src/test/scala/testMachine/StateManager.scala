@@ -14,7 +14,7 @@ class StateManager {
     MachineImpl.reinit
   }
 
-  //TODO TEST DE LA FONCTION : StateManager.getNextLanguage()
+  //TEST DE LA FONCTION : StateManager.getNextLanguage()
 
   /*
    Cas à tester :

@@ -14,7 +14,7 @@ class CaseErrors {
     MachineImpl.reinit
   }
 
-  //TODO TESTER LA FONCTIONNALITÉ : F2 du tp avec erreurs d'orthographes avec la fonction MachineImpl.ask()
+  //TESTER LA FONCTIONNALITÉ : F2 du tp avec erreurs d'orthographes avec la fonction MachineImpl.ask()
 
   /**
    * Cas à tester :
