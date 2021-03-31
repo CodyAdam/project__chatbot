@@ -18,13 +18,13 @@ object Theme extends Publisher {
     Color.decode("#0B0C0B"))
 
   val lightTheme: ColorPalette = new ColorPalette(
-    Color.decode("#EAE3E5"),
-    Color.GRAY,
-    Color.BLACK,
-    Color.decode("#55FF4F"),
-    Color.BLACK,
-    Color.GREEN,
-    Color.GRAY)
+    Color.decode("#F4F9F9"),
+    Color.decode("#CCF2F4"),
+    Color.decode("#00BFFF"),
+    Color.decode("#00BFFF"),
+    Color.decode("#0B0C0B"),
+    Color.decode("#F4F9F9"),
+    Color.decode("#F4F9F9"))
 
   val themeList: List[ColorPalette] = List(darkTheme, lightTheme)
   var color: ColorPalette = darkTheme
