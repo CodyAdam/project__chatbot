@@ -469,6 +469,42 @@ class AnalyseSentence {
    * - Avec deux mots proche avec l'un qui n'à pas d'accent
    * - Avec deux mots proche avec l'un qui est en minusclue et l'autre en majuscule
    */
+  
+  @Test
+  def isEqualsWithTypingError0 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("",""), true)
+  }
+  
+        // Avec un mot vide et un charactère
+  @Test
+  def isEqualsWithTypingError1 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("a",""), false)
+  }
+  
+        // Avec deux mots proche de 1 lettre
+  @Test
+  def isEqualsWithTypingError2 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjoer","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui à une lettre en plus ou en moins
+  @Test
+  def isEqualsWithTypingError3 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjours","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui n'à pas d'accent
+  @Test
+  def isEqualsWithTypingError4 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("bonjoùr","bonjour"), true)
+  }
+  
+        // Avec deux mots proche avec l'un qui est en minusclue et l'autre en majuscule
+  @Test
+  def isEqualsWithTypingError5 {
+    assertEquals(AnalyseSentence.isEqualsWithTypingError("BONJOUR","bonjour"), true)
+  }
+
 
   //TODO TEST DE LA FONCTION : AnalyseSentence.containsWithTypingError()
 
@@ -480,5 +516,37 @@ class AnalyseSentence {
    * - Avec une liste de mots random et un mot qui est dans la liste
    * - Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
    */
+  /**
+   * Avec une liste vide et un mot random
+   */
+  @Test
+  def containsWithTypingError{
+    assertEquals(AnalyseSentence.containsWithTypingError(List(),"baguette"), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot vide
+   */
+  @Test
+  def containsWithTypingError2{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("baguette","crêpes","riz"),""), false)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste
+   */
+  @Test
+  def containsWithTypingError3{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"baguette"), true)
+  }
+  
+  /**
+   * Avec une liste de mots random et un mot qui est dans la liste mais avec des fautes
+   */
+  @Test
+  def containsWithTypingError4{
+    assertEquals(AnalyseSentence.containsWithTypingError(List("riz","pâtes","semoule","baguette"),"bagette"), true)
+  }
+
 
 }

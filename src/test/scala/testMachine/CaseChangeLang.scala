@@ -14,7 +14,7 @@ class CaseChangeLang {
     MachineImpl.reinit
   }
 
-  //TODO TESTER LA FONCTIONNALITÉ : Changement de langue avec la fonction MachineImpl.ask()
+  //TESTER LA FONCTIONNALITÉ : Changement de langue avec la fonction MachineImpl.ask()
   
   /**
    * Cas à tester :

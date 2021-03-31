@@ -14,7 +14,7 @@ class CaseDefault {
     MachineImpl.reinit
   }
 
-  //TODO TESTER LA FONCTIONNALITÉ : F1 du tp avec les phrases de bases avec la fonction MachineImpl.ask()
+  //TESTER LA FONCTIONNALITÉ : F1 du tp avec les phrases de bases avec la fonction MachineImpl.ask()
   
   /**
    * Cas à tester :
