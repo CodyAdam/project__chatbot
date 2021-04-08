@@ -2,7 +2,7 @@
 
 ![uml](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/DiagUMLFinal.png)
 
-# GU
+# GUI
 
 ### v2.2 FINAL
 
