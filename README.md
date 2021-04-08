@@ -1,10 +1,13 @@
-# TODO :
+# UML Graph :
 
--   [ ] linternaute phrase
--   [ ] UI - fix window size change on flag select
--   [ ] make a UML graph
+![uml](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/DiagUMLFinal.png)
 
-# GUI
+# GU
+
+### v2.2 FINAL
+
+![v2.2Final](https://gitlab.istic.univ-rennes1.fr/arallain/avatar_project/-/raw/master/vFinal.gif)
+I
 
 ### v2.1
 
@@ -25,4 +28,3 @@
 ### v0.1
 
 ![v0.1](https://gitlab.istic.univ-rennes1.fr/arallain/tpavatar/-/raw/master/Prototype%201.gif)
-
