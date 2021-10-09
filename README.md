@@ -1,7 +1,7 @@
 
 This is a "smart" **Chatbot made using Scala and Swing** (for UI). Its name is "Kiwipédia". 
 
-This was a group project in team of 8. My role in the team was the **Scrum master** and the **devlopper of the UI**.
+This was a group project in team of 7. My role in the team was the **Scrum master** and the **devlopper of the UI**.
 We used the **SCRUM process** during which we made multiple iterations of the app.
 
 # Features
