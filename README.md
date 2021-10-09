@@ -28,4 +28,4 @@
 
 # UML Graph :
 
-![uml](https://github.com/CodyAdam/project__chatbot/blob/main/v2.gif?raw=true)
+![uml](https://github.com/CodyAdam/project__chatbot/blob/main/DiagUMLFinal.png?raw=true)
