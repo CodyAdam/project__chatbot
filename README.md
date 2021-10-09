@@ -1,6 +1,22 @@
 
+This is a "smart" **Chatbot made using Scala and Swing** (for UI). Its name is "Kiwipédia". 
 
-# GUI
+This was a group project in team of 8. My role in the team was the **Scrum master** and the **devlopper of the UI**.
+We used the **SCRUM process** during which we made multiple iterations of the app.
+
+# Features
+
+- Search places **location** by web scrapping (from linternaute.com)
+- Can give **definions** of given words by web scrapping (from larousse.fr) 
+- Tell **jokes** from a jokes database
+- Respond with **polite words** if user is polite
+- Can alternate between **5 languages** (EN, FR, IT, ES, AL)
+- Support **typing errors** (levenshtein algorythm) 
+- **Text to speech** (using Google cloud Speech) 
+- **Speech to text** (using Google cloud Speech)
+- **Responsive UI** with dark/light theme support
+
+# Preview
 
 ### v5 Demo
 
